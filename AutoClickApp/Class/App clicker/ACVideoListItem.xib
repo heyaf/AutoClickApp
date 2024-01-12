@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="ACVideoListItem">
+            <rect key="frame" x="0.0" y="0.0" width="229" height="143"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="229" height="143"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="111" translatesAutoresizingMaskIntoConstraints="NO" id="V1C-Fc-uHL">
+                        <rect key="frame" x="0.0" y="0.0" width="229" height="118"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="10"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </imageView>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="paly_video" translatesAutoresizingMaskIntoConstraints="NO" id="IaB-o0-fkg">
+                        <rect key="frame" x="90.666666666666671" y="35" width="48.000000000000014" height="48"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="48" id="Hrn-21-Ozz"/>
+                            <constraint firstAttribute="width" constant="48" id="khm-lg-eAd"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="englishTitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ahR-T5-xgn">
+                        <rect key="frame" x="0.0" y="126" width="229" height="17"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="17" id="U0k-1a-2Zj"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.91041308639999996" green="0.95115786790000001" blue="0.99913662670000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="SEy-5g-ep8"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="V1C-Fc-uHL" secondAttribute="bottom" constant="25" id="FkD-pV-HLz"/>
+                <constraint firstItem="IaB-o0-fkg" firstAttribute="centerX" secondItem="V1C-Fc-uHL" secondAttribute="centerX" id="NA3-cV-LkZ"/>
+                <constraint firstItem="IaB-o0-fkg" firstAttribute="centerY" secondItem="V1C-Fc-uHL" secondAttribute="centerY" id="Zzl-3a-SWW"/>
+                <constraint firstItem="V1C-Fc-uHL" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="awW-hL-frC"/>
+                <constraint firstAttribute="trailing" secondItem="ahR-T5-xgn" secondAttribute="trailing" id="dNv-qE-HaF"/>
+                <constraint firstAttribute="trailing" secondItem="V1C-Fc-uHL" secondAttribute="trailing" id="fDy-Zf-Ejc"/>
+                <constraint firstItem="V1C-Fc-uHL" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="j88-BB-A2M"/>
+                <constraint firstAttribute="bottom" secondItem="ahR-T5-xgn" secondAttribute="bottom" id="kTS-nN-FAt"/>
+                <constraint firstItem="ahR-T5-xgn" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="pb4-zG-Q9F"/>
+            </constraints>
+            <size key="customSize" width="229" height="143"/>
+            <connections>
+                <outlet property="videoImage" destination="V1C-Fc-uHL" id="XsL-pw-BxJ"/>
+                <outlet property="videoTitle" destination="ahR-T5-xgn" id="c1j-Vl-Pbz"/>
+            </connections>
+            <point key="canvasLocation" x="263.35877862595419" y="21.47887323943662"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="111" width="1100" height="1100"/>
+        <image name="paly_video" width="128" height="128"/>
+    </resources>
+</document>

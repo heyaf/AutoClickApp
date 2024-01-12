@@ -1,0 +1,234 @@
+/*
+  Localizable.strings
+  AutoClicker
+*/
+
+/* Splash screen, Guide, Subscription Page B */
+
+"auto clicker" = "Auto Clicker";
+"Automatically click on the web" = "Automatically Click on Any Webpage";
+"How to automatically click on the app" = "How to Automatically Click in Any App";
+"Interesting practical gadgets" = "Collection of Useful Gadgets";
+"PRO" = "PRO";
+"Upgrade PRO" = "Upgrade PRO";
+"Unlock the Web's auto-click feature" = "Unlock automatic clicks on the web";
+"How to solve automatic clicking in other APPs" = "Solve Automatic Clicking in Apps";
+"Unlock Privacy Album and Privacy Browser" = "Unlock Privacy Album and Privacy Browser";
+"Unlock the document scanning function" = "Unlock Document Scanning Function";
+"Go Premium for $8.99/mo" = "Upgrade Now for Only **/Month";
+"continue" = "Continue";
+"Terms of Service - Privacy Policy - Resume purchase" = "Terms of Use - Privacy Policy - Restore Purchase";
+
+/* tab bar */
+
+"web clicker" = "Web Clicker";
+"App clicker" = "App Clicker";
+"Tools" = "Super Tools";
+
+/* web clicker */
+
+"auto clicker" = "Auto Clicker";
+"Search Any Website" = "Enter a URL or Keyword";
+"game" = "Game";
+"roblox" = "Roblox";
+"Minecraft" = "Minecraft";
+"Amongus" = "Among Us";
+"social media" = "Social Media";
+"Tiktok" = "TikTok";
+"Tinder" = "Tinder";
+"Twitter" = "Twitter";
+"Facebook" = "Facebook";
+"YouTube" = "YouTube";
+"linkedin" = "LinkedIn";
+
+/* search */
+
+"auto clicker" = "Auto Clicker";
+"PRO" = "PRO";
+"Search Any Website" = "Enter a URL or Keyword";
+"Cancel" = "Cancel";
+
+/* Settings */
+"Settings" = "Settings";
+"Get Premium" = "Get Premium";
+"Unlock all paid features and permissions" = "Unlock All Paid Features and Permissions";
+"General" = "General Settings";
+"Click Sound" = "Click Sound";
+"Select Language" = "Select Language";
+"Others" = "Other";
+"Privacy policy" = "Privacy Policy";
+"Rate App" = "Rate the App";
+"Feedback" = "Feedback";
+"Share App" = "Share the App";
+"App Version" = "App Version";
+
+/* language */
+
+"language" = "Select Language";
+"English" = "English";
+"Русский" = "Русский";
+"Français" = "Français";
+"Deutsch" = "Deutsch";
+"简体中文" = "简体中文";
+"繁體中文" = "繁體中文";
+"日本語" = "日本語";
+
+
+/* pro */
+
+"Auto Clicker pro" = "Auto Clicker Pro";
+"Unlock the Web's auto-click feature" = "Unlock automatic clicks on the web";
+"How to solve automatic clicking in other APPs" = "Solve Automatic Clicking in Apps";
+"Unlock Privacy Album and Privacy Browser" = "Unlock Privacy Album and Privacy Browser";
+"Unlock the document scanning function" = "Unlock Document Scanning Function";
+"85%OFF" = "85% OFF";
+"$16.99 / year" = "** / Year";
+"that's $1.42 a month" = "Only ** per Month";
+"$8.99 / month" = "** / Month";
+"Only the price of 1 cup of coffee" = "Only the Price of a Cup of Coffee";
+"Unlock all advanced features now" = "Unlock All Advanced Features Now";
+"continue" = "Continue";
+"Terms of Service - Privacy Policy - Resume purchase" = "Terms of Use - Privacy Policy - Restore Purchase";
+
+/* Web clicker_details */
+
+"Search Any Website" = "Enter a URL or Keyword";
+"Cancel" = "Cancel";
+"Start clicking" = "Start Clicking";
+
+/* When clicking on the page */
+"stop clicking" = "Stop Clicking";
+
+/* Web clicker_Settings */
+
+"repeat times:" = "Repeat Times:";
+"times" = "Times";
+"number of Taps" = "Number of Taps";
+"Tap" = "Tap";
+"delay time" = "Delay Time";
+"seconds" = "Seconds";
+
+/* App clicker */
+"auto clicker" = "Auto Clicker";
+"PRO" = "PRO";
+"unlock" = "Unlock App Clicking";
+"Unlock this feature" = "Unlock App Clicking Feature";
+"Unlock the use of automatic clicks in other apps!" = "Unlock Methods to Use in Other Apps - Video";
+"Cancel" = "Cancel";
+
+/* App clicker */
+
+"Congratulations" = "Congratulations";
+"Unlock the tutorial services used in other apps!" = "You Have Unlocked the Methods for Use in Other Apps";
+"In the app" = "In the App";
+"Services" = "Premium Services";
+"Special Price" = "Special Price";
+"View Now" = "View Now";
+
+/* App clicker pro */
+
+"auto clicker" = "Auto Clicker";
+"English subtitles" = "English Subtitles";
+"Chinese subtitles" = "Chinese Subtitles";
+"German subtitles" = "German subtitles";
+"Portuguese subtitles" = "Portuguese Subtitles";
+
+/* Tool */
+
+"Privacy album" = "Privacy Album";
+"Privacy browser" = "Privacy Browser";
+"Handheld barrage" = "Handheld Barrage";
+"Document scanning" = "Document Scanning";
+"Image cropping" = "Image Cropping";
+"Grid layout" = "Grid Layout";
+
+/* 视频相册缺省 */
+
+"Default video" = "Default video";
+"No video yet" = "No video yet";
+"Add video" = "Add video";
+
+/* 视频相册tab */
+
+"Photos" = "Photos";
+"Videos" = "Videos";
+"Default video" = "Default video";
+"Total 0 photos" = "Total ** Photos";
+
+/* 网页起名 */
+
+"Enter the name new" = "Enter the name";
+"Please give the web page you want tobookmark a name new" = "Please give the web page you want tobookmark a name";
+"Name this webpage" = "Name this webpage";
+
+/* Privacy album */
+
+"Privacy album" = "Privacy Album";
+"Photos" = "Photos";
+"Videos" = "Videos";
+"default album" = "Default Album";
+"Total 0 videos" = "Total ** videos";
+
+/* Privacy album popup page */
+
+"Enter the name" = "Enter Album Name";
+"Please give the web page you want tobookmark a name" = "Please Name Your Album for Easy Recall";
+"Cancel" = "Cancel";
+"OK" = "Confirm";
+
+/* Privacy album Default album page */
+
+"Default album" = "Default Album";
+"Add photo" = "Add Photo";
+"Rename" = "Rename";
+"Delete album" = "Delete Album";
+"Confirm Delete" = "Confirm Deletion";
+"Are you sure you want to delete" = "Are You Sure You Want to Delete This Photo?";
+"Cancel" = "Cancel";
+"Delete popup Dialog" = "Delete";
+"Delete" = "Delete";
+"Export" = "Export";
+"No pictures yet" = "No pictures yet";
+"No videos yet" = "No Videos yet";
+
+
+/* Privacy browser */
+
+"Privacy browser" = "Privacy Browser";
+"Search Any Website" = "Enter a URL or Keyword";
+"google" = "Google";
+"bing" = "Bing";
+"youtube" = "YouTube";
+"twitter" = "Twitter";
+"github" = "GitHub";
+
+/* Handheld barrage */
+
+"Handheld barrage" = "Handheld Barrage";
+"Enter text" = "Enter Text";
+"font color" = "Font Color";
+"background color" = "Background Color";
+
+/* Document scanning */
+
+"Document scanning" = "Document Scanning";
+"No files available" = "No Files Available, Go Scan to Add in the Bottom Right";
+"page" = "Page";
+"Are you sure you want to delete" = "Are you sure you want to delete？";
+"Cancel" = "Cancel";
+"Delete popup Dialog scanning" = "Delete";
+
+/* image cropping  */
+
+"image cropping" = "Image Cropping";
+"Crop and Save" = "Crop and Save";
+"Save successful" = "Save Successful";
+"Your picture has been saved to the album" = "Your Picture Has Been Saved to the Album";
+"Confirm" = "Confirm";
+
+/* Grid layout  */
+
+"Split and save the image" = "Split and Save the Image";
+"Save successful" = "Save Successful";
+"Your picture has been saved to the album" = "Your Picture Has Been Saved to the Album";
+

@@ -1,0 +1,229 @@
+/* Localizable.stringsAutoClicker */
+
+
+/* 启屏、引导、订阅页B */
+
+"auto clicker" = "自动点击器";
+"Automatically click on the web" = "在任何网页上自动点击";
+"How to automatically click on the app" = "在任意APP中自动点击";
+"Interesting practical gadgets" = "实用的小工具集合";
+"PRO" = "PRO";
+"Upgrade PRO" = "点击器高级版";
+"Unlock the Web's auto-click feature" = "解锁Web上的自动点击服务";
+"How to solve automatic clicking in other APPs" = "解决在其他APP中的自动点击";
+"Unlock Privacy Album and Privacy Browser" = "解锁隐私相册和隐私浏览器";
+"Unlock the document scanning function" = "解锁文档扫描功能";
+"Go Premium for $8.99/mo" = "现在升级仅需**/月";
+"continue" = "继续";
+"Terms of Service - Privacy Policy - Resume purchase" = "使用协议-隐私政策-恢复购买";
+
+/* tab bar */
+
+"web clicker" = "网页点击";
+"App clicker" = "app点击";
+"Tools" = "超级工具";
+
+/* web clicker */
+
+"auto clicker" = "自动点击器";
+"Search Any Website" = "输入网址或者关键词";
+"game" = "游戏";
+"roblox" = "罗布乐思";
+"Minecraft" = "我的世界";
+"Amongus" = "Amongus";
+"social media" = "社交媒体";
+"Tiktok" = "Tiktok";
+"Tinder" = "Tinder";
+"Twitter" = "Twitter";
+"Facebook" = "Facebook";
+"YouTube" = "YouTube";
+"linkedin" = "linkedin";
+
+/* search */
+
+"auto clicker" = "自动点击器";
+"PRO" = "PRO";
+"Search Any Website" = "输入网址或者关键词";
+"Cancel" = "取消";
+
+/* Settings */
+"Settings" = "设置";
+"Get Premium" = "开通会员";
+"Unlock all paid features and permissions" = "解锁所有付费功能和权限";
+"General" = "基础设置";
+"Click Sound" = "点击声音";
+"Select Language" = "选择语言";
+"Others" = "其他设置";
+"Privacy policy" = "隐私政策";
+"Rate App" = "给个好评";
+"Feedback" = "意见反馈";
+"Share App" = "分享APP";
+"App Version" = "App版本";
+
+/* language */
+
+"language" = "选择语言";
+"English" = "English";
+"Русский" = "Русский";
+"Français" = "Français";
+"Deutsch" = "Deutsch";
+"简体中文" = "简体中文";
+"繁體中文" = "繁體中文";
+"日本語" = "日本語";
+
+/* pro */
+
+"Auto Clicker pro" = "自动点击器会员";
+"Unlock the Web's auto-click feature" = "解锁Web上的自动点击服务";
+"How to solve automatic clicking in other APPs" = "解决其他APP中的自动点击";
+"Unlock Privacy Album and Privacy Browser" = "解锁隐私相册和隐私浏览器";
+"Unlock the document scanning function" = "解锁文档扫描功能";
+"85%OFF" = "优惠85%";
+"$16.99 / year" = "** / 年";
+"that's $1.42 a month" = "每月仅需 **";
+"$8.99 / month" = "** / 月";
+"Only the price of 1 cup of coffee" = "仅需一杯咖啡的价格";
+"Unlock all advanced features now" = "立即解锁所有高级功能";
+"continue" = "继续";
+"Terms of Service - Privacy Policy - Resume purchase" = "使用协议-隐私政策-恢复购买";
+
+/* Web clicker_details */
+
+"Search Any Website" = "输入网址或者关键词";
+"Cancel" = "取消";
+"Start clicking" = "开始点击";
+
+/* 点击时的页面 */
+"stop clicking" = "取消点击";
+
+/* Web clicker_Settings */
+
+"repeat times:" = "重复次数";
+"times" = "次";
+"number of Taps" = "点击数量";
+"Tap" = "点击";
+"delay time" = "延迟时间";
+"seconds" = "秒";
+
+/* App clicker */
+"auto clicker" = "自动点击器";
+"PRO" = "PRO";
+"unlock" = "解锁APP点击";
+"Unlock this feature" = "解锁APP点击的功能";
+"Unlock the use of automatic clicks in other apps!" = "解锁在其他app上使用的方法-视频";
+"Cancel" = "取消";
+
+/* App clicker */
+
+"Congratulations" = "恭喜解锁成功";
+"Unlock the tutorial services used in other apps!" = "您已经解锁了在其他app上使用的方法";
+"In the app" = "app上使用";
+"Services" = "优质服务";
+"Special Price" = "特惠价格";
+"View Now" = "立即查看";
+
+/* App clicker pro */
+
+"auto clicker" = "自动点击器";
+"English subtitles" = "英文字幕";
+"Chinese subtitles" = "中文字幕";
+"German subtitles" = "德语字幕";
+"Portuguese subtitles" = "葡萄牙语";
+
+/* Tool */
+
+"Privacy album" = "隐私相册";
+"Privacy browser" = "隐私浏览器";
+"Handheld barrage" = "手持弹幕";
+"Document scanning" = "文档扫描";
+"Image cropping" = "图片裁剪";
+"Grid layout" = "九宫格裁剪";
+
+/* 视频相册缺省 */
+
+"Default video" = "隐私视频";
+"No video yet" = "还没有视频";
+"Add video" = "添加视频";
+
+/* 视频相册tab */
+
+"Photos" = "照片";
+"Videos" = "视频";
+"Default video" = "默认视频集";
+"Total 0 videos" = "一共 ** 个视频";
+
+/* 网页起名 */
+
+"Enter the name new" = "起个名吧";
+"Please give the web page you want tobookmark a name new" = "给您看到的这个网页起个名吧";
+"Name this webpage" = "点击编辑网页名称";
+
+/* Privacy album */
+
+"Privacy album" = "隐私相册";
+"Photos" = "图片";
+"Videos" = "视频";
+"default album" = "默认相册";
+"Total 0 photos" = "总共**张照片";
+
+/* Privacy album弹窗页 */
+
+"Enter the name" = "输入相册名称";
+"Please give the web page you want tobookmark a name" = "请给你的相册起一个方便记忆的名称";
+"Cancel" = "取消";
+"OK" = "确认";
+
+/* Privacy album 的Default album页 */
+
+"Default album" = "默认相册";
+"Add photo" = "添加照片";
+"Rename" = "重命名";
+"Delete album" = "删除相册";
+"Confirm Delete" = "确定删除";
+"Are you sure you want to delete" = "确定要删除这张照片吗";
+"Cancel" = "取消";
+"Delete popup Dialog" = "删除";
+"Delete" = "删除";
+"Export" = "导出";
+"No pictures yet" = "暂未添加图片";
+"No videos yet" = "暂未添加视频";
+
+/* Privacy browser */
+
+"Privacy browser" = "隐私浏览器";
+"Search Any Website" = "输入网址或者关键词";
+"google" = "google";
+"bing" = "bing";
+"youtube" = "youtube";
+"twitter" = "twitter";
+"github" = "github";
+
+/* Handheld barrage */
+
+"Handheld barrage" = "手持弹幕";
+"Enter text" = "输入文字";
+"font color" = "字体颜色";
+"background color" = "背景颜色";
+
+/* Document scanning */
+
+"Document scanning" = "文档扫描";
+"No files available" = "暂无文件，去右下角扫描添加吧";
+"page" = "页面";
+"Are you sure you want to delete" = "确认是否删除";
+"Cancel" = "取消";
+"Delete popup Dialog scanning" = "删除";
+
+/* image cropping  */
+
+"image cropping" = "图片裁剪";
+"Crop and Save" = "裁剪并保存";
+"Save successful" = "保存成功";
+"Your picture has been saved to the album" = "您的图片已保存至相册";
+"Confirm" = "确认";
+
+/* Grid layout  */
+
+"Split and save the image" = "分割并保存图像";
+"Save successful" = "保存成功";
+"Your picture has been saved to the album" = "您的图片已保存至相册";

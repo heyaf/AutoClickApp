@@ -1,0 +1,230 @@
+/* Localizable.stringsAutoClicker */
+
+/* Splash screen, Guide, Subscription Page B */
+
+"auto clicker" = "オートクリッカー";
+"Automatically click on the web" = "ウェブ上で自動的にクリック";
+"How to automatically click on the app" = "アプリで自動クリックする方法";
+"Interesting practical gadgets" = "便利なガジェット集";
+"PRO" = "プロ";
+"Upgrade PRO" = "プロにアップグレード";
+"Unlock the Web's auto-click feature" = "ウェブの自動クリック機能を解除";
+"How to solve automatic clicking in other APPs" = "他のアプリでの自動クリックを解決する方法";
+"Unlock Privacy Album and Privacy Browser" = "プライバシーアルバムとプライバシーブラウザーを解除";
+"Unlock the document scanning function" = "文書スキャン機能を解除";
+"Go Premium for $8.99/mo" = "**/月でプレミアムにアップグレード";
+"continue" = "続ける";
+"Terms of Service - Privacy Policy - Resume purchase" = "利用規約 - プライバシーポリシー - 購入の復元";
+
+/* tab bar */
+
+"web clicker" = "ウェブクリッカー";
+"App clicker" = "アプリクリッカー";
+"Tools" = "ツール";
+
+/* web clicker */
+
+"auto clicker" = "オートクリッカー";
+"Search Any Website" = "ウェブサイトを検索";
+"game" = "ゲーム";
+"roblox" = "ロブロックス";
+"Minecraft" = "マインクラフト";
+"Amongus" = "アマングアス";
+"social media" = "ソーシャルメディア";
+"Tiktok" = "ティックトック";
+"Tinder" = "ティンダー";
+"Twitter" = "ツイッター";
+"Facebook" = "フェイスブック";
+"YouTube" = "ユーチューブ";
+"linkedin" = "リンクトイン";
+
+/* search */
+
+"auto clicker" = "オートクリッカー";
+"PRO" = "プロ";
+"Search Any Website" = "ウェブサイトを検索";
+"Cancel" = "キャンセル";
+
+/* Settings */
+"Settings" = "設定";
+"Get Premium" = "プレミアムを取得";
+"Unlock all paid features and permissions" = "すべての有料機能と許可を解除";
+"General" = "一般設定";
+"Click Sound" = "クリック音";
+"Select Language" = "言語選択";
+"Others" = "その他";
+"Privacy policy" = "プライバシーポリシー";
+"Rate App" = "アプリを評価";
+"Feedback" = "フィードバック";
+"Share App" = "アプリを共有";
+"App Version" = "アプリバージョン";
+
+/* language */
+
+"language" = "言語選択";
+"English" = "English";
+"Русский" = "Русский";
+"Français" = "Français";
+"Deutsch" = "Deutsch";
+"简体中文" = "简体中文";
+"繁體中文" = "繁體中文";
+"日本語" = "日本語";
+
+/* pro */
+
+"Auto Clicker pro" = "オートクリッカープロ";
+"Unlock the Web's auto-click feature" = "ウェブの自動クリック機能を解除";
+"How to solve automatic clicking in other APPs" = "他のアプリでの自動クリックを解決する方法";
+"Unlock Privacy Album and Privacy Browser" = "プライバシーアルバムとプライバシーブラウザーを解除";
+"Unlock the document scanning function" = "文書スキャン機能を解除";
+"85%OFF" = "85% オフ";
+"$16.99 / year" = "** / 年";
+"that's $1.42 a month" = "月に**のみ";
+"$8.99 / month" = "** / 月";
+"Only the price of 1 cup of coffee" = "コーヒー1杯分の価格のみ";
+"Unlock all advanced features now" = "すべての高度な機能を今すぐ解除";
+"continue" = "続ける";
+"Terms of Service - Privacy Policy - Resume purchase" = "利用規約 - プライバシーポリシー - 購入の復元";
+
+/* Web clicker_details */
+
+"Search Any Website" = "ウェブサイトを検索";
+"Cancel" = "キャンセル";
+"Start clicking" = "クリックを開始";
+
+/* When clicking on the page */
+"stop clicking" = "クリックを停止";
+
+/* Web clicker_Settings */
+
+"repeat times:" = "繰り返し回数:";
+"times" = "回数";
+"number of Taps" = "タップ数";
+"Tap" = "タップ";
+"delay time" = "遅延時間";
+"seconds" = "秒";
+
+/* App clicker */
+"auto clicker" = "オートクリッカー";
+"PRO" = "プロ";
+"unlock" = "アプリクリッキングを解除";
+"Unlock this feature" = "この機能を解除";
+"Unlock the use of automatic clicks in other apps!" = "他のアプリでの自動クリック使用を解除 - ビデオ";
+"Cancel" = "キャンセル";
+
+/* App clicker */
+
+"Congratulations" = "おめでとう";
+"Unlock the tutorial services used in other apps!" = "他のアプリで使用されるチュートリアルサービスを解除しました";
+"In the app" = "アプリ内で";
+"Services" = "プレミアムサービス";
+"Special Price" = "特別価格";
+"View Now" = "今すぐ見る";
+
+/* App clicker pro */
+
+"auto clicker" = "オートクリッカー";
+"English subtitles" = "英語字幕";
+"Chinese subtitles" = "中国語字幕";
+"German subtitles" = "ドイツ語字幕";
+"Portuguese subtitles" = "ポルトガル語字幕";
+
+/* Tool */
+
+"Privacy album" = "プライバシーアルバム";
+"Privacy browser" = "プライバシーブラウザー";
+"Handheld barrage" = "ハンドヘルドバラージ";
+"Document scanning" = "文書スキャン";
+"Image cropping" = "画像クロッピング";
+"Grid layout" = "グリッドレイアウト";
+
+/* 视频相册缺省 */
+
+"Default video" = "デフォルトのビデオ";
+"No video yet" = "ビデオはまだありません";
+"Add video" = "ビデオを追加";
+
+/* 视频相册tab */
+
+"Photos" = "写真";
+"Videos" = "ビデオ";
+"Default video" = "デフォルトのビデオセット";
+"Total 0 videos" = "合計**個のビデオがあります";
+
+/* 网页起名 */
+
+"Enter the name new" = "名前をつけてください";
+"Please give the web page you want tobookmark a name new" = "ご覧のページに名前を付けましょう";
+"Name this webpage" = "ページ名の編集をクリックします";
+
+
+/* Privacy album */
+
+"Privacy album" = "プライバシーアルバム";
+"Photos" = "写真";
+"Videos" = "ビデオ";
+"default album" = "デフォルトアルバム";
+"Total 0 photos" = "合計 ** 写真";
+
+/* Privacy album popup page */
+
+"Enter the name" = "アルバム名を入力";
+"Please give the web page you want tobookmark a name" = "アルバムに名前を付けて簡単に思い出せるようにしてください";
+"Cancel" = "キャンセル";
+"OK" = "確認";
+
+/* Privacy album Default album page */
+
+"Default album" = "デフォルトアルバム";
+"Add photo" = "写真を追加";
+"Rename" = "名前を変更";
+"Delete album" = "アルバムを削除";
+"Confirm Delete" = "削除を確認";
+"Are you sure you want to delete" = "この写真を削除してもよろしいですか？";
+"Cancel" = "キャンセル";
+"Delete popup Dialog" = "削除";
+"Delete" = "削除";
+"Export" = "エクスポート";
+"No pictures yet" = "まだ写真はありません";
+"No videos yet" = "まだビデオはありません";
+
+
+/* Privacy browser */
+
+"Privacy browser" = "プライバシーブラウザ";
+"Search Any Website" = "任意のウェブサイトを検索";
+"google" = "グーグル";
+"bing" = "ビング";
+"youtube" = "ユーチューブ";
+"twitter" = "ツイッター";
+"github" = "ギットハブ";
+
+/* Handheld barrage */
+
+"Handheld barrage" = "ハンドヘルドバラージ";
+"Enter text" = "テキストを入力";
+"font color" = "フォントの色";
+"background color" = "背景色";
+
+/* Document scanning */
+
+"Document scanning" = "ドキュメントスキャン";
+"No files available" = "ファイルがありません。右下からスキャンして追加してください";
+"page" = "ページ";
+"Are you sure you want to delete" = "本当に削除しますか？";
+"Cancel" = "キャンセル";
+"Delete popup Dialog scanning" = "削除";
+
+/* image cropping  */
+
+"image cropping" = "イメージの切り抜き";
+"Crop and Save" = "切り抜いて保存";
+"Save successful" = "保存成功";
+"Your picture has been saved to the album" = "あなたの写真がアルバムに保存されました";
+"Confirm" = "確認";
+
+/* Grid layout  */
+
+"Split and save the image" = "画像を分割して保存";
+"Save successful" = "保存成功";
+"Your picture has been saved to the album" = "あなたの写真がアルバムに保存されました";

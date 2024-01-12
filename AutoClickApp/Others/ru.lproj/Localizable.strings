@@ -1,0 +1,235 @@
+/*
+  Localizable.strings
+  AutoClicker
+*/
+
+/* Splash screen, Guide, Subscription Page B */
+
+"auto clicker" = "Auto Clicker";
+"Automatically click on the web" = "Автоклик по веб-страницам";
+"How to automatically click on the app" = "Автоклик в приложениях";
+"Interesting practical gadgets" = "Полезные гаджеты";
+"PRO" = "PRO";
+"Upgrade PRO" = "Профессиональная версия";
+"Unlock the Web's auto-click feature" = "Активация автоклика в вебе";
+"How to solve automatic clicking in other APPs" = "Автоклик в других приложениях";
+"Unlock Privacy Album and Privacy Browser" = "Активация защищенного альбома и браузера";
+"Unlock the document scanning function" = "Сканирование документов";
+"Go Premium for $8.99/mo" = "Премиум за **/месяц";
+"continue" = "Продолжить";
+"Terms of Service - Privacy Policy - Resume purchase" = "Условия использования - Политика конфиденциальности - Восстановление покупок";
+
+/* tab bar */
+
+"web clicker" = "Веб-кликер";
+"App clicker" = "Кликер приложений";
+"Tools" = "Инструменты";
+
+/* web clicker */
+
+"auto clicker" = "Auto Clicker";
+"Search Any Website" = "Поиск по сайтам";
+"game" = "Игры";
+"roblox" = "Roblox";
+"Minecraft" = "Minecraft";
+"Amongus" = "Among Us";
+"social media" = "Соцсети";
+"Tiktok" = "TikTok";
+"Tinder" = "Tinder";
+"Twitter" = "Twitter";
+"Facebook" = "Facebook";
+"YouTube" = "YouTube";
+"linkedin" = "LinkedIn";
+
+/* search */
+
+"auto clicker" = "Auto Clicker";
+"PRO" = "PRO";
+"Search Any Website" = "Поиск по сайтам";
+"Cancel" = "Отмена";
+
+/* Settings */
+"Settings" = "Настройки";
+"Get Premium" = "Премиум";
+"Unlock all paid features and permissions" = "Разблокировка платных функций";
+"General" = "Основные";
+"Click Sound" = "Звук клика";
+"Select Language" = "Выбор языка";
+"Others" = "Другое";
+"Privacy policy" = "Конфиденциальность";
+"Rate App" = "Оценить приложение";
+"Feedback" = "Обратная связь";
+"Share App" = "Поделиться приложением";
+"App Version" = "Версия приложения";
+
+/* language */
+
+"language" = "Выбор языка";
+"English" = "English";
+"Русский" = "Русский";
+"Français" = "Français";
+"Deutsch" = "Deutsch";
+"简体中文" = "简体中文";
+"繁體中文" = "繁體中文";
+"日本語" = "日本語";
+
+
+
+/* pro */
+
+"Auto Clicker pro" = "Auto Clicker Pro";
+"Unlock the Web's auto-click feature" = "Автоклик в вебе";
+"How to solve automatic clicking in other APPs" = "Автоклик в приложениях";
+"Unlock Privacy Album and Privacy Browser" = "Защищенный альбом и браузер";
+"Unlock the document scanning function" = "Сканирование документов";
+"85%OFF" = "Скидка 85%";
+"$16.99 / year" = "** / год";
+"that's $1.42 a month" = "Только ** в месяц";
+"$8.99 / month" = "** / месяц";
+"Only the price of 1 cup of coffee" = "Цена чашки кофе";
+"Unlock all advanced features now" = "Разблокировать все функции";
+"continue" = "Продолжить";
+"Terms of Service - Privacy Policy - Resume purchase" = "Условия использования - Конфиденциальность - Восстановление покупок";
+
+/* Web clicker_details */
+
+"Search Any Website" = "Поиск по сайтам";
+"Cancel" = "Отмена";
+"Start clicking" = "Начать клик";
+
+/* When clicking on the page */
+"stop clicking" = "Остановить клик";
+
+/* Web clicker_Settings */
+
+"repeat times:" = "Количество повторений:";
+"times" = "Раз";
+"number of Taps" = "Количество касаний";
+"Tap" = "Касание";
+"delay time" = "Задержка";
+"seconds" = "Секунды";
+
+/* App clicker */
+"auto clicker" = "Auto Clicker";
+"PRO" = "PRO";
+"unlock" = "Разблокировать в приложении";
+"Unlock this feature" = "Разблокировать функцию";
+"Unlock the use of automatic clicks in other apps!" = "Разблокировать автоклик в других приложениях";
+"Cancel" = "Отмена";
+
+/* App clicker */
+
+"Congratulations" = "Поздравляем";
+"Unlock the tutorial services used in other apps!" = "Инструкции к другим приложениям";
+"In the app" = "В приложении";
+"Services" = "Сервисы";
+"Special Price" = "Специальная цена";
+"View Now" = "Смотреть сейчас";
+
+/* App clicker pro */
+
+"auto clicker" = "Auto Clicker";
+"English subtitles" = "Английские субтитры";
+"Chinese subtitles" = "Китайские субтитры";
+"German subtitles" = "Немецкие субтитры";
+"Portuguese subtitles" = "Португальские субтитры";
+
+/* Tool */
+
+"Privacy album" = "Защищенный альбом";
+"Privacy browser" = "Конфиденциальный браузер";
+"Handheld barrage" = "Мобильный барраж";
+"Document scanning" = "Сканирование документов";
+"Image cropping" = "Обрезка изображений";
+"Grid layout" = "Сетка обрезки";
+
+/* 视频相册缺省 */
+
+"Default video" = "Видео по умолчанию";
+"No video yet" = "Видео ещё нет";
+"Add video" = "Добавить видео";
+
+/* 视频相册tab */
+
+"Photos" = "Фотографии";
+"Videos" = "Видео";
+"Default video" = "Видео по умолчанию";
+"Total 0 videos" = "Всего ** фото";
+
+/* 网页起名 */
+
+"Enter the name new" = "Введите имя";
+"Please give the web page you want tobookmark a name new" = "Пожалуйста, дайте веб-страницу, которую вы хотите добавить в закладки имя";
+"Name this webpage" = "Назовите эту веб-страницу";
+
+
+/* Privacy album */
+
+"Privacy album" = "Защищенный альбом";
+"Photos" = "Фотографии";
+"Videos" = "Видео";
+"default album" = "Основной альбом";
+"Total 0 photos" = "Всего ** фото";
+
+/* Privacy album popup page */
+
+"Enter the name" = "Введите название";
+"Please give the web page you want tobookmark a name" = "Имя для альбома";
+"Cancel" = "Отмена";
+"OK" = "Подтвердить";
+
+/* Privacy album Default album page */
+
+"Default album" = "Основной альбом";
+"Add photo" = "Добавить фото";
+"Rename" = "Переименовать";
+"Delete album" = "Удалить альбом";
+"Confirm Delete" = "Подтвердить удаление";
+"Are you sure you want to delete" = "Уверены в удалении?";
+"Cancel" = "Отмена";
+"Delete popup Dialog" = "Удалить";
+"Delete" = "Удалить";
+"Export" = "Экспорт";
+"No pictures yet" = "Картинок пока нет";
+"No videos yet" = "Картинок пока нет";
+
+
+/* Privacy browser */
+
+"Privacy browser" = "Конфиденциальный браузер";
+"Search Any Website" = "Поиск по сайтам";
+"google" = "Google";
+"bing" = "Bing";
+"youtube" = "YouTube";
+"twitter" = "Twitter";
+"github" = "GitHub";
+
+/* Handheld barrage */
+
+"Handheld barrage" = "Мобильный барраж";
+"Enter text" = "Введите текст";
+"font color" = "Цвет шрифта";
+"background color" = "Цвет фона";
+
+/* Document scanning */
+
+"Document scanning" = "Сканирование документов";
+"No files available" = "Файлы отсутствуют, сканируйте снизу справа";
+"page" = "Страница";
+"Are you sure you want to delete" = "Удалить эту страницу?";
+"Cancel" = "Отмена";
+"Delete popup Dialog scanning" = "Удалить";
+
+/* image cropping  */
+
+"image cropping" = "Обрезка изображений";
+"Crop and Save" = "Обрезать и сохранить";
+"Save successful" = "Сохранение выполнено";
+"Your picture has been saved to the album" = "Изображение сохранено в альбоме";
+"Confirm" = "Подтвердить";
+
+/* Grid layout  */
+
+"Split and save the image" = "Разделить и сохранить изображение";
+"Save successful" = "Сохранение выполнено";
+"Your picture has been saved to the album" = "Изображение сохранено в альбоме";

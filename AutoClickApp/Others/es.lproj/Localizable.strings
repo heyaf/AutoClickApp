@@ -1,0 +1,211 @@
+/* 
+  Localizable.strings
+  AutoClickApp
+
+  Created by 贺亚飞 on 2023/10/28.
+  
+*/
+
+"auto clicker" = "Auto Clicker";
+"Automatically click on the web" = "Automatisches Klicken im Web";
+"How to automatically click on the app" = "Wie man automatisch in Apps klickt";
+"Interesting practical gadgets" = "Interessante praktische Gadgets";
+"PRO" = "PRO";
+"Upgrade PRO" = "PRO Upgraden";
+"Unlock the Web's auto-click feature" = "Web-Autoklick-Funktion freischalten";
+"How to solve automatic clicking in other APPs" = "Automatisches Klicken in anderen Apps lösen";
+"Unlock Privacy Album and Privacy Browser" = "Datenschutzalbum und Datenschutzbrowser freischalten";
+"Unlock the document scanning function" = "Dokumentenscan-Funktion freischalten";
+"Go Premium for $8.99/mo" = "Für **/Monat Premium werden";
+"continue" = "Fortsetzen";
+"Terms of Service - Privacy Policy - Resume purchase" = "Nutzungsbedingungen - Datenschutzrichtlinie - Kauf wiederherstellen";
+
+/* tab bar */
+
+"web clicker" = "Web Klicker";
+"App clicker" = "App Klicker";
+"Tools" = "Werkzeuge";
+
+/* web clicker */
+
+"auto clicker" = "Auto Clicker";
+"Search Any Website" = "Webseite suchen";
+"game" = "Spiel";
+"roblox" = "Roblox";
+"Minecraft" = "Minecraft";
+"Amongus" = "Among Us";
+"social media" = "Soziale Medien";
+"Tiktok" = "TikTok";
+"Tinder" = "Tinder";
+"Twitter" = "Twitter";
+"Facebook" = "Facebook";
+"YouTube" = "YouTube";
+"linkedin" = "LinkedIn";
+
+/* search */
+
+"auto clicker" = "Auto Clicker";
+"PRO" = "PRO";
+"Search Any Website" = "Webseite suchen";
+"Cancel" = "Abbrechen";
+
+/* Settings */
+"Settings" = "Einstellungen";
+"Get Premium" = "Premium holen";
+"Unlock all paid features and permissions" = "Alle bezahlten Funktionen und Berechtigungen freischalten";
+"General" = "Allgemeine Einstellungen";
+"Click Sound" = "Klickton";
+"Select Language" = "Sprache wählen";
+"Others" = "Andere";
+"Privacy policy" = "Datenschutzrichtlinie";
+"Rate App" = "App bewerten";
+"Feedback" = "Feedback";
+"Share App" = "App teilen";
+"App Version" = "App-Version v1.0.0";
+
+/* language */
+
+"language" = "Sprache wählen";
+"English" = "English";
+"Русский" = "Русский";
+"Français" = "Français";
+"español" = "español";
+"简体中文" = "简体中文";
+"繁體中文" = "繁體中文";
+"日本語" = "日本語";
+
+/* pro */
+
+"Auto Clicker pro" = "Auto Clicker Pro";
+"Unlock the Web's auto-click feature" = "Web-Autoklick-Funktion freischalten";
+"How to solve automatic clicking in other APPs" = "Automatisches Klicken in anderen Apps lösen";
+"Unlock Privacy Album and Privacy Browser" = "Datenschutzalbum und Datenschutzbrowser freischalten";
+"Unlock the document scanning function" = "Dokumentenscan-Funktion freischalten";
+"85%OFF" = "85% Rabatt";
+"$16.99 / year" = "** / Jahr";
+"that's $1.42 a month" = "Nur ** pro Monat";
+"$8.99 / month" = "** / Monat";
+"Only the price of 1 cup of coffee" = "Nur der Preis einer Tasse Kaffee";
+"Unlock all advanced features now" = "Jetzt alle erweiterten Funktionen freischalten";
+"continue" = "Fortsetzen";
+"Terms of Service - Privacy Policy - Resume purchase" = "Nutzungsbedingungen - Datenschutzrichtlinie - Kauf wiederherstellen";
+
+/* Web clicker_details */
+
+"Search Any Website" = "Webseite suchen";
+"Cancel" = "Abbrechen";
+"Start clicking" = "Beginnen zu klicken";
+
+/* When clicking on the page */
+"stop clicking" = "Klicken stoppen";
+
+/* Web clicker_Settings */
+
+"repeat times:" = "Wiederholungszeiten:";
+"times" = "Mal";
+"number of Taps" = "Anzahl der Tipper";
+"Tap" = "Tippen";
+"delay time" = "Verzögerungszeit";
+"seconds" = "Sekunden";
+
+/* App clicker */
+"auto clicker" = "Auto Clicker";
+"PRO" = "PRO";
+"unlock" = "App-Klicken freischalten";
+"Unlock this feature" = "Diese Funktion freischalten";
+"Unlock the use of automatic clicks in other apps!" = "Automatisches Klicken in anderen Apps freischalten - Video";
+"Cancel" = "Abbrechen";
+
+/* App clicker */
+
+"Congratulations" = "Glückwunsch";
+"Unlock the tutorial services used in other apps!" = "Tutorial-Dienste für andere Apps freigeschaltet";
+"In the app" = "In der App";
+"Services" = "Dienste";
+"Special Price" = "Sonderpreis";
+"View Now" = "Jetzt ansehen";
+
+/* App clicker pro */
+
+"auto clicker" = "Auto Clicker";
+"English subtitles" = "Englische Untertitel";
+"Chinese subtitles" = "Chinesische Untertitel";
+"German subtitles" = "Deutsche Untertitel";
+"Portuguese subtitles" = "Portugiesische Untertitel";
+
+/* Tool */
+
+"Privacy album" = "Datenschutzalbum";
+"Privacy browser" = "Datenschutzbrowser";
+"Handheld barrage" = "Handheld-Barrage";
+"Document scanning" = "Dokumentenscan";
+"Image cropping" = "Bildzuschnitt";
+"Grid layout" = "Rasterlayout";
+
+/* Privacy album */
+
+"Privacy album" = "Datenschutzalbum";
+"Photos" = "Fotos";
+"Videos" = "Videos";
+"default album" = "Standardalbum";
+"Total 0 photos" = "Insgesamt * Fotos";
+
+/* Privacy album popup page */
+
+"Enter the name" = "Namen eingeben";
+"Please give the web page you want tobookmark a name" = "Bitte geben Sie Ihrem Album einen Namen zur leichten Wiedererkennung";
+"Cancel" = "Abbrechen";
+"OK" = "Bestätigen";
+
+/* Privacy album Default album page */
+
+"Default album" = "Standardalbum";
+"Add photo" = "Foto hinzufügen";
+"Rename" = "Umbenennen";
+"Delete album" = "Album löschen";
+"Confirm Delete" = "Löschung bestätigen";
+"Are you sure you want to delete" = "Sind Sie sicher, dass Sie dieses Foto löschen möchten?";
+"Cancel" = "Abbrechen";
+"OK" = "Löschen";
+"Delete" = "Löschen";
+"Export" = "Exportieren";
+
+/* Privacy browser */
+
+"Privacy browser" = "Datenschutzbrowser";
+"Search Any Website" = "Webseite suchen";
+"google" = "Google";
+"bing" = "Bing";
+"youtube" = "YouTube";
+"twitter" = "Twitter";
+"github" = "GitHub";
+
+/* Handheld barrage */
+
+"Handheld barrage" = "Handheld-Barrage";
+"Enter text" = "Text eingeben";
+"font color" = "Schriftfarbe";
+"background color" = "Hintergrundfarbe";
+
+/* Document scanning */
+
+"Document scanning" = "Dokumentenscan";
+"No files available" = "Keine Dateien verfügbar, gehen Sie in die rechte untere Ecke zum Scannen";
+"page" = "Seite";
+"Are you sure you want to delete" = "Sind Sie sicher, dass Sie löschen möchten?";
+"Cancel" = "Abbrechen";
+"OK" = "Löschen";
+
+/* image cropping  */
+
+"image cropping" = "Bildzuschnitt";
+"Crop and Save" = "Zuschneiden und Speichern";
+"Save successful" = "Erfolgreich gespeichert";
+"Your picture has been saved to the album" = "Ihr Bild wurde im Album gespeichert";
+"Confirm" = "Bestätigen";
+
+/* Grid layout  */
+
+"Split and save the image" = "Bild teilen und speichern";
+"Save successful" = "Erfolgreich gespeichert";
+"Your picture has been saved to the album" = "Ihr Bild wurde im Album gespeichert";

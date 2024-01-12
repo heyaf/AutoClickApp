@@ -1,0 +1,237 @@
+/*
+  Localizable.strings
+  AutoClicker
+*/
+
+/* Écran d'accueil, Guide, Page d'abonnement B */
+
+"auto clicker" = "Auto Clicker";
+"Automatically click on the web" = "Clic automatique sur n'importe quelle page web";
+"How to automatically click on the app" = "Comment cliquer automatiquement dans une appli";
+"Interesting practical gadgets" = "Collection de gadgets utiles";
+"PRO" = "PRO";
+"Upgrade PRO" = "Passer à PRO";
+"Unlock the Web's auto-click feature" = "Débloquer la fonction de clic auto sur le web";
+"How to solve automatic clicking in other APPs" = "Résoudre le clic auto dans d'autres applis";
+"Unlock Privacy Album and Privacy Browser" = "Débloquer l'album privé et le navigateur privé";
+"Unlock the document scanning function" = "Débloquer la fonction de numérisation de documents";
+"Go Premium for $8.99/mo" = "Passez Premium pour seulement **/mois";
+"continue" = "Continuer";
+"Terms of Service - Privacy Policy - Resume purchase" = "Conditions d'utilisation - Politique de confidentialité - Restaurer achat";
+
+/* barre des onglets */
+
+"web clicker" = "Clicker Web";
+"App clicker" = "Clicker d'Appli";
+"Tools" = "Outils";
+
+/* clicker web */
+
+"auto clicker" = "Auto Clicker";
+"Search Any Website" = "Recherchez n'importe quel site";
+"game" = "Jeu";
+"roblox" = "Roblox";
+"Minecraft" = "Minecraft";
+"Amongus" = "Among Us";
+"social media" = "Réseaux sociaux";
+"Tiktok" = "TikTok";
+"Tinder" = "Tinder";
+"Twitter" = "Twitter";
+"Facebook" = "Facebook";
+"YouTube" = "YouTube";
+"linkedin" = "LinkedIn";
+
+/* recherche */
+
+"auto clicker" = "Auto Clicker";
+"PRO" = "PRO";
+"Search Any Website" = "Recherchez n'importe quel site";
+"Cancel" = "Annuler";
+
+/* Paramètres */
+"Settings" = "Paramètres";
+"Get Premium" = "Obtenir Premium";
+"Unlock all paid features and permissions" = "Débloquer toutes les fonctionnalités et permissions payantes";
+"General" = "Paramètres généraux";
+"Click Sound" = "Son du clic";
+"Select Language" = "Choisir la langue";
+"Others" = "Autres";
+"Privacy policy" = "Politique de confidentialité";
+"Rate App" = "Évaluer l'appli";
+"Feedback" = "Retour d'information";
+"Share App" = "Partager l'appli";
+"App Version" = "Version de l'appli";
+
+/* langue */
+
+"language" = "Choisir la langue";
+"English" = "English";
+"Русский" = "Русский";
+"Français" = "Français";
+"Deutsch" = "Deutsch";
+"简体中文" = "简体中文";
+"繁體中文" = "繁體中文";
+"日本語" = "日本語";
+
+
+/* 视频相册缺省 */
+
+"Default video" = "Vidéo par défaut";
+"No video yet" = "Pas encore de vidéo";
+"Add video" = "Ajouter une vidéo";
+
+/* 视频相册tab */
+
+"Photos" = "Photos";
+"Videos" = "Vidéos";
+"Default video" = "Vidéo par défaut";
+"Total 0 videos" = "Total ** Vidéos";
+
+/* 网页起名 */
+
+"Enter the name new" = "Введите имя";
+"Please give the web page you want tobookmark a name new" = "Пожалуйста, дайте веб-страницу, которую вы хотите добавить в закладки имя";
+"Name this webpage" = "Назовите эту веб-страницу";
+
+
+
+
+/* pro */
+
+"Auto Clicker pro" = "Auto Clicker Pro";
+"Unlock the Web's auto-click feature" = "Débloquer le clic auto sur le web";
+"How to solve automatic clicking in other APPs" = "Résoudre le clic auto dans d'autres applis";
+"Unlock Privacy Album and Privacy Browser" = "Débloquer l'album privé et le navigateur privé";
+"Unlock the document scanning function" = "Débloquer la numérisation de documents";
+"85%OFF" = "85% de réduction";
+"$16.99 / year" = "** / an";
+"that's $1.42 a month" = "Seulement ** par mois";
+"$8.99 / month" = "** / mois";
+"Only the price of 1 cup of coffee" = "Seulement le prix d'un café";
+"Unlock all advanced features now" = "Débloquez toutes les fonctionnalités avancées maintenant";
+"continue" = "Continuer";
+"Terms of Service - Privacy Policy - Resume purchase" = "Conditions d'utilisation - Politique de confidentialité - Restaurer achat";
+
+/* Détails du clicker web */
+
+"Search Any Website" = "Recherchez n'importe quel site";
+"Cancel" = "Annuler";
+"Start clicking" = "Commencer à cliquer";
+
+/* Lors du clic sur la page */
+"stop clicking" = "Arrêter de cliquer";
+
+/* Paramètres du clicker web */
+
+"repeat times:" = "Nombre de répétitions :";
+"times" = "Fois";
+"number of Taps" = "Nombre de clics";
+"Tap" = "Clic";
+"delay time" = "Temps de retard";
+"seconds" = "Secondes";
+
+/* Clicker d'appli */
+"auto clicker" = "Auto Clicker";
+"PRO" = "PRO";
+"unlock" = "Débloquer le clic dans l'appli";
+"Unlock this feature" = "Débloquer cette fonctionnalité";
+"Unlock the use of automatic clicks in other apps!" = "Débloquer l'utilisation des clics auto dans d'autres applis!";
+"Cancel" = "Annuler";
+
+/* Clicker d'appli */
+
+"Congratulations" = "Félicitations";
+"Unlock the tutorial services used in other apps!" = "Vous avez débloqué les méthodes d'utilisation dans d'autres applis";
+"In the app" = "Dans l'appli";
+"Services" = "Services Premium";
+"Special Price" = "Prix spécial";
+"View Now" = "Voir maintenant";
+
+/* Clicker d'appli pro */
+
+"auto clicker" = "Auto Clicker";
+"English subtitles" = "Sous-titres anglais";
+"Chinese subtitles" = "Sous-titres chinois";
+"German subtitles" = "Sous-titres allemands";
+"Portuguese subtitles" = "Sous-titres portugais";
+
+/* Outil */
+
+"Privacy album" = "Album privé";
+"Privacy browser" = "Navigateur privé";
+"Handheld barrage" = "Barrage portable";
+"Document scanning" = "Numérisation de documents";
+"Image cropping" = "Rognage d'image";
+"Grid layout" = "Disposition en grille";
+
+
+/* Album privé */
+
+"Privacy album" = "Album privé";
+"Photos" = "Photos";
+"Videos" = "Vidéos";
+"default album" = "Album par défaut";
+"Total 0 photos" = "Total ** photos";
+
+/* Page popup de l'album privé */
+
+"Enter the name" = "Entrer le nom";
+"Please give the web page you want tobookmark a name" = "Donnez un nom à votre album pour s'en souvenir facilement";
+"Cancel" = "Annuler";
+"OK" = "Confirmer";
+
+/* Page de l'album par défaut de l'album privé */
+
+"Default album" = "Album par défaut";
+"Add photo" = "Ajouter photo";
+"Rename" = "Renommer";
+"Delete album" = "Supprimer l'album";
+"Confirm Delete" = "Confirmer la suppression";
+"Are you sure you want to delete" = "Êtes-vous sûr de vouloir supprimer cette photo ?";
+"Cancel" = "Annuler";
+"Delete popup Dialog" = "Supprimer";
+"Delete" = "Supprimer";
+"Export" = "Exporter";
+"No pictures yet" = "Pas encore d'images";
+//"No videos yet" = "Pas encore d'images";
+
+/* Navigateur privé */
+
+"Privacy browser" = "Navigateur privé";
+"Search Any Website" = "Recherchez n'importe quel site";
+"google" = "Google";
+"bing" = "Bing";
+"youtube" = "YouTube";
+"twitter" = "Twitter";
+"github" = "GitHub";
+
+/* Barrage portable */
+
+"Handheld barrage" = "Barrage portable";
+"Enter text" = "Entrer le texte";
+"font color" = "Couleur de la police";
+"background color" = "Couleur de fond";
+
+/* Numérisation de documents */
+
+"Document scanning" = "Numérisation de documents";
+"No files available" = "Aucun fichier disponible, scannez en bas à droite pour ajouter";
+"page" = "Page";
+"Are you sure you want to delete" = "Êtes-vous sûr de vouloir supprimer ?";
+"Cancel" = "Annuler";
+"Delete popup Dialog scanning" = "Supprimer";
+
+/* Rognage d'image  */
+
+"image cropping" = "Rognage d'image";
+"Crop and Save" = "Rogner et sauvegarder";
+"Save successful" = "Sauvegarde réussie";
+"Your picture has been saved to the album" = "Votre photo a été enregistrée dans l'album";
+"Confirm" = "Confirmer";
+
+/* Disposition en grille  */
+
+"Split and save the image" = "Diviser et Enregistrer l'Image";
+"Save successful" = "Enregistrement Réussi";
+"Your picture has been saved to the album" = "Votre Photo a été Enregistrée dans l'Album";
+
