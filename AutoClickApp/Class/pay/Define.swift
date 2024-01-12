@@ -7,7 +7,7 @@
 
 import UIKit
 import Foundation
-
+ 
 // MARK: ===================================工具类:变量宏定义=========================================
 /// 屏幕宽
 public let KScreenWidth = UIScreen.main.bounds.width
@@ -215,3 +215,11 @@ private let formatter = { () -> DateFormatter in
 }()
 public let SPACE: CGFloat = 12
 public let PAGEZIE = 20
+
+func KLanguage(key: String) -> String {
+    let userDefaults = UserDefaults.standard
+    let appLanguage = userDefaults.object(forKey: "appLanguage") as? String ?? "en"  // 假设默认语言为英语
+    let path = Bundle.main.path(forResource: appLanguage, ofType: "lproj") ?? Bundle.main.bundlePath
+    let languageBundle = Bundle(path: path)
+    return languageBundle?.localizedString(forKey: key, value: nil, table: "Localizable") ?? key
+}

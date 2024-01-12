@@ -111,6 +111,7 @@
 		04FFF9F12B516E4800F3245D /* Define.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FFF9F02B516E4800F3245D /* Define.swift */; };
 		04FFF9F42B516F2A00F3245D /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FFF9F22B516F2A00F3245D /* UIColor+Extension.swift */; };
 		04FFF9F52B516F2A00F3245D /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FFF9F32B516F2A00F3245D /* UIView+Extension.swift */; };
+		04FFF9F72B517A1400F3245D /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FFF9F62B517A1400F3245D /* UIFont+Extension.swift */; };
 		156D8B7F28BDB687B4111F15 /* Pods_AutoClickApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F692A017634FE1C35E10E2ED /* Pods_AutoClickApp.framework */; };
 		C3AFB5F56CEFBF3F58E70081 /* Pods_AutoClickApp_AutoClickAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8A282E5EF354B8620002852 /* Pods_AutoClickApp_AutoClickAppUITests.framework */; };
 		CFCAF3E57A2F91DE2D22E1A4 /* Pods_AutoClickAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B31A362C5B478DE13D74DD12 /* Pods_AutoClickAppTests.framework */; };
@@ -328,6 +329,7 @@
 		04FFF9F02B516E4800F3245D /* Define.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Define.swift; sourceTree = "<group>"; };
 		04FFF9F22B516F2A00F3245D /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		04FFF9F32B516F2A00F3245D /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		04FFF9F62B517A1400F3245D /* UIFont+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
 		3F63A4638EA748D1C67A2824 /* Pods-AutoClickApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AutoClickApp.release.xcconfig"; path = "Target Support Files/Pods-AutoClickApp/Pods-AutoClickApp.release.xcconfig"; sourceTree = "<group>"; };
 		673174DB67ABE75F8232B99F /* Pods-AutoClickApp-AutoClickAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AutoClickApp-AutoClickAppUITests.release.xcconfig"; path = "Target Support Files/Pods-AutoClickApp-AutoClickAppUITests/Pods-AutoClickApp-AutoClickAppUITests.release.xcconfig"; sourceTree = "<group>"; };
 		A4372AE64DC504BDE7883303 /* Pods-AutoClickAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AutoClickAppTests.debug.xcconfig"; path = "Target Support Files/Pods-AutoClickAppTests/Pods-AutoClickAppTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -793,6 +795,7 @@
 				04FFF9ED2B516D5F00F3245D /* view */,
 				04FFF9EA2B516A7800F3245D /* AutoClickApp-Bridging-Header.h */,
 				04FFF9F02B516E4800F3245D /* Define.swift */,
+				04FFF9F62B517A1400F3245D /* UIFont+Extension.swift */,
 				04FFF9F22B516F2A00F3245D /* UIColor+Extension.swift */,
 				04FFF9F32B516F2A00F3245D /* UIView+Extension.swift */,
 			);
@@ -1108,6 +1111,7 @@
 				04FFF9F12B516E4800F3245D /* Define.swift in Sources */,
 				047139472AF63C6400E0EBE9 /* ACPrivacyAlbumDetailItem.m in Sources */,
 				04C338312AFB756F004CBD4A /* GKCycleScrollView.m in Sources */,
+				04FFF9F72B517A1400F3245D /* UIFont+Extension.swift in Sources */,
 				0471394B2AF680F300E0EBE9 /* NSString+Timerstr.m in Sources */,
 				0471393F2AF4F9D900E0EBE9 /* ACPrivacyAblumItem.m in Sources */,
 				0417C3B92AF38D1F002EE17C /* ACPrivacyAblumVC.m in Sources */,

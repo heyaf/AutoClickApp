@@ -7,7 +7,6 @@
 
 #import "ACGuiderPageVC.h"
 #import <Lottie/Lottie.h>
-#import "AutoClickApp-Swift.h"
 @interface ACGuiderPageVC ()<UIScrollViewDelegate>
 @property (nonatomic, strong) UIScrollView *scrollview;
 @property (nonatomic, strong) UIButton *pageBtn;

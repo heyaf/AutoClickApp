@@ -19,7 +19,9 @@ class ACPayOneViewController: UIViewController {
     
 
     func creatUI() {
-        
+        let payDetailV = ACPayDetailView(frame: CGRect(x: 0, y: 100, width: KScreenWidth, height: 300))
+        view.addSubview(payDetailV)
+        payDetailV.HeaderL.text = KLanguage(key: "Upgrade PRO")
     }
 
 }

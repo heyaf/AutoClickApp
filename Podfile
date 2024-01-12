@@ -13,6 +13,9 @@ target 'AutoClickApp' do
   pod 'IQKeyboardManager'
   pod 'lottie-ios' ,'~> 2.5.3'
   pod 'SwiftTheme'
+  pod 'SnapKit'
+  pod 'MBProgressHUD', '~>0.9.2'
+  pod 'MBProgressHUD+JDragon'
   #pod 'TesseractOCRiOS', '4.0.0'
   target 'AutoClickAppTests' do
     inherit! :search_paths

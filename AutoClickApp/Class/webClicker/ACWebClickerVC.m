@@ -65,6 +65,9 @@
     if (!net) {
         [self getNet];
     }
+    ACPayOneViewController *oneVC = [[ACPayOneViewController alloc] init];
+    oneVC.modalPresentationStyle = UIModalPresentationOverFullScreen;
+    [kKeyWindow.rootViewController presentViewController:oneVC animated:YES completion:nil];
 
 }
 -(void)viewWillAppear:(BOOL)animated{
