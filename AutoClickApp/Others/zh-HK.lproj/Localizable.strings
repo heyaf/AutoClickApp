@@ -17,8 +17,9 @@
 "Unlock the document scanning function" = "解鎖文件掃描功能";
 "Go Premium for $8.99/mo" = "現在升級僅需**/月";
 "continue" = "繼續";
-"Terms of Service - Privacy Policy - Resume purchase" = "使用協議-隱私政策-恢復購買";
-
+"Terms of Service" = "使用協議";
+"Privacy Policy" = "隱私政策";
+"Resume purchase" = "恢復購買";
 /* tab bar */
 
 "web clicker" = "網頁點擊";

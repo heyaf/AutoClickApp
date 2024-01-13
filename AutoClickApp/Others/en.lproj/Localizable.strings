@@ -17,8 +17,9 @@
 "Unlock the document scanning function" = "Unlock Document Scanning Function";
 "Go Premium for $8.99/mo" = "Upgrade Now for Only **/Month";
 "continue" = "Continue";
-"Terms of Service - Privacy Policy - Resume purchase" = "Terms of Use - Privacy Policy - Restore Purchase";
-
+"Terms of Service" = "Terms of Use";
+"Privacy Policy" = "Privacy Policy";
+"Resume purchase" = "Restore Purchase";
 /* tab bar */
 
 "web clicker" = "Web Clicker";

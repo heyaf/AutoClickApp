@@ -14,8 +14,9 @@
 "Unlock the document scanning function" = "文書スキャン機能を解除";
 "Go Premium for $8.99/mo" = "**/月でプレミアムにアップグレード";
 "continue" = "続ける";
-"Terms of Service - Privacy Policy - Resume purchase" = "利用規約 - プライバシーポリシー - 購入の復元";
-
+"Terms of Service" = "利用規約";
+"Privacy Policy" = "プライバシーポリシ";
+"Resume purchase" = "購入の復元";
 /* tab bar */
 
 "web clicker" = "ウェブクリッカー";

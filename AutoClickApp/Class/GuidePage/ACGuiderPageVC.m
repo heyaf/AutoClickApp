@@ -111,7 +111,7 @@
     animation.duration = 0.5;    //换图片的时候使用转场动画
     [self.view.window.layer addAnimation:animation forKey:nil];
     [self dismissViewControllerAnimated:NO completion:nil];
-    [kKeyWindow.rootViewController presentViewController:[ACPayOneViewController new] animated:YES completion:nil];
+//    [kKeyWindow.rootViewController presentViewController:[ACPayOneViewController new] animated:YES completion:nil];
 }
 -(UIScrollView *)scrollview{
     if(!_scrollview){

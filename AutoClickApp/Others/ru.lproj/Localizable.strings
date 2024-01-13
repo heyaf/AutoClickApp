@@ -17,8 +17,9 @@
 "Unlock the document scanning function" = "Сканирование документов";
 "Go Premium for $8.99/mo" = "Премиум за **/месяц";
 "continue" = "Продолжить";
-"Terms of Service - Privacy Policy - Resume purchase" = "Условия использования - Политика конфиденциальности - Восстановление покупок";
-
+"Terms of Service" = "Условия использования";
+"Privacy Policy" = "Политика конфиденциальности";
+"Resume purchase" = "Восстановление покупок";
 /* tab bar */
 
 "web clicker" = "Веб-кликер";

@@ -7,7 +7,7 @@
 
 import UIKit
 import Foundation
- 
+import SnapKit
 // MARK: ===================================工具类:变量宏定义=========================================
 /// 屏幕宽
 public let KScreenWidth = UIScreen.main.bounds.width

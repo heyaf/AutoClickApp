@@ -15,8 +15,9 @@
 "Unlock the document scanning function" = "解锁文档扫描功能";
 "Go Premium for $8.99/mo" = "现在升级仅需**/月";
 "continue" = "继续";
-"Terms of Service - Privacy Policy - Resume purchase" = "使用协议-隐私政策-恢复购买";
-
+"Terms of Service" = "使用协议";
+"Privacy Policy" = "隐私政策";
+"Resume purchase" = "恢复购买";
 /* tab bar */
 
 "web clicker" = "网页点击";
