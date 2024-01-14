@@ -13,7 +13,7 @@ class ACPayDetailView: UIView {
         let label = UILabel()
         label.font = .pingFangSCSemibold(24)
         label.textColor = .white
-        label.frame = CGRect(x: 20, y: 33, width: Int(KScreenWidth) - 40, height: 34)
+        label.frame = CGRect(x: 20, y: 0, width: Int(KScreenWidth) - 40, height: 34)
         
         
         return label

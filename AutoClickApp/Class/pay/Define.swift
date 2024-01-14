@@ -177,7 +177,9 @@ public var AppVersion: String? {
 public var AppBuildVersion: String? {
     return Bundle.main.infoDictionary?["CFBundleVersion"] as? String
 }
-
+public var isX: Bool {
+    return BottomHomeHeight > 0
+}
 
 // MARK: - 打印输出
 public func BMLog<T>(_ message: T, file: String = #file, funcName: String = #function, lineNum: Int = #line) {

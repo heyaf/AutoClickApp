@@ -9,6 +9,7 @@ import UIKit
 
 class ACPayTwoViewController: UIViewController {
 
+    var selectIndex = 0
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -37,9 +38,15 @@ class ACPayTwoViewController: UIViewController {
         }
         
         var topHeight = bmStatusBarHeight() + 120
+        var bottomHeight = 82
+        var centerHeight = 55
+        if isX == false {
+            topHeight = bmStatusBarHeight() + 110
+            bottomHeight = 32
+            centerHeight = 55
+        }
         
-        
-        let payDetailV = ACPayDetailView(frame: CGRect(x: 0, y: topHeight, width: KScreenWidth, height: 300))
+        let payDetailV = ACPayDetailView(frame: CGRect(x: 0, y: topHeight, width: KScreenWidth, height: 210))
         view.addSubview(payDetailV)
         payDetailV.HeaderL.text = KLanguage(key: "auto clicker") + " " + KLanguage(key: "PRO")
         
@@ -59,7 +66,7 @@ class ACPayTwoViewController: UIViewController {
         bClabel.isUserInteractionEnabled = true
         let labelTapGesture = UITapGestureRecognizer(target: self, action: #selector(bclabelTapped))
         bClabel.addGestureRecognizer(labelTapGesture)
-        bClabel.frame = CGRect(x: KScreenWidth/2, y: KScreenHeight - BottomHomeHeight - 82, width: 100, height: 14)
+        bClabel.frame = CGRect(x: KScreenWidth/2, y: KScreenHeight - BottomHomeHeight - CGFloat(bottomHeight), width: 100, height: 14)
         bClabel.font = .pingFangRegular(10)
         bClabel.textColor = RGBA(r: 255, g: 255, b: 255, a: 0.6)
         bClabel.sizeToFit()
@@ -154,7 +161,7 @@ class ACPayTwoViewController: UIViewController {
         view.addSubview(continuebtn)
         continuebtn.addTarget(self, action: #selector(dismissAction), for: .touchUpInside)
         continuebtn.backgroundColor = .white
-        continuebtn.layer.cornerRadius = 28
+        continuebtn.layer.cornerRadius = 11
         continuebtn.layer.masksToBounds = true
         continuebtn.snp.makeConstraints { make in
             make.bottom.equalTo(bClabel.snp.top).offset(-8)
@@ -189,6 +196,11 @@ class ACPayTwoViewController: UIViewController {
             make.bottom.equalTo(labelPro1.snp.top).offset(-4)
             make.left.right.equalToSuperview().inset(20)
             make.height.equalTo(17)
+        }
+        let payChooseView = ACPayChooseView(frame: CGRect(x: 0, y: payDetailV.bottom + CGFloat(centerHeight), width: KScreenWidth, height: 90))
+        view.addSubview(payChooseView)
+        payChooseView.chooseBack = { index in
+            self.selectIndex = index
         }
     }
     

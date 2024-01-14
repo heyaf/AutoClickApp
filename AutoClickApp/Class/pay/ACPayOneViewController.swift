@@ -36,8 +36,14 @@ class ACPayOneViewController: UIViewController {
             }
         }
         
-        var topHeight = bmStatusBarHeight() + 257
-        
+        var topHeight = bmStatusBarHeight() + 250
+        var bottomHeight = 82
+
+        if isX == false {
+            topHeight = bmStatusBarHeight() + 200
+            bottomHeight = 32
+
+        }
         let labelPro = UILabel(frame: CGRect(x: 20, y: topHeight, width: 47, height: 25))
         labelPro.textAlignment = .center
         labelPro.font = .pingFangSCSemibold(12)
@@ -48,7 +54,7 @@ class ACPayOneViewController: UIViewController {
         labelPro.backgroundColor = UIColor.hex("E7D4FF")
         view.addSubview(labelPro)
         
-        let payDetailV = ACPayDetailView(frame: CGRect(x: 0, y: labelPro.bottom, width: KScreenWidth, height: 300))
+        let payDetailV = ACPayDetailView(frame: CGRect(x: 0, y: labelPro.bottom + 8, width: KScreenWidth, height: 300))
         view.addSubview(payDetailV)
         payDetailV.HeaderL.text = KLanguage(key: "Upgrade PRO")
         
@@ -68,7 +74,7 @@ class ACPayOneViewController: UIViewController {
         bClabel.isUserInteractionEnabled = true
         let labelTapGesture = UITapGestureRecognizer(target: self, action: #selector(bclabelTapped))
         bClabel.addGestureRecognizer(labelTapGesture)
-        bClabel.frame = CGRect(x: KScreenWidth/2, y: KScreenHeight - BottomHomeHeight - 82, width: 100, height: 14)
+        bClabel.frame = CGRect(x: KScreenWidth/2, y: KScreenHeight - BottomHomeHeight - CGFloat(bottomHeight), width: 100, height: 14)
         bClabel.font = .pingFangRegular(10)
         bClabel.textColor = RGBA(r: 255, g: 255, b: 255, a: 0.6)
         bClabel.sizeToFit()
@@ -163,7 +169,7 @@ class ACPayOneViewController: UIViewController {
         view.addSubview(continuebtn)
         continuebtn.addTarget(self, action: #selector(dismissAction), for: .touchUpInside)
         continuebtn.backgroundColor = .white
-        continuebtn.layer.cornerRadius = 28
+        continuebtn.layer.cornerRadius = 11
         continuebtn.layer.masksToBounds = true
         continuebtn.snp.makeConstraints { make in
             make.bottom.equalTo(bClabel.snp.top).offset(-8)
@@ -181,7 +187,7 @@ class ACPayOneViewController: UIViewController {
         labelPro1.textAlignment = .center
         labelPro1.font = .pingFangRegular(12)
         labelPro1.textColor = RGBA(r: 255, g: 255, b: 255, a: 0.9)
-        var str = KLanguage(key: "Go Premium for $8.99/mo")
+        let str = KLanguage(key: "Go Premium for $8.99/mo")
         let str1 = str.replacingOccurrences(of: "**", with: "8.99")
         labelPro1.text = str1
         view.addSubview(labelPro1)

@@ -267,7 +267,7 @@ referenceSizeForHeaderInSection:(NSInteger)section {
 -(void)setClicked{
     //[playVolume playMusic];
     
-    ACPayTwoViewController *vc = [ACPayTwoViewController new];
+    ACPayOneViewController *vc = [ACPayOneViewController new];
     vc.modalPresentationStyle = UIModalPresentationOverFullScreen;
     [self presentViewController:vc animated:YES completion:nil];
 

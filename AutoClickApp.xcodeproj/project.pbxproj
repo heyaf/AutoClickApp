@@ -106,6 +106,7 @@
 		04DB09D82AE961CD00562044 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DB09D02AE961CD00562044 /* ViewController.m */; };
 		04DB09DA2AE961CD00562044 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DB09D22AE961CD00562044 /* AppDelegate.m */; };
 		04F70EFE2B53C3E400D18FE2 /* ACPayTwoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F70EFD2B53C3E400D18FE2 /* ACPayTwoViewController.swift */; };
+		04F70F002B53C88600D18FE2 /* ACPayChooseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F70EFF2B53C88600D18FE2 /* ACPayChooseView.swift */; };
 		04FFF9EC2B516A7800F3245D /* ACPayOneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FFF9EB2B516A7800F3245D /* ACPayOneViewController.swift */; };
 		04FFF9EF2B516D7600F3245D /* ACPayDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FFF9EE2B516D7600F3245D /* ACPayDetailView.swift */; };
 		04FFF9F12B516E4800F3245D /* Define.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FFF9F02B516E4800F3245D /* Define.swift */; };
@@ -322,6 +323,7 @@
 		04DB09D22AE961CD00562044 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		04DB09D32AE961CD00562044 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		04F70EFD2B53C3E400D18FE2 /* ACPayTwoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACPayTwoViewController.swift; sourceTree = "<group>"; };
+		04F70EFF2B53C88600D18FE2 /* ACPayChooseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACPayChooseView.swift; sourceTree = "<group>"; };
 		04FFF9EA2B516A7800F3245D /* AutoClickApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AutoClickApp-Bridging-Header.h"; sourceTree = "<group>"; };
 		04FFF9EB2B516A7800F3245D /* ACPayOneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACPayOneViewController.swift; sourceTree = "<group>"; };
 		04FFF9EE2B516D7600F3245D /* ACPayDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACPayDetailView.swift; sourceTree = "<group>"; };
@@ -804,6 +806,7 @@
 			isa = PBXGroup;
 			children = (
 				04FFF9EE2B516D7600F3245D /* ACPayDetailView.swift */,
+				04F70EFF2B53C88600D18FE2 /* ACPayChooseView.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -1168,6 +1171,7 @@
 				0417C3262AEBC0BF002EE17C /* UIColor+ACColor.m in Sources */,
 				047139612AF7D74400E0EBE9 /* PopAnimationTool.m in Sources */,
 				047139752AFA2A7F00E0EBE9 /* CPJImageClipping.m in Sources */,
+				04F70F002B53C88600D18FE2 /* ACPayChooseView.swift in Sources */,
 				04C3383B2AFBBE97004CBD4A /* RollingView.m in Sources */,
 				04C338362AFBBD88004CBD4A /* ACHandleVC.m in Sources */,
 				049104D22B0391D7009EB8AD /* MLHitTestHackView.m in Sources */,
