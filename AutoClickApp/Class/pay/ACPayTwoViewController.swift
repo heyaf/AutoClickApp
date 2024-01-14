@@ -1,13 +1,13 @@
 //
-//  ACPayOneViewController.swift
+//  ACPayTwoViewController.swift
 //  AutoClickApp
 //
-//  Created by 贺亚飞 on 2024/1/12.
+//  Created by 贺亚飞 on 2024/1/14.
 //
 
 import UIKit
 
-class ACPayOneViewController: UIViewController {
+class ACPayTwoViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,21 +36,12 @@ class ACPayOneViewController: UIViewController {
             }
         }
         
-        var topHeight = bmStatusBarHeight() + 257
+        var topHeight = bmStatusBarHeight() + 120
         
-        let labelPro = UILabel(frame: CGRect(x: 20, y: topHeight, width: 47, height: 25))
-        labelPro.textAlignment = .center
-        labelPro.font = .pingFangSCSemibold(12)
-        labelPro.textColor = UIColor.hex("8A38F5")
-        labelPro.text = KLanguage(key: "PRO")
-        labelPro.layer.cornerRadius = 5
-        labelPro.layer.masksToBounds = true
-        labelPro.backgroundColor = UIColor.hex("E7D4FF")
-        view.addSubview(labelPro)
         
-        let payDetailV = ACPayDetailView(frame: CGRect(x: 0, y: labelPro.bottom, width: KScreenWidth, height: 300))
+        let payDetailV = ACPayDetailView(frame: CGRect(x: 0, y: topHeight, width: KScreenWidth, height: 300))
         view.addSubview(payDetailV)
-        payDetailV.HeaderL.text = KLanguage(key: "Upgrade PRO")
+        payDetailV.HeaderL.text = KLanguage(key: "auto clicker") + " " + KLanguage(key: "PRO")
         
         
         let bClabel = UILabel()
@@ -177,18 +168,28 @@ class ACPayOneViewController: UIViewController {
         imageV1.frame = CGRect(x: KScreenWidth - 40 - 48, y: 16, width: 24, height: 24)
         continuebtn.addSubview(imageV1)
         continuebtn.setTitleColor(.black, for: .normal)
+       
         let labelPro1 = UILabel(frame: CGRect(x: 20, y: topHeight, width: 47, height: 25))
-        labelPro1.textAlignment = .center
         labelPro1.font = .pingFangRegular(12)
-        labelPro1.textColor = RGBA(r: 255, g: 255, b: 255, a: 0.9)
-        var str = KLanguage(key: "Go Premium for $8.99/mo")
-        let str1 = str.replacingOccurrences(of: "**", with: "8.99")
-        labelPro1.text = str1
+        labelPro1.textColor = UIColor.hex("9E9E9E")
+        labelPro1.text = KLanguage(key: "Unlock all advanced features now")
         view.addSubview(labelPro1)
         labelPro1.snp.makeConstraints { make in
-            make.bottom.equalTo(continuebtn.snp.top).offset(-12)
+            make.bottom.equalTo(continuebtn.snp.top).offset(-24)
             make.left.right.equalToSuperview().inset(20)
-            make.height.equalTo(17)        }
+            make.height.equalTo(17)
+        }
+        
+        let labelPro2 = UILabel(frame: CGRect(x: 20, y: topHeight, width: 47, height: 25))
+        labelPro2.font = .pingFangSCMedium(12)
+        labelPro2.textColor = .white
+        labelPro2.text = KLanguage(key: "Only the price of 1 cup of coffee")
+        view.addSubview(labelPro2)
+        labelPro2.snp.makeConstraints { make in
+            make.bottom.equalTo(labelPro1.snp.top).offset(-4)
+            make.left.right.equalToSuperview().inset(20)
+            make.height.equalTo(17)
+        }
     }
     
     @objc func dismissAction(){

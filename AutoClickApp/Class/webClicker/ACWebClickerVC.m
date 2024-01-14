@@ -266,7 +266,12 @@ referenceSizeForHeaderInSection:(NSInteger)section {
 //设置
 -(void)setClicked{
     //[playVolume playMusic];
+    
+    ACPayTwoViewController *vc = [ACPayTwoViewController new];
+    vc.modalPresentationStyle = UIModalPresentationOverFullScreen;
+    [self presentViewController:vc animated:YES completion:nil];
 
+    return;
     ACSettingVC *pushVC = [[ACSettingVC  alloc] init];
     pushVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:pushVC animated:YES];
