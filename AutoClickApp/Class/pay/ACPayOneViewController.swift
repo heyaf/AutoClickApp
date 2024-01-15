@@ -20,6 +20,12 @@ class ACPayOneViewController: UIViewController {
 
     func creatUI() {
 
+        let bgImageV = UIImageView("pay_bg")
+        view.addSubview(bgImageV)
+        bgImageV.contentMode = .scaleAspectFill
+        bgImageV.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
         
         let disbtn = UIButton(type: .custom)
         disbtn.frame = CGRect(x: 14, y: bmStatusBarHeight(), width: 44, height: 44)
@@ -41,7 +47,7 @@ class ACPayOneViewController: UIViewController {
 
         if isX == false {
             topHeight = bmStatusBarHeight() + 200
-            bottomHeight = 32
+            bottomHeight = 42
 
         }
         let labelPro = UILabel(frame: CGRect(x: 20, y: topHeight, width: 47, height: 25))

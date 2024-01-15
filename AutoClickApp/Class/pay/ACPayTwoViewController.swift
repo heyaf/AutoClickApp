@@ -20,7 +20,12 @@ class ACPayTwoViewController: UIViewController {
     
 
     func creatUI() {
-
+        let bgImageV = UIImageView("pay_bg")
+        view.addSubview(bgImageV)
+        bgImageV.contentMode = .scaleAspectFill
+        bgImageV.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
         
         let disbtn = UIButton(type: .custom)
         disbtn.frame = CGRect(x: 14, y: bmStatusBarHeight(), width: 44, height: 44)
