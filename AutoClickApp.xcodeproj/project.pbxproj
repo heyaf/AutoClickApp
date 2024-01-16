@@ -107,6 +107,8 @@
 		04DB09DA2AE961CD00562044 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DB09D22AE961CD00562044 /* AppDelegate.m */; };
 		04F70EFE2B53C3E400D18FE2 /* ACPayTwoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F70EFD2B53C3E400D18FE2 /* ACPayTwoViewController.swift */; };
 		04F70F002B53C88600D18FE2 /* ACPayChooseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F70EFF2B53C88600D18FE2 /* ACPayChooseView.swift */; };
+		04F70F042B56805200D18FE2 /* PayCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F70F022B56805200D18FE2 /* PayCenter.m */; };
+		04F70F072B568DEF00D18FE2 /* NSDate+DateStr.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F70F062B568DEF00D18FE2 /* NSDate+DateStr.m */; };
 		04FFF9EC2B516A7800F3245D /* ACPayOneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FFF9EB2B516A7800F3245D /* ACPayOneViewController.swift */; };
 		04FFF9EF2B516D7600F3245D /* ACPayDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FFF9EE2B516D7600F3245D /* ACPayDetailView.swift */; };
 		04FFF9F12B516E4800F3245D /* Define.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FFF9F02B516E4800F3245D /* Define.swift */; };
@@ -324,6 +326,10 @@
 		04DB09D32AE961CD00562044 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		04F70EFD2B53C3E400D18FE2 /* ACPayTwoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACPayTwoViewController.swift; sourceTree = "<group>"; };
 		04F70EFF2B53C88600D18FE2 /* ACPayChooseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACPayChooseView.swift; sourceTree = "<group>"; };
+		04F70F022B56805200D18FE2 /* PayCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayCenter.m; sourceTree = "<group>"; };
+		04F70F032B56805200D18FE2 /* PayCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayCenter.h; sourceTree = "<group>"; };
+		04F70F052B568DEF00D18FE2 /* NSDate+DateStr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+DateStr.h"; sourceTree = "<group>"; };
+		04F70F062B568DEF00D18FE2 /* NSDate+DateStr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+DateStr.m"; sourceTree = "<group>"; };
 		04FFF9EA2B516A7800F3245D /* AutoClickApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AutoClickApp-Bridging-Header.h"; sourceTree = "<group>"; };
 		04FFF9EB2B516A7800F3245D /* ACPayOneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACPayOneViewController.swift; sourceTree = "<group>"; };
 		04FFF9EE2B516D7600F3245D /* ACPayDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACPayDetailView.swift; sourceTree = "<group>"; };
@@ -729,6 +735,7 @@
 		04DB09CD2AE961CD00562044 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				04F70F012B56805200D18FE2 /* payTools */,
 				04C338502AFCE38A004CBD4A /* Resouce */,
 				0417C3222AEBC003002EE17C /* PrefixHeader.pch */,
 			);
@@ -787,9 +794,20 @@
 			path = Others;
 			sourceTree = "<group>";
 		};
+		04F70F012B56805200D18FE2 /* payTools */ = {
+			isa = PBXGroup;
+			children = (
+				04F70F022B56805200D18FE2 /* PayCenter.m */,
+				04F70F032B56805200D18FE2 /* PayCenter.h */,
+			);
+			path = payTools;
+			sourceTree = "<group>";
+		};
 		04FFF9E92B516A4800F3245D /* pay */ = {
 			isa = PBXGroup;
 			children = (
+				04F70F052B568DEF00D18FE2 /* NSDate+DateStr.h */,
+				04F70F062B568DEF00D18FE2 /* NSDate+DateStr.m */,
 				04FFF9EB2B516A7800F3245D /* ACPayOneViewController.swift */,
 				04F70EFD2B53C3E400D18FE2 /* ACPayTwoViewController.swift */,
 				04FFF9ED2B516D5F00F3245D /* view */,
@@ -1133,6 +1151,7 @@
 				04C338472AFC7620004CBD4A /* ACGridLayoutVC.m in Sources */,
 				04DB09A32AE9614900562044 /* AutoClickApp.xcdatamodeld in Sources */,
 				0417C3212AEBBF11002EE17C /* ACTabViewController.m in Sources */,
+				04F70F042B56805200D18FE2 /* PayCenter.m in Sources */,
 				049104CF2B037F9F009EB8AD /* UIView+hite.m in Sources */,
 				0471394E2AF6868C00E0EBE9 /* NSDictionary+SafeData.m in Sources */,
 				047139512AF698CC00E0EBE9 /* ZWFileManager.m in Sources */,
@@ -1141,6 +1160,7 @@
 				0417C3962AF0F51D002EE17C /* LiuXSlider.m in Sources */,
 				047139432AF6390500E0EBE9 /* ACPrivacyAlbumDetailVC.m in Sources */,
 				04FFF9F42B516F2A00F3245D /* UIColor+Extension.swift in Sources */,
+				04F70F072B568DEF00D18FE2 /* NSDate+DateStr.m in Sources */,
 				04C338432AFBCE61004CBD4A /* ACColorItem.m in Sources */,
 				04C338322AFB756F004CBD4A /* GKCycleScrollViewCell.m in Sources */,
 				0417C3852AEE9CDF002EE17C /* ACSettingVC.m in Sources */,

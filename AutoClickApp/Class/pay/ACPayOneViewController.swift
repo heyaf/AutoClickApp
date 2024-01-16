@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import MBProgressHUD
 class ACPayOneViewController: UIViewController {
 
     override func viewDidLoad() {
@@ -194,7 +194,14 @@ class ACPayOneViewController: UIViewController {
         labelPro1.font = .pingFangRegular(12)
         labelPro1.textColor = RGBA(r: 255, g: 255, b: 255, a: 0.9)
         let str = KLanguage(key: "Go Premium for $8.99/mo")
-        let str1 = str.replacingOccurrences(of: "**", with: "8.99")
+        var str1 = str.replacingOccurrences(of: "**", with: "$8.99")
+        let productInfoDefaults = UserDefaults.standard
+        if let arrdata = productInfoDefaults.object(forKey: "productInfoDefaultsKey") as? [[String : String]] , arrdata.count == 2{
+            // 使用 arr，它是一个 [Any] 类型的数组
+            let dic = arrdata[1]
+            str1 = str.replacingOccurrences(of: "**", with: "$" + (dic["finalPrice"] ?? "8.99"))
+        }
+
         labelPro1.text = str1
         view.addSubview(labelPro1)
         labelPro1.snp.makeConstraints { make in
@@ -219,8 +226,16 @@ class ACPayOneViewController: UIViewController {
             // 处理点击事件
         }
     @objc func continueAction() {
-            print("Label 被点击了")
-            // 处理点击事件
+    
+        PayCenter.sharedInstance().payItem(IAP1_ProductID)
+        PayCenter.sharedInstance().paySuccessBlock = {
+            let date = Date.getNewDateDistanceNow(year: 0, month: 1, days: 0)
+            let dateStr = [Date.dateToString(date, dateFormat: "yyyy-MM-dd HH:mm:ss")]
+            UserDefaults.standard.setValue(dateStr, forKey: "payInfo");
+            NotificationCenter.default.post(name:NSNotification.Name("ACPaySuccessed"), object: nil)
+            self.dismissAction()
+        }
+        
     }
     func openUrl(_ urlStr: String) {
         guard let url = URL(string: urlStr) else {
@@ -239,4 +254,52 @@ class ACPayOneViewController: UIViewController {
         })
     }
 
+}
+extension UIViewController {
+
+    func showHUD(_ text: String) -> MBProgressHUD {
+        let HUD = MBProgressHUD.showAdded(to: view, animated: true)
+        HUD?.labelText = text
+        HUD?.removeFromSuperViewOnHide = true
+        return HUD ?? MBProgressHUD()
+    }
+    
+}
+import Foundation
+
+extension Date {
+    static func getNewDateDistanceNow(year: Int, month: Int, days: Int) -> Date {
+        var dateComponents = DateComponents()
+        dateComponents.year = year
+        dateComponents.month = month
+        dateComponents.day = days
+
+        let calendar = Calendar(identifier: .gregorian)
+        return calendar.date(byAdding: dateComponents, to: Date()) ?? Date()
+    }
+
+    static func dateToString(_ date: Date, dateFormat: String) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = dateFormat
+        return dateFormatter.string(from: date)
+    }
+
+    static func stringToDate(_ dateString: String, dateFormat: String) -> Date {
+        if dateString.isEmpty {
+            return Date()
+        }
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = dateFormat
+        return dateFormatter.date(from: dateString) ?? Date()
+    }
+
+    static func compareDate(_ aDate: Date, with bDate: Date) -> Int {
+        if aDate == bDate {
+            return 0
+        } else if aDate < bDate {
+            return 1
+        } else {
+            return -1
+        }
+    }
 }

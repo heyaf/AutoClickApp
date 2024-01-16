@@ -8,6 +8,7 @@
 import UIKit
 import Foundation
 import SnapKit
+import MBProgressHUD_JDragon
 // MARK: ===================================工具类:变量宏定义=========================================
 /// 屏幕宽
 public let KScreenWidth = UIScreen.main.bounds.width
@@ -225,3 +226,7 @@ func KLanguage(key: String) -> String {
     let languageBundle = Bundle(path: path)
     return languageBundle?.localizedString(forKey: key, value: nil, table: "Localizable") ?? key
 }
+public let IAP1_ProductID = "AutoClicker_Month_Nofree"
+public let IAP2_ProductID = "AutoClicker_Year_Nofree"
+/*#define IAP1_ProductID @"AutoClicker_Month_Nofree"
+ #define IAP2_ProductID @"AutoClicker_Year_Nofree"*/

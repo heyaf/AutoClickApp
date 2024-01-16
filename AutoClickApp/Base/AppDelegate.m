@@ -9,7 +9,9 @@
 #import "ACTabViewController.h"
 #import <IQKeyboardManager/IQKeyboardManager.h>
 #import "ACGuiderPageVC.h"
-@interface AppDelegate ()
+#import <StoreKit/StoreKit.h>
+
+@interface AppDelegate ()<SKProductsRequestDelegate>
 
 @end
 
@@ -61,9 +63,75 @@
         [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
 
     }
+    [self payDetail];
+
     return YES;
 }
+-(void)payDetail{
+    NSArray * productArray = [[NSArray alloc] initWithObjects:IAP1_ProductID,IAP2_ProductID, nil];
 
+        [self validateProductIdentifiers:productArray];//根据商品id获取商品详情信息,数组参数
+    
+}
+// 自定义方法
+
+- (void)validateProductIdentifiers:(NSArray *)productIdentifiers
+
+{
+
+    SKProductsRequest *productsRequest = [[SKProductsRequest alloc]
+
+                                          initWithProductIdentifiers:[NSSet setWithArray:productIdentifiers]];
+
+    productsRequest.delegate = self;
+
+    [productsRequest start];
+
+}
+
+//收到产品返回信息
+
+- (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response{
+
+    NSArray *product = response.products;//获取到的商品信息列表
+
+    if([product count] == 0){
+
+        return;
+
+    }
+
+    SKProduct *p = nil;
+
+    NSMutableArray * productInfoArray = [NSMutableArray array];
+
+    for (SKProduct *pro in product) {
+
+        NSNumberFormatter*numberFormatter = [[NSNumberFormatter alloc] init];
+
+        [numberFormatter setFormatterBehavior:NSNumberFormatterBehavior10_4];
+
+        [numberFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+
+        [numberFormatter setLocale:pro.priceLocale];
+
+        NSString*formattedPrice = [numberFormatter stringFromNumber:pro.price];//例如 ￥12.00,如果是美元地区的话,单位会直接切换成美元,并且金额会根据汇率自动换算
+
+          NSDictionary * dicInfo = [[NSDictionary alloc] initWithObjectsAndKeys:formattedPrice,@"finalPrice",[pro productIdentifier],@"productIdentifier", nil];//把获取到的商品的价格和对应的商品id存储起来,用来展示充值界面
+
+        [productInfoArray addObject:dicInfo];
+
+    }
+
+    NSUserDefaults * productInfoDefaults = [NSUserDefaults standardUserDefaults];
+
+    [productInfoDefaults setObject:productInfoArray forKey:@"productInfoDefaultsKey"];
+
+    [productInfoDefaults synchronize];
+
+    NSLog(@"%@",productInfoArray);
+
+}
 
 
 @end

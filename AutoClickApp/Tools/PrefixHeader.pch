@@ -14,11 +14,15 @@
 #import "UIView+ACViewStyle.h"
 #import <Masonry/Masonry.h>
 #import <TZImagePickerController/TZImagePickerController.h>
+#import <MBProgressHUD_JDragon/MBProgressHUD+JDragon.h>
 #import "NSDictionary+SafeData.h"
 #import "UIButton+admEdgeInsets.h"
 #import "playVolume.h"
 #import "UIButton+animation.h"
 #import "AutoClickApp-Swift.h"
+//在App Store Connect中创建内购项目的product_id
+#define IAP1_ProductID @"AutoClicker_Month_Nofree"
+#define IAP2_ProductID @"AutoClicker_Year_Nofree"
 
 #define kScreenW [UIScreen mainScreen].bounds.size.width
 #define kScreenH  [UIScreen mainScreen].bounds.size.height

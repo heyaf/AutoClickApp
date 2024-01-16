@@ -1,0 +1,184 @@
+//
+//  PayCenter.m
+//  TestPay
+//
+//  Created by Apple on 2019/10/15.
+//  Copyright © 2019 Apple. All rights reserved.
+//
+
+#import "PayCenter.h"
+#import <StoreKit/StoreKit.h>
+
+/**
+ *  单例宏方法
+ *
+ *  @param block
+ *
+ *  @return 返回单例
+ */
+#define DEFINE_SHARED_INSTANCE_USING_BLOCK(block) \
+static dispatch_once_t pred = 0; \
+static id _sharedObject = nil; \
+dispatch_once(&pred, ^{ \
+_sharedObject = block(); \
+}); \
+return _sharedObject; \
+
+@interface PayCenter () <SKPaymentTransactionObserver, SKProductsRequestDelegate>
+
+@end
+
+@implementation PayCenter
+
++ (PayCenter *)sharedInstance{
+    //初始化单例类
+    DEFINE_SHARED_INSTANCE_USING_BLOCK(^{
+        return [[PayCenter alloc] init];
+    });
+}
+
+- (id)init{
+    self = [super init];
+    if (self) {
+        
+        [self startManager];
+    }
+    
+    return self;
+}
+
+- (void)startManager { //开启监听
+    /*
+     在程序启动时，设置监听，监听是否有未完成订单，有的话恢复订单。
+     */
+    [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
+}
+
+- (void)stopManager{ //移除监听
+    [[SKPaymentQueue defaultQueue] removeTransactionObserver:self];
+}
+
+- (void)payItem:(NSString *)IAP_ID{
+    
+    //检查用户允许app内购
+    if([SKPaymentQueue canMakePayments]){
+        
+        if(IAP_ID && IAP_ID.length > 0){
+            
+            NSArray *product = [[NSArray alloc] initWithObjects:IAP_ID, nil];
+            NSSet *nsSet = [NSSet setWithArray:product];
+            SKProductsRequest *request = [[SKProductsRequest alloc] initWithProductIdentifiers:nsSet];
+            request.delegate = self;
+            [request start];
+        }else{
+           //商品为空
+            [MBProgressHUD showErrorMessage:@"支付失败，商品为空"];
+        }
+    }else{
+        //没有权限
+        [MBProgressHUD showErrorMessage:@"支付失败，没有权限"];
+
+    }
+}
+
+#pragma mark SKProductsRequestDelegate 查询成功后的回调
+- (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response {
+    NSArray *product = response.products;
+    if (product.count == 0) {
+        //无法获取商品信息
+        [MBProgressHUD showErrorMessage:@"支付失败，无法获取商品信息"];
+
+    } else {
+        //发起购买请求
+        SKPayment * payment = [SKPayment paymentWithProduct:product[0]];
+        [[SKPaymentQueue defaultQueue] addPayment:payment];
+    }
+}
+
+#pragma mark SKProductsRequestDelegate 查询失败后的回调
+- (void)request:(SKRequest *)request didFailWithError:(NSError *)error {
+    //查询失败: [error localizedDescription];
+}
+
+- (void)failedTransaction:(SKPaymentTransaction *)transaction {
+    if(transaction.error.code != SKErrorPaymentCancelled) {
+        ///购买失败
+        [MBProgressHUD showErrorMessage:@"支付失败"];
+    } else {
+        //用户取消了交易
+        [MBProgressHUD showErrorMessage:@"用户取消交易"];
+
+    }
+    //将交易结束
+    [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
+}
+
+- (void)restoreTransaction:(SKPaymentTransaction *)transaction {
+    [[SKPaymentQueue defaultQueue] finishTransaction: transaction];
+}
+
+
+- (void)completeTransaction:(SKPaymentTransaction *)transaction {
+    [[SKPaymentQueue defaultQueue] finishTransaction: transaction];
+}
+
+#pragma Mark 购买操作后的回调
+- (void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(nonnull NSArray<SKPaymentTransaction *> *)transactions {
+    
+    for (SKPaymentTransaction *transaction in transactions) {
+        switch (transaction.transactionState) {
+            case SKPaymentTransactionStatePurchasing://正在交易
+                break;
+                
+            case SKPaymentTransactionStatePurchased://交易完成
+            {
+                if (self.paySuccessBlock) {
+                    self.paySuccessBlock();
+                }
+//                //获取receiptStr
+//                NSURL *receiptUrl = [[NSBundle mainBundle] appStoreReceiptURL];
+//                NSData *receiptData = [NSData dataWithContentsOfURL:receiptUrl];//NSData 类型
+//                NSString *receiptStr = [receiptData base64EncodedStringWithOptions:0];//转成NSString类型
+//
+//                //模拟沙箱环境二次验证，正式开发中需要将数据提交给服务器端验证
+//                /* ------------------------------------Start------------------------------------ */
+//                NSDictionary *requestContents = @{@"receipt-data": receiptStr};
+//
+//                NSError *error;
+//                NSData *data = [NSJSONSerialization dataWithJSONObject:requestContents options:0 error:&error];
+//
+//                //沙箱验证地址：https://sandbox.itunes.apple.com/verifyReceipt
+//                //正式打包验证地址：https://buy.itunes.apple.com/verifyReceipt
+//                NSURL *receipt_url = [NSURL URLWithString:@"https://sandbox.itunes.apple.com/verifyReceipt"];
+//                
+//                NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:receipt_url];
+//                [request setHTTPMethod:@"POST"];
+//                [request setHTTPBody:data];
+//
+//                [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+//
+//                    if(!error){
+//
+//                        NSLog(@"%@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+//                        [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
+//                    }
+//                }];
+                /* ------------------------------------End------------------------------------ */
+            }
+                break;
+                
+            case SKPaymentTransactionStateFailed://交易失败
+                [self failedTransaction:transaction];
+                break;
+                
+            case SKPaymentTransactionStateRestored://已经购买过该商品
+                [self restoreTransaction:transaction];
+                break;
+            default:
+                break;
+        }
+    }
+}
+
+
+@end
