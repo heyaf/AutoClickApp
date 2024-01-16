@@ -8,17 +8,17 @@
 import UIKit
 
 class ACPayTwoViewController: UIViewController {
-
+    
     var selectIndex = 0
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         view.backgroundColor = .black
         creatUI()
     }
     
-
+    
     func creatUI() {
         let bgImageV = UIImageView("pay_bg")
         view.addSubview(bgImageV)
@@ -66,7 +66,7 @@ class ACPayTwoViewController: UIViewController {
             range: NSRange(location: 0, length: text.count)
         )
         bClabel.attributedText = underlineAttriString
-
+        
         // 添加点击手势
         bClabel.isUserInteractionEnabled = true
         let labelTapGesture = UITapGestureRecognizer(target: self, action: #selector(bclabelTapped))
@@ -87,7 +87,7 @@ class ACPayTwoViewController: UIViewController {
             range: NSRange(location: 0, length: text1.count)
         )
         bClabel1.attributedText = underlineAttriString1
-
+        
         // 添加点击手势
         bClabel1.isUserInteractionEnabled = true
         let labelTapGesture1 = UITapGestureRecognizer(target: self, action: #selector(bllabelTapped))
@@ -109,7 +109,7 @@ class ACPayTwoViewController: UIViewController {
             range: NSRange(location: 0, length: text2.count)
         )
         bClabel2.attributedText = underlineAttriString2
-
+        
         // 添加点击手势
         bClabel2.isUserInteractionEnabled = true
         let labelTapGesture2 = UITapGestureRecognizer(target: self, action: #selector(brlabelTapped))
@@ -144,7 +144,7 @@ class ACPayTwoViewController: UIViewController {
             make.right.equalTo(bClabel.snp.left)
             make.height.equalTo(14)
             make.width.equalTo(10)
-
+            
         }
         
         let r = UILabel()
@@ -158,7 +158,7 @@ class ACPayTwoViewController: UIViewController {
             make.left.equalTo(bClabel.snp.right)
             make.height.equalTo(14)
             make.width.equalTo(10)
-
+            
         }
         
         let continuebtn = UIButton(type: .custom)
@@ -180,7 +180,7 @@ class ACPayTwoViewController: UIViewController {
         imageV1.frame = CGRect(x: KScreenWidth - 40 - 48, y: 16, width: 24, height: 24)
         continuebtn.addSubview(imageV1)
         continuebtn.setTitleColor(.black, for: .normal)
-       
+        
         let labelPro1 = UILabel(frame: CGRect(x: 20, y: topHeight, width: 47, height: 25))
         labelPro1.font = .pingFangRegular(12)
         labelPro1.textColor = UIColor.hex("9E9E9E")
@@ -213,19 +213,35 @@ class ACPayTwoViewController: UIViewController {
         self.dismiss(animated: true)
     }
     @objc func bclabelTapped() {
-            print("Label 被点击了")
-            // 处理点击事件
-        }
-    @objc func bllabelTapped() {
-            print("Label 被点击了")
-            // 处理点击事件
-        }
-    @objc func brlabelTapped() {
-            print("Label 被点击了")
-            // 处理点击事件
-        }
-    @objc func continueAction() {
-            print("Label 被点击了")
-            // 处理点击事件
+        openUrl("https://fair-chalk-fc5.notion.site/Privacy-Policy-63a04c8f370449c09b61fadb28d5dbea?pvs=4")
+        
     }
+    @objc func bllabelTapped() {
+        openUrl("https://fair-chalk-fc5.notion.site/Term-of-use-b7afe95e11e54b93be6b1fe349ad0214?pvs=4")
+    }
+    @objc func brlabelTapped() {
+        print("Label 被点击了")
+        // 处理点击事件
+    }
+    @objc func continueAction() {
+        print("Label 被点击了")
+        // 处理点击事件
+    }
+    func openUrl(_ urlStr: String) {
+        guard let url = URL(string: urlStr) else {
+            print("无法创建URL")
+            return
+        }
+        
+        let application = UIApplication.shared
+        if !application.canOpenURL(url) {
+            print("无法打开\"\(url)\", 请确保此应用已经正确安装.")
+            return
+        }
+        
+        application.open(url, options: [:], completionHandler: { success in
+            // 这里可以处理URL打开之后的回调
+        })
+    }
+    
 }

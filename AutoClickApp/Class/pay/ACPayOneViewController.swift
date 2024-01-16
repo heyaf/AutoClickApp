@@ -207,12 +207,12 @@ class ACPayOneViewController: UIViewController {
         self.dismiss(animated: true)
     }
     @objc func bclabelTapped() {
-            print("Label 被点击了")
-            // 处理点击事件
+
+        openUrl("https://fair-chalk-fc5.notion.site/Privacy-Policy-63a04c8f370449c09b61fadb28d5dbea?pvs=4")
+
         }
     @objc func bllabelTapped() {
-            print("Label 被点击了")
-            // 处理点击事件
+        openUrl("https://fair-chalk-fc5.notion.site/Term-of-use-b7afe95e11e54b93be6b1fe349ad0214?pvs=4")
         }
     @objc func brlabelTapped() {
             print("Label 被点击了")
@@ -222,4 +222,21 @@ class ACPayOneViewController: UIViewController {
             print("Label 被点击了")
             // 处理点击事件
     }
+    func openUrl(_ urlStr: String) {
+        guard let url = URL(string: urlStr) else {
+            print("无法创建URL")
+            return
+        }
+
+        let application = UIApplication.shared
+        if !application.canOpenURL(url) {
+            print("无法打开\"\(url)\", 请确保此应用已经正确安装.")
+            return
+        }
+
+        application.open(url, options: [:], completionHandler: { success in
+            // 这里可以处理URL打开之后的回调
+        })
+    }
+
 }

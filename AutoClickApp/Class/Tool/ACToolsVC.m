@@ -90,6 +90,10 @@
     ACToolListTBCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ACToolListTBCell"];
     cell.leftImageV.image = kIMAGE_Name(self.imageNameArr[indexPath.row]);
     cell.titleL.text = self.titleArr[indexPath.row];
+    cell.vipIcon.hidden = true;
+    if (indexPath.row == 0 || indexPath.row == 1 ||indexPath.row == 3) {
+        cell.vipIcon.hidden = false;
+    }
     return cell;
 }
 
