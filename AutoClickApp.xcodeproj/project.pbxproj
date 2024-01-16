@@ -109,6 +109,8 @@
 		04F70F002B53C88600D18FE2 /* ACPayChooseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F70EFF2B53C88600D18FE2 /* ACPayChooseView.swift */; };
 		04F70F042B56805200D18FE2 /* PayCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F70F022B56805200D18FE2 /* PayCenter.m */; };
 		04F70F072B568DEF00D18FE2 /* NSDate+DateStr.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F70F062B568DEF00D18FE2 /* NSDate+DateStr.m */; };
+		04F70F0D2B56B26000D18FE2 /* vipTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F70F0C2B56B26000D18FE2 /* vipTool.m */; };
+		04F70F0F2B56B8E600D18FE2 /* ACPayOneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F70F0E2B56B8E600D18FE2 /* ACPayOneView.swift */; };
 		04FFF9EC2B516A7800F3245D /* ACPayOneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FFF9EB2B516A7800F3245D /* ACPayOneViewController.swift */; };
 		04FFF9EF2B516D7600F3245D /* ACPayDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FFF9EE2B516D7600F3245D /* ACPayDetailView.swift */; };
 		04FFF9F12B516E4800F3245D /* Define.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FFF9F02B516E4800F3245D /* Define.swift */; };
@@ -330,6 +332,9 @@
 		04F70F032B56805200D18FE2 /* PayCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayCenter.h; sourceTree = "<group>"; };
 		04F70F052B568DEF00D18FE2 /* NSDate+DateStr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+DateStr.h"; sourceTree = "<group>"; };
 		04F70F062B568DEF00D18FE2 /* NSDate+DateStr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+DateStr.m"; sourceTree = "<group>"; };
+		04F70F0B2B56B26000D18FE2 /* vipTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = vipTool.h; sourceTree = "<group>"; };
+		04F70F0C2B56B26000D18FE2 /* vipTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = vipTool.m; sourceTree = "<group>"; };
+		04F70F0E2B56B8E600D18FE2 /* ACPayOneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACPayOneView.swift; sourceTree = "<group>"; };
 		04FFF9EA2B516A7800F3245D /* AutoClickApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AutoClickApp-Bridging-Header.h"; sourceTree = "<group>"; };
 		04FFF9EB2B516A7800F3245D /* ACPayOneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACPayOneViewController.swift; sourceTree = "<group>"; };
 		04FFF9EE2B516D7600F3245D /* ACPayDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACPayDetailView.swift; sourceTree = "<group>"; };
@@ -816,6 +821,8 @@
 				04FFF9F62B517A1400F3245D /* UIFont+Extension.swift */,
 				04FFF9F22B516F2A00F3245D /* UIColor+Extension.swift */,
 				04FFF9F32B516F2A00F3245D /* UIView+Extension.swift */,
+				04F70F0B2B56B26000D18FE2 /* vipTool.h */,
+				04F70F0C2B56B26000D18FE2 /* vipTool.m */,
 			);
 			path = pay;
 			sourceTree = "<group>";
@@ -825,6 +832,7 @@
 			children = (
 				04FFF9EE2B516D7600F3245D /* ACPayDetailView.swift */,
 				04F70EFF2B53C88600D18FE2 /* ACPayChooseView.swift */,
+				04F70F0E2B56B8E600D18FE2 /* ACPayOneView.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -1139,6 +1147,7 @@
 				0417C31E2AEBBEC1002EE17C /* ACTabbar.m in Sources */,
 				04C3383F2AFBCD27004CBD4A /* ACColorView.m in Sources */,
 				04C338552AFD0BFF004CBD4A /* ACSetLanguageVC.m in Sources */,
+				04F70F0F2B56B8E600D18FE2 /* ACPayOneView.swift in Sources */,
 				04DB09AB2AE9614C00562044 /* main.m in Sources */,
 				047139592AF7408A00E0EBE9 /* UIButton+admEdgeInsets.m in Sources */,
 				0417C3AB2AF1418A002EE17C /* ACXSlider.m in Sources */,
@@ -1167,6 +1176,7 @@
 				04C3384F2AFCE149004CBD4A /* playVolume.m in Sources */,
 				04C3386F2AFDDD4A004CBD4A /* ACGuiderPageVC.m in Sources */,
 				04FFF9EC2B516A7800F3245D /* ACPayOneViewController.swift in Sources */,
+				04F70F0D2B56B26000D18FE2 /* vipTool.m in Sources */,
 				047139632AF7D74400E0EBE9 /* PopTableListView.m in Sources */,
 				0417C3352AEBE53F002EE17C /* ACToolsVC.m in Sources */,
 				0417C36D2AEE4DEC002EE17C /* ACVideoListItem.m in Sources */,

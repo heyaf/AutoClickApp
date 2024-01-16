@@ -106,7 +106,7 @@ return _sharedObject; \
         [MBProgressHUD showErrorMessage:@"支付失败"];
     } else {
         //用户取消了交易
-        [MBProgressHUD showErrorMessage:@"用户取消交易"];
+        [MBProgressHUD showErrorMessage:@"取消购买"];
 
     }
     //将交易结束

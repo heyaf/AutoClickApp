@@ -22,7 +22,9 @@
 @property (nonatomic, strong) NSArray *iconArr;
 @property (nonatomic, strong) NSArray *urlArr;
 @property (nonatomic, strong) UIView *lineV;
+@property (nonatomic, strong) UIButton *vipBtn;
 
+@property (nonatomic, assign) BOOL showPay;
 
 
 @end
@@ -48,6 +50,7 @@
 //    [[CTCellularData alloc] init].restrictedState;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showPayNotification) name:@"ACShowPay" object:nil];
 }
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
@@ -58,6 +61,13 @@
 //    [IQKeyboardManager sharedManager].enable = YES;
 
 
+}
+- (void)showPayNotification{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        if(![vipTool isVip]) {
+            [self vipBtnAction];
+        }
+    });
 }
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
@@ -74,7 +84,21 @@
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = NO;
     self.lineV.hidden = NO;
-//    [IQKeyboardManager sharedManager].enable = NO;
+    
+    self.vipBtn.hidden = [vipTool isVip];
+    
+    BOOL firstLoad = [kUserDefaults boolForKey:@"showVip"];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        //不是VIP用户，不是第一次启动
+        if (!self.showPay && firstLoad && ![vipTool isVip]) {
+            [self vipBtnAction];
+            self.showPay = true;
+        }
+        [kUserDefaults setBool:true forKey:@"showVip"];
+
+    });
+
 
 }
 
@@ -210,6 +234,13 @@
     [setBtn addTarget:self action:@selector(setClicked) forControlEvents:UIControlEventTouchUpInside];
     [setBtn setImageEdgeInsets:UIEdgeInsetsMake(5, 5, 5, 5)];
     
+    UIButton *vipBtn = [UIButton buttonWithType:0];
+    vipBtn.frame = CGRectMake(kScreenW-45 *2, 7, 34, 34);
+    [vipBtn setImage:kIMAGE_Name(@"svp") forState:0];
+    [self.navigationController.navigationBar addSubview:vipBtn];
+    [vipBtn addTarget:self action:@selector(vipBtnAction) forControlEvents:UIControlEventTouchUpInside];
+    [vipBtn setImageEdgeInsets:UIEdgeInsetsMake(5, 5, 5, 5)];
+    
    self.lineV = [self.navigationController.navigationBar createLineFrame:CGRectMake(0, 44-1, kScreenW, 1) lineColor:kRGB(32, 32, 32)];
 }
 
@@ -265,16 +296,15 @@ referenceSizeForHeaderInSection:(NSInteger)section {
 }
 //设置
 -(void)setClicked{
-    //[playVolume playMusic];
-    
-    ACPayOneViewController *vc = [ACPayOneViewController new];
-    vc.modalPresentationStyle = UIModalPresentationOverFullScreen;
-    [self presentViewController:vc animated:YES completion:nil];
 
-    return;
     ACSettingVC *pushVC = [[ACSettingVC  alloc] init];
     pushVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:pushVC animated:YES];
+}
+-(void)vipBtnAction{
+    ACPayTwoViewController *vc = [ACPayTwoViewController new];
+    vc.modalPresentationStyle = UIModalPresentationOverFullScreen;
+    [self presentViewController:vc animated:YES completion:nil];
 }
 -(void)getNet{
  

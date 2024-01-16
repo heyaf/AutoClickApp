@@ -20,6 +20,8 @@
 #import "playVolume.h"
 #import "UIButton+animation.h"
 #import "AutoClickApp-Swift.h"
+#import "vipTool.h"
+
 //在App Store Connect中创建内购项目的product_id
 #define IAP1_ProductID @"AutoClicker_Month_Nofree"
 #define IAP2_ProductID @"AutoClicker_Year_Nofree"

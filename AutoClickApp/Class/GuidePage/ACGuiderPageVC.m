@@ -18,8 +18,11 @@
 
 @property (nonatomic, strong) UIView *pageView;
 
-
 @property (nonatomic, assign) NSInteger index;
+
+@property (nonatomic, strong) ACPayOneView *oneV;
+
+
 @end
 
 @implementation ACGuiderPageVC
@@ -27,6 +30,7 @@
   
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     
     self.view.backgroundColor = UIColor.mainBlackColor;
     [self.view addSubview:self.scrollview];
@@ -101,6 +105,13 @@
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(skipAction)];
     [skipL addGestureRecognizer:tap];
     
+    ACPayOneView *oneV = [[ACPayOneView alloc] initWithFrame:CGRectMake(kScreenW * 3, 0, kScreenW, kScreenH)];
+    oneV.disMissBack = ^{
+        [self skipAction];
+    };
+    _oneV = oneV;
+    [_scrollview addSubview:oneV];
+    
 }
 -(void)skipAction{
     //[playVolume playMusic];
@@ -117,7 +128,7 @@
     if(!_scrollview){
         _scrollview = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, kScreenW, kScreenH)];
         _scrollview.backgroundColor = UIColor.mainBlackColor;
-        _scrollview.contentSize = CGSizeMake(kScreenW*3, kScreenH);
+        _scrollview.contentSize = CGSizeMake(kScreenW*4, kScreenH);
         _scrollview.pagingEnabled = YES;
         _scrollview.delegate = self;
         _scrollview.scrollEnabled = NO;
@@ -137,7 +148,24 @@
         [self.animation stop];
         [self.animation1 stop];
     }
-    if (self.index==3) {
+    if (self.index == 3) {
+        weakSelf.lineV.hidden = true;
+        
+        [self.view bringSubviewToFront:self.scrollview];
+        [self.view bringSubviewToFront:self.pageBtn];
+        [UIView animateWithDuration:0.3 animations:^{
+            weakSelf.scrollview.contentOffset = CGPointMake(kScreenW*weakSelf.index, 0);
+            weakSelf.pageBtn.width = kScreenW - 40;
+            weakSelf.pageBtn.centerX = kScreenW/2;
+        } completion:^(BOOL finished) {
+            weakSelf.pageBtn.hidden = true;
+            
+            [weakSelf.oneV showView];
+        }];
+        return;
+        
+    }
+    if (self.index==4) {
         CATransition *animation = [CATransition animation];
         animation.type = @"cube";
         animation.subtype = kCATransitionFromRight;
