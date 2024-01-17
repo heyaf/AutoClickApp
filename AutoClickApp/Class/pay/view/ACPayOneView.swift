@@ -256,7 +256,7 @@ class ACPayOneView: UIView {
         PayCenter.sharedInstance().payItem(IAP1_ProductID)
         PayCenter.sharedInstance().paySuccessBlock = {
             let date = Date.getNewDateDistanceNow(year: 0, month: 1, days: 0)
-            let dateStr = [Date.dateToString(date, dateFormat: "yyyy-MM-dd HH:mm:ss")]
+            let dateStr = Date.dateToString(date, dateFormat: "yyyy-MM-dd HH:mm:ss")
             UserDefaults.standard.setValue(dateStr, forKey: "payInfo");
 //            NotificationCenter.default.post(name:NSNotification.Name("ACPaySuccessed"), object: nil)
             self.clickedPay = false

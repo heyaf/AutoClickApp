@@ -50,7 +50,8 @@
 /* Settings */
 "Settings" = "设置";
 "Get Premium" = "开通会员";
-"Unlock all paid features and permissions" = "解锁所有付费功能和权限";
+"Unlock all paid features and" = "解锁所有付费功能和";
+"permissions" = "权限";
 "General" = "基础设置";
 "Click Sound" = "点击声音";
 "Select Language" = "选择语言";

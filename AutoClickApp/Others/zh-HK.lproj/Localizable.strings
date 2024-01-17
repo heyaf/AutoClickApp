@@ -52,7 +52,8 @@
 /* Settings */
 "Settings" = "設置";
 "Get Premium" = "開通會員";
-"Unlock all paid features and permissions" = "解鎖所有付費功能和權限";
+"Unlock all paid features and" = "解鎖所有付費功能和";
+"permissions" = "權限";
 "General" = "基礎設置";
 "Click Sound" = "點擊聲音";
 "Select Language" = "選擇語言";

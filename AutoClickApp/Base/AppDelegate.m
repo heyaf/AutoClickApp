@@ -53,16 +53,16 @@
     [self.window makeKeyAndVisible];
     if ([kUserDefaults boolForKey:@"showPage"]) {
         
-//    } else {
+    } else {
         [kUserDefaults setBool:YES forKey:@"showPage"];
         ACGuiderPageVC *pushVC = [[ACGuiderPageVC  alloc] init];
         pushVC.modalPresentationStyle = UIModalPresentationFullScreen;
         [self.window.rootViewController presentViewController:pushVC animated:NO completion:nil];
-//    }
+    }
 //    if (@available(iOS 13.0, *)) {
 //        [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
 //
-    }
+//    }
     [self payDetail];
 
     return YES;

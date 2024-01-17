@@ -15,6 +15,7 @@
 @property (nonatomic, strong) NSArray *videoArr;
 @property (nonatomic, strong) NSArray *titleArr;
 @property (nonatomic, strong) UIView *lineV;
+@property (nonatomic, strong) UIButton *vipBtn;
 
 @end
 
@@ -37,7 +38,7 @@
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = NO;
     self.lineV.hidden = NO;
-
+    self.vipBtn.hidden = [vipTool isVip];
 }
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
@@ -58,8 +59,23 @@
     [setBtn addTarget:self action:@selector(setClicked) forControlEvents:UIControlEventTouchUpInside];
     [setBtn setImageEdgeInsets:UIEdgeInsetsMake(5, 5, 5, 5)];
     self.lineV = [self.navigationController.navigationBar createLineFrame:CGRectMake(0, 43, kScreenW, 1) lineColor:kRGB(32, 32, 32)];
-    
+    UIButton *vipBtn = [UIButton buttonWithType:0];
+    vipBtn.frame = CGRectMake(kScreenW-45 *2, 7, 34, 34);
+    [vipBtn setImage:kIMAGE_Name(@"svp") forState:0];
+    [self.navigationController.navigationBar addSubview:vipBtn];
+    [vipBtn addTarget:self action:@selector(vipBtnAction) forControlEvents:UIControlEventTouchUpInside];
+    [vipBtn setImageEdgeInsets:UIEdgeInsetsMake(5, 5, 5, 5)];
+    self.vipBtn = vipBtn;
+
     [self.view addSubview:self.collectionV];
+}
+-(void)vipBtnAction{
+    ACPayTwoViewController *vc = [ACPayTwoViewController new];
+    vc.modalPresentationStyle = UIModalPresentationOverFullScreen;
+    vc.reloadVip = ^{
+        self.vipBtn.hidden = [vipTool isVip];
+    };
+    [self presentViewController:vc animated:YES completion:nil];
 }
 -(UICollectionView *)collectionV{
     if(!_collectionV){

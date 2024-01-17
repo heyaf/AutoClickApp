@@ -49,7 +49,8 @@
 /* Settings */
 "Settings" = "設定";
 "Get Premium" = "プレミアムを取得";
-"Unlock all paid features and permissions" = "すべての有料機能と許可を解除";
+"Unlock all paid features and" = "すべての有料機能と許可を";
+"permissions" = "解除";
 "General" = "一般設定";
 "Click Sound" = "クリック音";
 "Select Language" = "言語選択";

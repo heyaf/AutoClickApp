@@ -52,7 +52,8 @@
 /* Paramètres */
 "Settings" = "Paramètres";
 "Get Premium" = "Obtenir Premium";
-"Unlock all paid features and permissions" = "Débloquer toutes les fonctionnalités et permissions payantes";
+"Unlock all paid features and" = "Débloquer toutes les fonctionnalités et permissions";
+"permissions" = "payantes";
 "General" = "Paramètres généraux";
 "Click Sound" = "Son du clic";
 "Select Language" = "Choisir la langue";

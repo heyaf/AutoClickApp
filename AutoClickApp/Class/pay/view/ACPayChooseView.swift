@@ -9,12 +9,13 @@ import UIKit
 
 class ACPayChooseView: UIView {
     var chooseBack : ((Int)->())?
+    var selectBack : ((Int)->())?
 
     var leftButton = UIButton()
     var rightButton = UIButton()
     var LeftbgView = UIView()
     var RightbgView = UIView()
-
+    
     public var selectIndex = 0
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -69,8 +70,8 @@ class ACPayChooseView: UIView {
         Leftlabel.textColor = .white
         let LeftBlabel = UILabel(frame: CGRect(x: 10, y: 50, width: leftBtn.width - 20 , height: 14))
         LeftBlabel.textAlignment = .center
-        let str = KLanguage(key: "that's $1.42 a month")
-        let str1 = str.replacingOccurrences(of: "**", with: "8.99")
+        let str = KLanguage(key: "$16.99 / year")
+        var str1 = str.replacingOccurrences(of: "**", with: "8.99")
         LeftBlabel.text = str1
         LeftBlabel.font = .pingFangSCMedium(14)
         leftBtn.addSubview(LeftBlabel)
@@ -96,23 +97,58 @@ class ACPayChooseView: UIView {
         rightbgView.isHidden = true
         label1.textColor = .white
         RightL.textColor = .white
+        let str2 = KLanguage(key: "$8.99 / month")
+        var str3 = str.replacingOccurrences(of: "**", with: "$8.99")
+        let productInfoDefaults = UserDefaults.standard
+        if let arrdata = productInfoDefaults.object(forKey: "productInfoDefaultsKey") as? [[String : String]] , arrdata.count == 2{
+            // 使用 arr，它是一个 [Any] 类型的数组
+            let dic : [String : String] = arrdata[0]
+            str1 = str.replacingOccurrences(of: "**", with: (dic["finalPrice"] ?? "8.99"))
+            if let priceStr = dic["finalPrice"], priceStr.count >= 2 {
+                let startIndex = priceStr.index(priceStr.startIndex, offsetBy: 1)
+                let strvalue = String(priceStr.suffix(from: startIndex))
+                if let yearlyPrice = Double(strvalue) {
+                    let monthlyPrice = yearlyPrice / 12.0
+                    let monthlyPriceStr = String(format: "%.2f", monthlyPrice)
+                    //
+                    let str2 = KLanguage(key: "that's $1.42 a month")
+                    var str3 = str.replacingOccurrences(of: "**", with: "$" + monthlyPriceStr)
+                } else {
+                    
+                }
+            } else {
+            }
+            Leftlabel.text = str1
+            
+            let dic1 = arrdata[1]
+            str3 = str2.replacingOccurrences(of: "**", with: (dic1["finalPrice"] ?? "8.99"))
+            RightL.text = str3
+            
+        }
         
     }
     @objc func leftAction(){
-        selectIndex = 0
+        
         RightbgView.isHidden = true
         LeftbgView.isHidden = false
         rightButton.layer.borderColor = UIColor.hex("242424").cgColor
         leftButton.layer.borderColor = UIColor.hex("994AFF").cgColor
+        if selectIndex == 0 {
+            self.selectBack?(0)
+        }
+        selectIndex = 0
         self.chooseBack?(0)
     }
     @objc func rightAction(){
-        selectIndex = 1
         RightbgView.isHidden = false
         LeftbgView.isHidden = true
         leftButton.layer.borderColor = UIColor.hex("242424").cgColor
         rightButton.layer.borderColor = UIColor.hex("994AFF").cgColor
         self.chooseBack?(1)
-
+        if selectIndex == 1 {
+            self.selectBack?(1)
+        }
+        selectIndex = 1
+        
     }
 }

@@ -54,7 +54,8 @@
 /* Settings */
 "Settings" = "Einstellungen";
 "Get Premium" = "Premium holen";
-"Unlock all paid features and permissions" = "Alle bezahlten Funktionen und Berechtigungen freischalten";
+"Unlock all paid features and" = "Alle bezahlten Funktionen und Berechtigungen";
+"permissions" = "freischalten";
 "General" = "Allgemeine Einstellungen";
 "Click Sound" = "Klickton";
 "Select Language" = "Sprache wählen";

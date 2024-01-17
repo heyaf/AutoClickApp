@@ -111,6 +111,7 @@
 		04F70F072B568DEF00D18FE2 /* NSDate+DateStr.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F70F062B568DEF00D18FE2 /* NSDate+DateStr.m */; };
 		04F70F0D2B56B26000D18FE2 /* vipTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F70F0C2B56B26000D18FE2 /* vipTool.m */; };
 		04F70F0F2B56B8E600D18FE2 /* ACPayOneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F70F0E2B56B8E600D18FE2 /* ACPayOneView.swift */; };
+		04F70F112B581C1400D18FE2 /* ACSettingHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F70F102B581C1400D18FE2 /* ACSettingHeaderView.swift */; };
 		04FFF9EC2B516A7800F3245D /* ACPayOneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FFF9EB2B516A7800F3245D /* ACPayOneViewController.swift */; };
 		04FFF9EF2B516D7600F3245D /* ACPayDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FFF9EE2B516D7600F3245D /* ACPayDetailView.swift */; };
 		04FFF9F12B516E4800F3245D /* Define.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FFF9F02B516E4800F3245D /* Define.swift */; };
@@ -335,6 +336,7 @@
 		04F70F0B2B56B26000D18FE2 /* vipTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = vipTool.h; sourceTree = "<group>"; };
 		04F70F0C2B56B26000D18FE2 /* vipTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = vipTool.m; sourceTree = "<group>"; };
 		04F70F0E2B56B8E600D18FE2 /* ACPayOneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACPayOneView.swift; sourceTree = "<group>"; };
+		04F70F102B581C1400D18FE2 /* ACSettingHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACSettingHeaderView.swift; sourceTree = "<group>"; };
 		04FFF9EA2B516A7800F3245D /* AutoClickApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AutoClickApp-Bridging-Header.h"; sourceTree = "<group>"; };
 		04FFF9EB2B516A7800F3245D /* ACPayOneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACPayOneViewController.swift; sourceTree = "<group>"; };
 		04FFF9EE2B516D7600F3245D /* ACPayDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACPayDetailView.swift; sourceTree = "<group>"; };
@@ -475,6 +477,7 @@
 				0417C3842AEE9CDF002EE17C /* ACSettingVC.m */,
 				04C338532AFD0BFF004CBD4A /* ACSetLanguageVC.h */,
 				04C338542AFD0BFF004CBD4A /* ACSetLanguageVC.m */,
+				04F70F102B581C1400D18FE2 /* ACSettingHeaderView.swift */,
 				04C338562AFD0CC1004CBD4A /* ACLanguageTBCell.h */,
 				04C338572AFD0CC1004CBD4A /* ACLanguageTBCell.m */,
 				04C338582AFD0CC1004CBD4A /* ACLanguageTBCell.xib */,
@@ -1136,6 +1139,7 @@
 				047139742AFA2A7F00E0EBE9 /* CPJClippingPanel.m in Sources */,
 				04C338252AFB64ED004CBD4A /* ACDocumentScanItem.m in Sources */,
 				04FFF9F12B516E4800F3245D /* Define.swift in Sources */,
+				04F70F112B581C1400D18FE2 /* ACSettingHeaderView.swift in Sources */,
 				047139472AF63C6400E0EBE9 /* ACPrivacyAlbumDetailItem.m in Sources */,
 				04C338312AFB756F004CBD4A /* GKCycleScrollView.m in Sources */,
 				04FFF9F72B517A1400F3245D /* UIFont+Extension.swift in Sources */,

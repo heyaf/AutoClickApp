@@ -115,6 +115,7 @@
 }
 -(void)skipAction{
     //[playVolume playMusic];
+    [kUserDefaults setBool:false forKey:@"showVip"];
 
     CATransition *animation = [CATransition animation];
     animation.type = @"cube";
@@ -166,6 +167,8 @@
         
     }
     if (self.index==4) {
+        [kUserDefaults setBool:false forKey:@"showVip"];
+
         CATransition *animation = [CATransition animation];
         animation.type = @"cube";
         animation.subtype = kCATransitionFromRight;

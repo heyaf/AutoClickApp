@@ -52,7 +52,8 @@
 /* Settings */
 "Settings" = "Настройки";
 "Get Premium" = "Премиум";
-"Unlock all paid features and permissions" = "Разблокировка платных функций";
+"Unlock all paid features and" = "Разблокировка платных";
+"permissions" = "функций";
 "General" = "Основные";
 "Click Sound" = "Звук клика";
 "Select Language" = "Выбор языка";

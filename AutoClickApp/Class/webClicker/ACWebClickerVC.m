@@ -95,6 +95,9 @@
             [self vipBtnAction];
             self.showPay = true;
         }
+        if (!firstLoad) {
+            self.showPay = true;
+        }
         [kUserDefaults setBool:true forKey:@"showVip"];
 
     });
@@ -240,7 +243,7 @@
     [self.navigationController.navigationBar addSubview:vipBtn];
     [vipBtn addTarget:self action:@selector(vipBtnAction) forControlEvents:UIControlEventTouchUpInside];
     [vipBtn setImageEdgeInsets:UIEdgeInsetsMake(5, 5, 5, 5)];
-    
+    self.vipBtn = vipBtn;
    self.lineV = [self.navigationController.navigationBar createLineFrame:CGRectMake(0, 44-1, kScreenW, 1) lineColor:kRGB(32, 32, 32)];
 }
 
@@ -304,6 +307,9 @@ referenceSizeForHeaderInSection:(NSInteger)section {
 -(void)vipBtnAction{
     ACPayTwoViewController *vc = [ACPayTwoViewController new];
     vc.modalPresentationStyle = UIModalPresentationOverFullScreen;
+    vc.reloadVip = ^{
+        self.vipBtn.hidden = [vipTool isVip];
+    };
     [self presentViewController:vc animated:YES completion:nil];
 }
 -(void)getNet{

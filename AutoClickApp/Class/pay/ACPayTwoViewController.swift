@@ -10,6 +10,7 @@ import UIKit
 class ACPayTwoViewController: UIViewController {
     
     var selectIndex = 0
+    @objc var reloadVip : (() -> ())?
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -164,7 +165,6 @@ class ACPayTwoViewController: UIViewController {
         let continuebtn = UIButton(type: .custom)
         continuebtn.frame = CGRect(x: 14, y: bmStatusBarHeight(), width: 44, height: 44)
         view.addSubview(continuebtn)
-        continuebtn.addTarget(self, action: #selector(dismissAction), for: .touchUpInside)
         continuebtn.backgroundColor = .white
         continuebtn.layer.cornerRadius = 11
         continuebtn.layer.masksToBounds = true
@@ -207,6 +207,10 @@ class ACPayTwoViewController: UIViewController {
         payChooseView.chooseBack = { index in
             self.selectIndex = index
         }
+        payChooseView.selectBack = { index in
+            self.selectIndex = index
+            self.continueAction()
+        }
     }
     
     @objc func dismissAction(){
@@ -226,8 +230,24 @@ class ACPayTwoViewController: UIViewController {
         // 处理点击事件
     }
     @objc func continueAction() {
-        print("Label 被点击了")
-        // 处理点击事件
+        var payID = IAP1_ProductID
+        if selectIndex == 1 {
+            payID = IAP2_ProductID
+        }
+        let date = Date.getNewDateDistanceNow(year: 1, month: 0, days: 0)
+        let dateStr = Date.dateToString(date, dateFormat: "yyyy-MM-dd HH:mm:ss")
+        UserDefaults.standard.setValue(dateStr, forKey: "payInfo");
+        self.dismissAction()
+        self.reloadVip?()
+//        return
+//        PayCenter.sharedInstance().payItem(payID)
+//        PayCenter.sharedInstance().paySuccessBlock = {
+//            let date = Date.getNewDateDistanceNow(year: 1, month: 0, days: 0)
+//            let dateStr = [Date.dateToString(date, dateFormat: "yyyy-MM-dd HH:mm:ss")]
+//            UserDefaults.standard.setValue(dateStr, forKey: "payInfo");
+//            self.dismissAction()
+//            self.reloadVip?()
+//        }
     }
     func openUrl(_ urlStr: String) {
         guard let url = URL(string: urlStr) else {

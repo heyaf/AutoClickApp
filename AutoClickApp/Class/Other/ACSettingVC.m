@@ -34,6 +34,10 @@
     [self.view addSubview:self.topV];
     
 }
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self setViewH];
+}
 -(UITableView *)tableview{
     if (!_tableview) {
         _tableview = [[UITableView alloc] initWithFrame:CGRectMake(0, kNavBarHeight, kScreenW, kScreenH-kNavBarHeight-kSafeAreaBottom) style:UITableViewStyleGrouped];
@@ -46,6 +50,25 @@
         
     }
     return _tableview;
+}
+-(void)setViewH{
+    if ([vipTool isVip]) {
+        self.tableview.tableHeaderView = [UIView new];
+    }else{
+        ACSettingHeaderView *header = [[ACSettingHeaderView alloc] initWithFrame:CGRectMake(0, 0, kScreenW,  150 * (kScreenW / 375))];
+        header.payBack = ^{
+            [self vipBtnAction];
+        };
+        self.tableview.tableHeaderView = header;
+    }
+}
+-(void)vipBtnAction{
+    ACPayTwoViewController *vc = [ACPayTwoViewController new];
+    vc.modalPresentationStyle = UIModalPresentationOverFullScreen;
+    vc.reloadVip = ^{
+        [self setViewH];
+    };
+    [self presentViewController:vc animated:YES completion:nil];
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section==0||indexPath.row==3||indexPath.row==0) {
