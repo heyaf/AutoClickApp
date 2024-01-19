@@ -149,6 +149,11 @@
         [self.animation stop];
         [self.animation1 stop];
     }
+    if(self.index == 2 ){
+        [SKStoreReviewController requestReview];
+        AppDelegate *appde = kAppDelegate;
+        appde.hasShowStar = true;
+    }
     if (self.index == 3) {
         weakSelf.lineV.hidden = true;
         

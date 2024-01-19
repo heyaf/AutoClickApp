@@ -9,6 +9,8 @@
 #import "ACVideoListItem.h"
 #import <AVKit/AVKit.h>
 #import "ACSettingVC.h"
+#import "ACAppClickUserView.h"
+#import "PayCenter.h"
 
 @interface ACAppClickerViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (nonatomic, strong) UICollectionView *collectionV;
@@ -16,6 +18,7 @@
 @property (nonatomic, strong) NSArray *titleArr;
 @property (nonatomic, strong) UIView *lineV;
 @property (nonatomic, strong) UIButton *vipBtn;
+@property (nonatomic, strong) ACAppClickUserView *userView;
 
 @end
 
@@ -28,6 +31,17 @@
     self.videoArr = @[@"english_video",@"chinese_video",@"de_video",@"de_video"];
     self.titleArr = @[@"English subtitles",@"Chinese subtitles",@"German subtitles",@"Portuguese subtitles"];
     [self creatVipUI];
+    
+    self.userView = [[ACAppClickUserView alloc] initWithFrame:CGRectMake(0, 0, kScreenW, kScreenH - kNavBarHeight - kTabBarHeight)];
+    __weak typeof(self) weakSelf = self;
+    self.userView.clickedBlock = ^{
+        [[PayCenter sharedInstance] payItem:@"autoclicker_onapp"];
+        [PayCenter sharedInstance].paySuccessBlock = ^{
+            [kUserDefaults setBool:true forKey:@"PayVideo"];
+            weakSelf.userView.hidden = true;
+        };
+    };
+    [self.view addSubview:self.userView];
 }
 //已付费用户UI
 -(void)creatVipUI{
@@ -39,6 +53,12 @@
     self.navigationController.navigationBarHidden = NO;
     self.lineV.hidden = NO;
     self.vipBtn.hidden = [vipTool isVip];
+    self.userView.hidden = false;
+    if ([vipTool isVip] || [kUserDefaults boolForKey:@"PayVideo"]) {
+        self.userView.hidden = true;
+    }
+
+
 }
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
@@ -74,6 +94,7 @@
     vc.modalPresentationStyle = UIModalPresentationOverFullScreen;
     vc.reloadVip = ^{
         self.vipBtn.hidden = [vipTool isVip];
+        self.userView.hidden = [vipTool isVip];
     };
     [self presentViewController:vc animated:YES completion:nil];
 }

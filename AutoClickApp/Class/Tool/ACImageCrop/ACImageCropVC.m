@@ -696,7 +696,11 @@
 }
 -(void)backAction{
     //[playVolume playMusic];
-
+    AppDelegate *appde = kAppDelegate;
+    if (appde.hasShowStar == false) {
+        [SKStoreReviewController requestReview];
+        appde.hasShowStar = true;
+    }
     [self.navigationController popViewControllerAnimated:YES];
 }
 -(void)save:(UIButton *)saveBtn{

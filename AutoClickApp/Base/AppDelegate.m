@@ -63,6 +63,14 @@
 //        [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
 //
 //    }
+    
+    NSInteger appCount = [kUserDefaults integerForKey:@"AppCount"];
+    appCount ++;
+    [kUserDefaults setInteger:appCount forKey:@"AppCount"];
+    if (appCount == 3) {
+        [SKStoreReviewController requestReview];
+        self.hasShowStar = true;
+    }
     [self payDetail];
 
     return YES;

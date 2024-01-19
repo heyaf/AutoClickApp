@@ -79,6 +79,9 @@
     self.index = 0;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    if (![vipTool isVip]) {
+        [self vipBtnAction];
+    }
 }
 
 -(void)addDragView{
@@ -115,6 +118,13 @@
     [super viewWillDisappear:animated];
     [self.navigationController.navigationBar setHidden:NO];
 
+}
+-(void)vipBtnAction{
+    ACPayTwoViewController *vc = [ACPayTwoViewController new];
+    vc.modalPresentationStyle = UIModalPresentationOverFullScreen;
+    vc.reloadVip = ^{
+    };
+    [self presentViewController:vc animated:YES completion:nil];
 }
 - (WKWebView *)wkWebView{
     if (!_wkWebView) {

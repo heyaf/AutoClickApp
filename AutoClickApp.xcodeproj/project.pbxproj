@@ -105,6 +105,8 @@
 		04DB09C12AE9614D00562044 /* AutoClickAppUITestsLaunchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DB09C02AE9614D00562044 /* AutoClickAppUITestsLaunchTests.m */; };
 		04DB09D82AE961CD00562044 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DB09D02AE961CD00562044 /* ViewController.m */; };
 		04DB09DA2AE961CD00562044 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DB09D22AE961CD00562044 /* AppDelegate.m */; };
+		04EC46FE2B59185A00FBD807 /* ACAppClickUserView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EC46FD2B59185A00FBD807 /* ACAppClickUserView.m */; };
+		04EC47012B592DB200FBD807 /* DynamicRadialGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EC47002B592DB200FBD807 /* DynamicRadialGradientView.m */; };
 		04F70EFE2B53C3E400D18FE2 /* ACPayTwoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F70EFD2B53C3E400D18FE2 /* ACPayTwoViewController.swift */; };
 		04F70F002B53C88600D18FE2 /* ACPayChooseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F70EFF2B53C88600D18FE2 /* ACPayChooseView.swift */; };
 		04F70F042B56805200D18FE2 /* PayCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F70F022B56805200D18FE2 /* PayCenter.m */; };
@@ -327,6 +329,10 @@
 		04DB09D02AE961CD00562044 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		04DB09D22AE961CD00562044 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		04DB09D32AE961CD00562044 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		04EC46FC2B59185A00FBD807 /* ACAppClickUserView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ACAppClickUserView.h; sourceTree = "<group>"; };
+		04EC46FD2B59185A00FBD807 /* ACAppClickUserView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ACAppClickUserView.m; sourceTree = "<group>"; };
+		04EC46FF2B592DB200FBD807 /* DynamicRadialGradientView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DynamicRadialGradientView.h; sourceTree = "<group>"; };
+		04EC47002B592DB200FBD807 /* DynamicRadialGradientView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DynamicRadialGradientView.m; sourceTree = "<group>"; };
 		04F70EFD2B53C3E400D18FE2 /* ACPayTwoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACPayTwoViewController.swift; sourceTree = "<group>"; };
 		04F70EFF2B53C88600D18FE2 /* ACPayChooseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACPayChooseView.swift; sourceTree = "<group>"; };
 		04F70F022B56805200D18FE2 /* PayCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayCenter.m; sourceTree = "<group>"; };
@@ -433,6 +439,10 @@
 				0417C36C2AEE4DEC002EE17C /* ACVideoListItem.xib */,
 				0417C3672AEE4B70002EE17C /* ACVideoListVC.h */,
 				0417C3682AEE4B70002EE17C /* ACVideoListVC.m */,
+				04EC46FC2B59185A00FBD807 /* ACAppClickUserView.h */,
+				04EC46FD2B59185A00FBD807 /* ACAppClickUserView.m */,
+				04EC46FF2B592DB200FBD807 /* DynamicRadialGradientView.h */,
+				04EC47002B592DB200FBD807 /* DynamicRadialGradientView.m */,
 			);
 			path = "App clicker";
 			sourceTree = "<group>";
@@ -1181,6 +1191,7 @@
 				04C3386F2AFDDD4A004CBD4A /* ACGuiderPageVC.m in Sources */,
 				04FFF9EC2B516A7800F3245D /* ACPayOneViewController.swift in Sources */,
 				04F70F0D2B56B26000D18FE2 /* vipTool.m in Sources */,
+				04EC47012B592DB200FBD807 /* DynamicRadialGradientView.m in Sources */,
 				047139632AF7D74400E0EBE9 /* PopTableListView.m in Sources */,
 				0417C3352AEBE53F002EE17C /* ACToolsVC.m in Sources */,
 				0417C36D2AEE4DEC002EE17C /* ACVideoListItem.m in Sources */,
@@ -1204,6 +1215,7 @@
 				0471393B2AF4F00A00E0EBE9 /* ACDocumentScanVC.m in Sources */,
 				0417C3262AEBC0BF002EE17C /* UIColor+ACColor.m in Sources */,
 				047139612AF7D74400E0EBE9 /* PopAnimationTool.m in Sources */,
+				04EC46FE2B59185A00FBD807 /* ACAppClickUserView.m in Sources */,
 				047139752AFA2A7F00E0EBE9 /* CPJImageClipping.m in Sources */,
 				04F70F002B53C88600D18FE2 /* ACPayChooseView.swift in Sources */,
 				04C3383B2AFBBE97004CBD4A /* RollingView.m in Sources */,
