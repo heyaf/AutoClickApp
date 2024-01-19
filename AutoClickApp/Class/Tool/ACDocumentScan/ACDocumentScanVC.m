@@ -35,7 +35,7 @@
     self.emptyView.hidden = self.dataarr.count>0;
     [self.view addSubview:self.collectionV];
     self.collectionV.hidden = self.dataarr.count==0;
-
+    
     UIButton *addBtn = [UIButton buttonWithType:0];
     addBtn.frame = CGRectMake(kScreenW-64-48, kScreenH-kTabBarHeight-20-48, 64, 64);
     [addBtn setImage:kIMAGE_Name(@"scan_add") forState:0];
@@ -52,7 +52,7 @@
     [self.collectionV reloadData];
     self.emptyView.hidden = self.dataarr.count>0;
     self.collectionV.hidden = self.dataarr.count==0;
-
+    
 }
 -(UICollectionView *)collectionV{
     if(!_collectionV){
@@ -70,7 +70,7 @@
         _collectionV.showsHorizontalScrollIndicator = false;
         _collectionV.dataSource = self;
         [_collectionV registerNib:[UINib nibWithNibName:@"ACDocumentScanItem" bundle:nil] forCellWithReuseIdentifier:@"ACDocumentScanItem"];
-
+        
         
     }
     return _collectionV;
@@ -98,7 +98,7 @@
     };
     [self.navigationController pushViewController:pushVC animated:YES];
     //[playVolume playMusic];
-
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -109,7 +109,7 @@
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     [self.navigationController.navigationBar setHidden:NO];
-
+    
 }
 -(UIView *)topV{
     if(!_topV){
@@ -128,7 +128,7 @@
         searchBgv.backgroundColor = [UIColor mainBlackColor];
         
         
-
+        
         
         UILabel *urlL = [searchBgv createLabelTextColor:kWhiteColor font:kBoldFont(17)];
         urlL.frame = CGRectMake(20, 10, searchBgv.width-40, 17);
@@ -136,7 +136,7 @@
         urlL.text = KLanguage(@"Document scanning");
         
         [_topV createLineFrame:CGRectMake(0, kNavBarHeight-1, kScreenW, 1) lineColor:kRGB(32, 32, 32)];
-
+        
         
     }
     return _topV;
@@ -157,61 +157,70 @@
 }
 -(void)backAction{
     //[playVolume playMusic];
-
+    
     [self.navigationController popViewControllerAnimated:YES];
 }
+-(void)vipBtnAction{
+    ACPayTwoViewController *vc = [ACPayTwoViewController new];
+    vc.modalPresentationStyle = UIModalPresentationOverFullScreen;
+    
+    [self presentViewController:vc animated:YES completion:nil];
+}
 -(void)addAction:(UIButton *)addBtn{
-    //[playVolume playMusic];
-
+    if(![vipTool isVip]) {
+        [self vipBtnAction];
+        return;
+    }
+    
     [UIButton setanimationwithBtn:addBtn];
     if(@available(iOS 13,*)) {
-
-//只有支持的机型才能使用，因此要判断是否支持
-
+        
+        //只有支持的机型才能使用，因此要判断是否支持
+        
         if (!VNDocumentCameraViewController.supported) {
-
+            
             UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Confirm Delete"
                                                                                      message:@""
                                                                               preferredStyle:UIAlertControllerStyleAlert];
             UIView *view = alertController.view.subviews.firstObject;
             UIView *view1 = view.subviews.firstObject;
             UIView *view2 = view1.subviews.firstObject;
-
-
+            
+            
             
             view2.backgroundColor = [UIColor colorWithHexString:@"#1E1E1E" alpha:0.75];
             UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                 
                 [self.navigationController popViewControllerAnimated:YES];
-
-               }];
-
-
+                
+            }];
+            
+            
             [alertController addAction:okAction];           // A
             NSString * str1 = @"This device does not support it";
-              NSMutableAttributedString *titleText = [[NSMutableAttributedString alloc] initWithString:str1];
+            NSMutableAttributedString *titleText = [[NSMutableAttributedString alloc] initWithString:str1];
             [titleText addAttributes:@{NSFontAttributeName:kBoldFont(17),NSForegroundColorAttributeName:kWhiteColor} range:NSMakeRange(0, str1.length)];
-              [alertController setValue:titleText forKey:@"attributedTitle"];
-         
+            [alertController setValue:titleText forKey:@"attributedTitle"];
+            
             [self presentViewController:alertController animated:YES completion:nil];
-
+            
             return;
-
-            }
-
+            
+        }
+        
         VNDocumentCameraViewController* dcVc = [[VNDocumentCameraViewController alloc] init];
-
+        
         dcVc.delegate=self;
         self.dcVc = dcVc;
-
+        
         [self presentViewController:dcVc animated:YES completion:nil];
-
+        
     }
 }
 #pragma mark - VNDocumentCameraViewControllerDelegate
 
 - (void)documentCameraViewController:(VNDocumentCameraViewController *)controller didFinishWithScan:(VNDocumentCameraScan *)scan API_AVAILABLE(ios(13)){
-
+    
     [self.dcVc dismissViewControllerAnimated:YES completion:nil];
     if(scan.pageCount<1){
         return;
@@ -231,91 +240,91 @@
     NSArray *arr3 = [NSArray arrayWithArray:arr1];
     [kUserDefaults setObject:arr3 forKey:@"documentScan"];
     [self refreshData];
- 
     
-
-
+    
+    
+    
 }
 
 - (void)documentCameraViewControllerDidCancel:(VNDocumentCameraViewController *)controller API_AVAILABLE(ios(13)){
     [self.dcVc dismissViewControllerAnimated:YES completion:nil];
-
+    
 }
 
 - (void)documentCameraViewController:(VNDocumentCameraViewController *)controller didFailWithError:(NSError *)error API_AVAILABLE(ios(13)){
     [self.dcVc dismissViewControllerAnimated:YES completion:nil];
-
-
-
-}
-/*
-
-//    [self getToken];
-//
-//    return;
-    NSString *tokenStr = @"24.0d221f3a0a73f5a457063e28fc43834c.2592000.1701593223.282335-42295202";
-    NSString *url = kStringFormat(@"https://aip.baidubce.com/rest/2.0/ocr/v1/doc_crop_enhance?access_token=%@",tokenStr);
-    dispatch_semaphore_t sema = dispatch_semaphore_create(0);
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]
-      cachePolicy:NSURLRequestUseProtocolCachePolicy
-      timeoutInterval:10.0];
-    NSDictionary *headers = @{
-      @"Content-Type": @"application/json"
-    };
-    UIImage *originImage = [UIImage imageNamed:@"32nip.jpg"];
-    NSData *data = UIImageJPEGRepresentation(originImage, 1.0f);
-    NSString *encodedImageStr = [data base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
-    [request setAllHTTPHeaderFields:headers];
-
-    NSDictionary *dic = @{@"image":encodedImageStr};
-    NSData * dataD = [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:nil];
-    [request setHTTPBody:dataD];
-    [request setHTTPMethod:@"POST"];
-    NSURLSession *session = [NSURLSession sharedSession];
-    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request
-    completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-      if (error) {
-        NSLog(@"%@", error);
-      } else {
-        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
-        NSError *parseError = nil;
-        NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&parseError];
-        NSLog(@"%@",responseDictionary);
-        dispatch_semaphore_signal(sema);
-      }
-    }];
-    [dataTask resume];
-    dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
-
+    
+    
     
 }
--(void)getToken{
-    dispatch_semaphore_t sema = dispatch_semaphore_create(0);
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"https://aip.baidubce.com/oauth/2.0/token?grant_type=client_credentials&client_id=udONz99IdkLQtXTU2RAw8IhW&client_secret=cuibvhV5ehrXAwbwRx2i5UbsV6s88Dsu"]
-      cachePolicy:NSURLRequestUseProtocolCachePolicy
-      timeoutInterval:10.0];
-    NSDictionary *headers = @{
-      @"Content-Type": @"application/x-www-form-urlencoded"
-    };
-    [request setAllHTTPHeaderFields:headers];
-
-    [request setHTTPMethod:@"POST"];
-    NSURLSession *session = [NSURLSession sharedSession];
-    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request
-    completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-      if (error) {
-        NSLog(@"%@", error);
-      } else {
-        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
-        NSError *parseError = nil;
-        NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&parseError];
-        NSLog(@"%@",responseDictionary);
-        dispatch_semaphore_signal(sema);
-      }
-    }];
-    [dataTask resume];
-    dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
-
-}
+/*
+ 
+ //    [self getToken];
+ //
+ //    return;
+ NSString *tokenStr = @"24.0d221f3a0a73f5a457063e28fc43834c.2592000.1701593223.282335-42295202";
+ NSString *url = kStringFormat(@"https://aip.baidubce.com/rest/2.0/ocr/v1/doc_crop_enhance?access_token=%@",tokenStr);
+ dispatch_semaphore_t sema = dispatch_semaphore_create(0);
+ NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]
+ cachePolicy:NSURLRequestUseProtocolCachePolicy
+ timeoutInterval:10.0];
+ NSDictionary *headers = @{
+ @"Content-Type": @"application/json"
+ };
+ UIImage *originImage = [UIImage imageNamed:@"32nip.jpg"];
+ NSData *data = UIImageJPEGRepresentation(originImage, 1.0f);
+ NSString *encodedImageStr = [data base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+ [request setAllHTTPHeaderFields:headers];
+ 
+ NSDictionary *dic = @{@"image":encodedImageStr};
+ NSData * dataD = [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:nil];
+ [request setHTTPBody:dataD];
+ [request setHTTPMethod:@"POST"];
+ NSURLSession *session = [NSURLSession sharedSession];
+ NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request
+ completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+ if (error) {
+ NSLog(@"%@", error);
+ } else {
+ NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
+ NSError *parseError = nil;
+ NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&parseError];
+ NSLog(@"%@",responseDictionary);
+ dispatch_semaphore_signal(sema);
+ }
+ }];
+ [dataTask resume];
+ dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
+ 
+ 
+ }
+ -(void)getToken{
+ dispatch_semaphore_t sema = dispatch_semaphore_create(0);
+ NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"https://aip.baidubce.com/oauth/2.0/token?grant_type=client_credentials&client_id=udONz99IdkLQtXTU2RAw8IhW&client_secret=cuibvhV5ehrXAwbwRx2i5UbsV6s88Dsu"]
+ cachePolicy:NSURLRequestUseProtocolCachePolicy
+ timeoutInterval:10.0];
+ NSDictionary *headers = @{
+ @"Content-Type": @"application/x-www-form-urlencoded"
+ };
+ [request setAllHTTPHeaderFields:headers];
+ 
+ [request setHTTPMethod:@"POST"];
+ NSURLSession *session = [NSURLSession sharedSession];
+ NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request
+ completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+ if (error) {
+ NSLog(@"%@", error);
+ } else {
+ NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
+ NSError *parseError = nil;
+ NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&parseError];
+ NSLog(@"%@",responseDictionary);
+ dispatch_semaphore_signal(sema);
+ }
+ }];
+ [dataTask resume];
+ dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
+ 
+ }
  */
 @end

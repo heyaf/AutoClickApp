@@ -230,8 +230,14 @@ class ACPayOneView: UIView {
     @objc func brlabelTapped() {
         clickedPay = false
 
-            print("Label 被点击了")
-            // 处理点击事件
+        PayCenter.sharedInstance().restorePay()
+        PayCenter.sharedInstance().paySuccessBlock = {
+            let date = Date.getNewDateDistanceNow(year: 0, month: 1, days: 0)
+            let dateStr = Date.dateToString(date, dateFormat: "yyyy-MM-dd HH:mm:ss")
+            UserDefaults.standard.setValue(dateStr, forKey: "payInfo");
+            self.clickedPay = false
+            self.disMissBack?()
+        }
         }
     @objc func diMissTapped() {
         if clickedPay {
@@ -258,7 +264,6 @@ class ACPayOneView: UIView {
             let date = Date.getNewDateDistanceNow(year: 0, month: 1, days: 0)
             let dateStr = Date.dateToString(date, dateFormat: "yyyy-MM-dd HH:mm:ss")
             UserDefaults.standard.setValue(dateStr, forKey: "payInfo");
-//            NotificationCenter.default.post(name:NSNotification.Name("ACPaySuccessed"), object: nil)
             self.clickedPay = false
             self.disMissBack?()
         }

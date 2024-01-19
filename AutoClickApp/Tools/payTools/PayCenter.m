@@ -80,6 +80,15 @@ return _sharedObject; \
 
     }
 }
+- (void)restorePay{
+    [[SKPaymentQueue defaultQueue] restoreCompletedTransactions];//发起请求
+
+}
+//恢复失败
+-(void) paymentQueue:(SKPaymentQueue *) paymentQueue restoreCompletedTransactionsFailedWithError:(NSError *)error{
+    NSLog(@"-------paymentQueue----");
+    [MBProgressHUD showErrorMessage:@"Error"];
+}
 
 #pragma mark SKProductsRequestDelegate 查询成功后的回调
 - (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response {
@@ -106,7 +115,7 @@ return _sharedObject; \
         [MBProgressHUD showErrorMessage:@"支付失败"];
     } else {
         //用户取消了交易
-        [MBProgressHUD showErrorMessage:@"取消购买"];
+        [MBProgressHUD showErrorMessage:@"Cancle"];
 
     }
     //将交易结束

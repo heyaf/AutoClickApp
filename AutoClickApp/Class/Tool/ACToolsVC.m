@@ -117,10 +117,10 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    //[playVolume playMusic];
-    if ((indexPath.row == 0 || indexPath.row == 1 ||indexPath.row == 3) && ![vipTool isVip]) {
-        [self vipBtnAction];
-    }
+//    //[playVolume playMusic];
+//    if ((indexPath.row == 0 || indexPath.row == 1 ||indexPath.row == 3) && ![vipTool isVip]) {
+//        [self vipBtnAction];
+//    }
     if(indexPath.row==0){
         ACPrivacyAblumVC *pushVC = [[ACPrivacyAblumVC  alloc] init];
         pushVC.hidesBottomBarWhenPushed = YES;

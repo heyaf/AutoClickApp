@@ -33,21 +33,21 @@
     [self.dataArr addObjectsFromArray:arr];
     if(arr.count==0){
         NSArray *defaultArr =             @[@{@"name":@"google",
-                                               @"url":@"https://www.google.com/",
+                                              @"url":@"https://www.google.com/",
                                               @"icon":@"browse1"},
                                             @{@"name":@"bing",
-                                               @"url":@"https://www.bing.com/",
+                                              @"url":@"https://www.bing.com/",
                                               @"icon":@"browse2"},
                                             @{@"name":@"youtube",
-                                               @"url":@"https://www.youtube.com",
+                                              @"url":@"https://www.youtube.com",
                                               @"icon":@"browse3"},
                                             @{@"name":@"twitter",
-                                               @"url":@"https://www.twitter.com/",
+                                              @"url":@"https://www.twitter.com/",
                                               @"icon":@"browse4"}];
         [self.dataArr addObjectsFromArray:defaultArr];
         [kUserDefaults setObject:defaultArr forKey:@"privacyBrowse"];
     }
-
+    
     [self.view addSubview:self.collectionV];
     
     UIButton *searchBtn = [UIButton buttonWithType:0];
@@ -88,7 +88,7 @@
         _collectionV.showsHorizontalScrollIndicator = false;
         _collectionV.dataSource = self;
         [_collectionV registerNib:[UINib nibWithNibName:@"ACPrivacyBrowseItem" bundle:nil] forCellWithReuseIdentifier:@"ACPrivacyBrowseItem"];
-
+        
         
     }
     return _collectionV;
@@ -105,12 +105,21 @@
     return item;
 }
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    if(![vipTool isVip]) {
+        [self vipBtnAction];
+        return;
+    }
     ACPrivacyBrowseDetailVC *pushVC = [[ACPrivacyBrowseDetailVC  alloc] init];
     NSDictionary *dic = self.dataArr[indexPath.row];
     pushVC.urlStr = dic[@"url"];
     [self.navigationController pushViewController:pushVC animated:YES];
     //[playVolume playMusic];
-
+    
+}
+-(void)vipBtnAction{
+    ACPayTwoViewController *vc = [ACPayTwoViewController new];
+    vc.modalPresentationStyle = UIModalPresentationOverFullScreen;
+    [self presentViewController:vc animated:YES completion:nil];
 }
 -(UIView *)topV{
     if(!_topV){
@@ -127,25 +136,29 @@
         UIView *searchBgv = [[UIView alloc] initWithFrame:CGRectMake(50, kStatusBarHeight+4, kScreenW-100, 36)];
         [_topV addSubview:searchBgv];
         searchBgv.backgroundColor = [UIColor mainBlackColor];
-
+        
         UILabel *urlL = [searchBgv createLabelTextColor:kWhiteColor font:kBoldFont(17)];
         urlL.frame = CGRectMake(20, 10, searchBgv.width-40, 17);
         urlL.textAlignment = NSTextAlignmentCenter;
         urlL.text = KLanguage(@"Privacy browser");
         [_topV createLineFrame:CGRectMake(0, kNavBarHeight-1, kScreenW, 1) lineColor:kRGB(32, 32, 32)];
-
+        
     }
     return _topV;
 }
 -(void)backAction{
     [self.navigationController popViewControllerAnimated:YES];
     //[playVolume playMusic];
-
+    
 }
 - (void)searchAction{
+    if(![vipTool isVip]) {
+        [self vipBtnAction];
+        return;
+    }
     ACPrivacyBrowseDetailVC *pushVC = [[ACPrivacyBrowseDetailVC  alloc] init];
     [self.navigationController pushViewController:pushVC animated:YES];
     //[playVolume playMusic];
-
+    
 }
 @end

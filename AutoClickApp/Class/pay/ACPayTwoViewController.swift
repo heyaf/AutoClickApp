@@ -226,8 +226,14 @@ class ACPayTwoViewController: UIViewController {
 
         }
     @objc func brlabelTapped() {
-        print("Label 被点击了")
-        // 处理点击事件
+        PayCenter.sharedInstance().restorePay()
+        PayCenter.sharedInstance().paySuccessBlock = {
+            let date = Date.getNewDateDistanceNow(year: 0, month: 1, days: 0)
+            let dateStr = [Date.dateToString(date, dateFormat: "yyyy-MM-dd HH:mm:ss")]
+            UserDefaults.standard.setValue(dateStr, forKey: "payInfo");
+            self.dismissAction()
+            self.reloadVip?()
+        }
     }
     @objc func continueAction() {
         var payID = IAP1_ProductID

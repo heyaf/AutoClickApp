@@ -324,7 +324,17 @@
     }
     return _topV;
 }
+-(void)vipBtnAction{
+    ACPayTwoViewController *vc = [ACPayTwoViewController new];
+    vc.modalPresentationStyle = UIModalPresentationOverFullScreen;
+
+    [self presentViewController:vc animated:YES completion:nil];
+}
 -(void)addPhoto:(UIButton *)btn{
+    if(![vipTool isVip]) {
+        [self vipBtnAction];
+        return;
+    }
     [UIButton setanimationwithBtn:btn];
     TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc] initWithMaxImagesCount:1 columnNumber:3 delegate:self pushPhotoPickerVc:YES];
     [imagePickerVc setDidFinishPickingVideoHandle:^(UIImage *coverImage, PHAsset *asset) {

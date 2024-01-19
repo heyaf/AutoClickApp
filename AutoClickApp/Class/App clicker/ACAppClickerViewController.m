@@ -39,6 +39,8 @@
         [PayCenter sharedInstance].paySuccessBlock = ^{
             [kUserDefaults setBool:true forKey:@"PayVideo"];
             weakSelf.userView.hidden = true;
+            //用户取消了交易
+            [MBProgressHUD showSuccessMessage:@"Success"];
         };
     };
     [self.view addSubview:self.userView];
