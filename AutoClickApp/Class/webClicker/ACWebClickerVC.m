@@ -71,10 +71,10 @@
 }
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    BOOL net = [kUserDefaults boolForKey:@"netWork"];
-    if (!net) {
-        [self getNet];
-    }
+//    BOOL net = [kUserDefaults boolForKey:@"netWork"];
+//    if (!net) {
+//        [self getNet];
+//    }
 //    ACPayOneViewController *oneVC = [[ACPayOneViewController alloc] init];
 //    oneVC.modalPresentationStyle = UIModalPresentationOverFullScreen;
 //    [kKeyWindow.rootViewController presentViewController:oneVC animated:YES completion:nil];
@@ -101,7 +101,7 @@
         [kUserDefaults setBool:true forKey:@"showVip"];
 
     });
-
+    self.navigationController.interactivePopGestureRecognizer.delegate = (id)self;
 
 }
 
@@ -125,8 +125,9 @@
     searchBar.searchTextField.borderStyle = UITextBorderStyleNone;
     self.searchTextfield = textfield;
     textfield.delegate = self;
+    textfield.font = kFont(12);
     //修改placeHolder的颜色
-    NSMutableAttributedString *placeholderString = [[NSMutableAttributedString alloc] initWithString:KLanguage(@"Search Any Website") attributes:@{NSForegroundColorAttributeName : kRGBA(255, 255, 255, 0.7)}];
+    NSMutableAttributedString *placeholderString = [[NSMutableAttributedString alloc] initWithString:KLanguage(@"Search Any Website") attributes:@{NSForegroundColorAttributeName : kRGBA(255, 255, 255, 0.7),NSFontAttributeName:kFont(12)}];
     textfield.attributedPlaceholder = placeholderString;
     [self.view addSubview:searchBar];
     self.searchBar = searchBar;
@@ -135,6 +136,7 @@
     [cancleBtn setTitle:KLanguage(@"Cancel") forState:0];
     cancleBtn.frame = CGRectMake(kScreenW-80, kNavBarHeight + 40, 70, 18);
     [cancleBtn setTitleColor:[UIColor colorWithHexString:@"#ACA9AC"] forState:0];
+    cancleBtn.titleLabel.font = kFont(12);
     [self.view addSubview:cancleBtn];
     self.cancleBtn = cancleBtn;
     [cancleBtn addTarget:self action:@selector(cancleBtnclicked) forControlEvents:UIControlEventTouchUpInside];
@@ -206,7 +208,9 @@
 -(void)vipBtnAction{
     ACPayTwoViewController *vc = [ACPayTwoViewController new];
     vc.modalPresentationStyle = UIModalPresentationOverFullScreen;
-    
+    vc.reloadVip = ^{
+        self.vipBtn.hidden = [vipTool isVip];
+    };
     [self presentViewController:vc animated:YES completion:nil];
 }
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
@@ -218,16 +222,8 @@
     if(str.length==0){
         return;
     }
-    if([str hasPrefix:@"https://"]||[str hasPrefix:@"http://"]){
-        
-    }else if ([str hasPrefix:@"www."]){
-        str = kStringFormat(@"https://%@",str);
-    }else{
-        str = kStringFormat(@"https://www.cn.bing.com/search?q=%@",str);
-        
-    }
     ACWebClickerDetailVC *pushVC = [[ACWebClickerDetailVC  alloc] init];
-    pushVC.urlStr = str;
+    pushVC.urlStr = [self urlDesign:str];
     pushVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:pushVC animated:YES];
 }
@@ -253,7 +249,7 @@
     [vipBtn addTarget:self action:@selector(vipBtnAction) forControlEvents:UIControlEventTouchUpInside];
     [vipBtn setImageEdgeInsets:UIEdgeInsetsMake(5, 5, 5, 5)];
     self.vipBtn = vipBtn;
-   self.lineV = [self.navigationController.navigationBar createLineFrame:CGRectMake(0, 44-1, kScreenW, 1) lineColor:kRGB(32, 32, 32)];
+   self.lineV = [self.navigationController.navigationBar createLineFrame:CGRectMake(0, 44-1, kScreenW, 0.5) lineColor:kRGB(32, 32, 32)];
 }
 
 #pragma mark ---delete---
@@ -299,10 +295,10 @@ referenceSizeForHeaderInSection:(NSInteger)section {
     return headView;
 }
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    if(![vipTool isVip]) {
-        [self vipBtnAction];
-        return;
-    }
+//    if(![vipTool isVip]) {
+//        [self vipBtnAction];
+//        return;
+//    }
     ACWebClickerDetailVC *pushVC = [[ACWebClickerDetailVC  alloc] init];
     pushVC.urlStr = self.urlArr[indexPath.section][indexPath.row];
     pushVC.hidesBottomBarWhenPushed = YES;
@@ -314,14 +310,6 @@ referenceSizeForHeaderInSection:(NSInteger)section {
     ACSettingVC *pushVC = [[ACSettingVC  alloc] init];
     pushVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:pushVC animated:YES];
-}
--(void)vipBtnAction{
-    ACPayTwoViewController *vc = [ACPayTwoViewController new];
-    vc.modalPresentationStyle = UIModalPresentationOverFullScreen;
-    vc.reloadVip = ^{
-        self.vipBtn.hidden = [vipTool isVip];
-    };
-    [self presentViewController:vc animated:YES completion:nil];
 }
 -(void)getNet{
  
@@ -371,5 +359,56 @@ referenceSizeForHeaderInSection:(NSInteger)section {
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+-(BOOL)isnet:(NSString *) content{
+    if ([content hasSuffix:@".com"]||
+        [content hasSuffix:@".org"]||
+        [content hasSuffix:@".net"]||
+        [content hasSuffix:@".gov"]||
+        [content hasSuffix:@".edu"]||
+        [content hasSuffix:@".io"]||
+        [content hasSuffix:@".co"]||
+        [content hasSuffix:@".info"]||
+        [content hasSuffix:@".biz"]||
+        [content hasSuffix:@".me"]||
+        [content hasSuffix:@".online"]||
+        [content hasSuffix:@".store"]||
+        [content hasSuffix:@".us"]||
+        [content hasSuffix:@".uk"]||
+        [content hasSuffix:@".ca"]||
+        [content hasSuffix:@".au"]||
+        [content hasSuffix:@".de"]||
+        [content hasSuffix:@".fr"]||
+        [content hasSuffix:@".in"]||
+        [content hasSuffix:@".ch"]||
+        [content hasSuffix:@".br"]||
+        [content hasSuffix:@".mx"]||
+        [content hasSuffix:@".hk"]||
+        [content hasSuffix:@".blog"]||
+        [content hasSuffix:@".app"]||
+        [content hasSuffix:@".design"]||
+        [content hasSuffix:@".guru"]||
+        [content hasSuffix:@".agency"]||
+        [content hasSuffix:@".world"]||
+        [content hasSuffix:@".events"]||
+        [content hasSuffix:@".page"]||
+        [content hasSuffix:@".space"]||
+        [content hasSuffix:@".music"]) {
+        return YES;
+    }
+    return NO;
+}
+-(NSString *)urlDesign: (NSString *)url{
+    if ([self isnet:url]) {
+        if([url hasPrefix:@"https://"]||[url hasPrefix:@"http://"]){
+            return url;
+        }else if ([url hasPrefix:@"www."]){
+            return kStringFormat(@"https://%@",url);
+        }else{
+            return kStringFormat(@"https://www.%@",url);
+        }
+    }else{
+        return kStringFormat(@"https://www.cn.bing.com/search?q=%@",url);
+    }
 }
 @end

@@ -63,10 +63,10 @@
     [self.wkWebView loadRequest:request];
 
     
-    self.progressView = [[UIProgressView alloc] initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, 1)];
+    self.progressView = [[UIProgressView alloc] initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, 0.1)];
         self.progressView.backgroundColor = [UIColor clearColor];
         //设置进度条的高度，下面这句代码表示进度条的宽度变为原来的1倍，高度变为原来的1.5倍.
-        self.progressView.transform = CGAffineTransformMakeScale(1.0f, 1.5f);
+        self.progressView.transform = CGAffineTransformMakeScale(1.0f, 0.8f);
     self.progressView.progressTintColor = [UIColor colorWithHexString:@"#8A38F5"];
         [self.wkWebView addSubview:self.progressView];
     [self.wkWebView addObserver:self forKeyPath:@"estimatedProgress" options:NSKeyValueObservingOptionNew context:nil];
@@ -201,7 +201,7 @@
             __weak typeof (self)weakSelf = self;
             dispatch_async(dispatch_get_main_queue(), ^{
                 [UIView animateWithDuration:0.25f delay:0.3f options:UIViewAnimationOptionCurveEaseOut animations:^{
-                    weakSelf.progressView.transform = CGAffineTransformMakeScale(1.0f, 1.4f);
+                    weakSelf.progressView.transform = CGAffineTransformMakeScale(1.0f, 0.8f);
                 } completion:^(BOOL finished) {
                     weakSelf.progressView.hidden = YES;
                     
@@ -220,7 +220,7 @@
             // 需要在主线程执行的代码
         self.progressView.hidden = NO;
         //开始加载网页的时候将progressView的Height恢复为1.5倍
-        self.progressView.transform = CGAffineTransformMakeScale(1.0f, 1.5f);
+        self.progressView.transform = CGAffineTransformMakeScale(1.0f, 0.8f);
         //防止progressView被网页挡住
         [self.wkWebView bringSubviewToFront:self.progressView];
     });
@@ -428,137 +428,117 @@
     
     NSInteger count = self.chooseV.delayTimeArr.count;
 //    CGFloat delayTimer
+    
+    NSInteger firstDelay = [self.chooseV.delayTimeArr[0] integerValue]/2;
     UIView *view = self.dragViewArr[0];
     UIImageView *imageV = [[UIImageView alloc] initWithFrame:CGRectMake(view.x-2, view.y-2, view.width+4, view.height+4)];
     imageV.image = kIMAGE_Name(@"drag99");
     self.startImageV = imageV;
     [self.wkWebView addSubview:imageV];
     view.hidden = YES;
-    [UIView animateWithDuration:.1 animations:^{
-        [imageV.layer setValue:@(1.2) forKeyPath:@"transform.scale"];
-    } completion:^(BOOL finished) {
-  
-        CGFloat x = imageV.centerX-23;
-        CGFloat y = imageV.centerY-22;
-       
-        NSString *jsCall = [NSString stringWithFormat:@"simulateClick(%f, %f);", x, y];
-        [self.wkWebView evaluateJavaScript:jsCall completionHandler:nil];
-        [playVolume playMusic];
-        [UIView animateWithDuration:.1 animations:^{
-            [imageV.layer setValue:@(0.8) forKeyPath:@"transform.scale"];
-        } completion:^(BOOL finished) {
-            [UIView animateWithDuration:.1 animations:^{
-                [imageV.layer setValue:@(1.0) forKeyPath:@"transform.scale"];
-            } completion:^(BOOL finished) {
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    view.hidden = NO;
-                });
-
-            }];
-        }];
-    }];
-    NSInteger firstDelay = [self.chooseV.delayTimeArr[0] integerValue]/2;
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        NSMutableArray *delayArr = [NSMutableArray arrayWithCapacity:0];
-        NSInteger delayValue = 0;
+    NSMutableArray *delayArr = [NSMutableArray arrayWithCapacity:0];
+    NSInteger delayValue = 0;
 //        [delayArr addObject:@(0)];
 
-        for (int i =0 ; i<count; i++) {
-            NSInteger delayTime = [self->_chooseV.delayTimeArr[i] intValue]+1;
-            delayValue = delayTime + delayValue;
-            [delayArr addObject:@(delayValue)];
-        }
+    for (int i =0 ; i<count; i++) {
+        NSInteger delayTime = [self->_chooseV.delayTimeArr[i] intValue]+1;
+        delayValue = delayTime + delayValue;
+        [delayArr addObject:@(delayValue)];
+    }
 
-        self->_countNum = 0;
-        //在当前循环的第几个元素
-        __block NSInteger moveCount = 0;
-        __block NSInteger repleatCount = 1;
+    self->_countNum = 0;
+    //在当前循环的第几个元素
+    __block NSInteger moveCount = 0;
+    __block NSInteger repleatCount = 1;
 
-        kWeakSelf(self);
-        dispatch_queue_t globalQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-        self->timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, globalQueue);
-        dispatch_source_set_timer(self->timer, dispatch_walltime(NULL, 0), 0.5*NSEC_PER_SEC, 0);
-        dispatch_source_set_event_handler(self->timer, ^{
-            if(self.isstop){
-                if(self->timer){ //防止快速点击开始-关闭导致的崩溃
-                    dispatch_cancel(self->timer);
-                    self->timer = nil;
-                }
-
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [imageV removeFromSuperview];
-                    [startBtn setBackgroundColor:kWhiteColor];
-                    startBtn.selected = NO;
-                    [startBtn hiddenAnnimation];
-                });
+    kWeakSelf(self);
+    dispatch_queue_t globalQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    self->timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, globalQueue);
+    dispatch_source_set_timer(self->timer, dispatch_walltime(NULL, 0), 0.5*NSEC_PER_SEC, 0);
+    dispatch_source_set_event_handler(self->timer, ^{
+        if(self.isstop){
+            if(self->timer){ //防止快速点击开始-关闭导致的崩溃
+                dispatch_cancel(self->timer);
+                self->timer = nil;
             }
 
-                if([delayArr containsObject:@(self->_countNum)]){
-                    moveCount++;
-                    if(moveCount>=count){
-                        repleatCount++;
-                        moveCount=0;
-                        self->_countNum = 0;
-                        if(repleatCount-1==weakself.chooseV.repeatNum){
-                            dispatch_cancel(self->timer);
-                            self->timer = nil;
-                            dispatch_async(dispatch_get_main_queue(), ^{
-                                [imageV removeFromSuperview];
-                                [startBtn setBackgroundColor:kWhiteColor];
-                                startBtn.selected = NO;
-                                [startBtn hiddenAnnimation];
-                            });
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [imageV removeFromSuperview];
+                [startBtn setBackgroundColor:kWhiteColor];
+                startBtn.selected = NO;
+                [startBtn hiddenAnnimation];
+            });
+        }
 
-                            return;
-                        }else{
-                           
-                        }
-                        
-                        
+            if([delayArr containsObject:@(self->_countNum)]){
+                moveCount++;
+                if(moveCount>=count){
+                    repleatCount++;
+                    moveCount=0;
+                    self->_countNum = 0;
+                    if(repleatCount-1==weakself.chooseV.repeatNum){
+                        dispatch_cancel(self->timer);
+                        self->timer = nil;
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            [imageV removeFromSuperview];
+                            [startBtn setBackgroundColor:kWhiteColor];
+                            startBtn.selected = NO;
+                            [startBtn hiddenAnnimation];
+                        });
+
+                        return;
+                    }else{
+                       
                     }
-                    dispatch_async(dispatch_get_main_queue(), ^{
+                    
+                    
+                }
+                dispatch_async(dispatch_get_main_queue(), ^{
 
-                        UIView *view = weakself.dragViewArr[moveCount];
-                        view.hidden = YES;
-                        [UIView animateWithDuration:0.1 animations:^{
-                            imageV.frame = CGRectMake(view.x-2, view.y-2, view.width+4, view.height+4);
+                    NSInteger indexCout = moveCount - 1;
+                    if (indexCout < 0) {
+                        indexCout = count - 1;
+                    }
+                    UIView *view = weakself.dragViewArr[indexCout];
+                    view.hidden = YES;
+                    [UIView animateWithDuration:0.1 animations:^{
+                        imageV.frame = CGRectMake(view.x-2, view.y-2, view.width+4, view.height+4);
+                    } completion:^(BOOL finished) {
+                        CGFloat x = imageV.centerX-23;
+                        CGFloat y = imageV.centerY-22;
+                       
+                        NSString *jsCall = [NSString stringWithFormat:@"simulateClick(%f, %f);", x, y];
+                        [self.wkWebView evaluateJavaScript:jsCall completionHandler:nil];
+                        [playVolume playMusic];
+                        [UIView animateWithDuration:.1 animations:^{
+                            [imageV.layer setValue:@(1.2) forKeyPath:@"transform.scale"];
                         } completion:^(BOOL finished) {
-                            CGFloat x = imageV.centerX-23;
-                            CGFloat y = imageV.centerY-22;
-                           
-                            NSString *jsCall = [NSString stringWithFormat:@"simulateClick(%f, %f);", x, y];
-                            [self.wkWebView evaluateJavaScript:jsCall completionHandler:nil];
-                            [playVolume playMusic];
                             [UIView animateWithDuration:.1 animations:^{
-                                [imageV.layer setValue:@(1.2) forKeyPath:@"transform.scale"];
+                                [imageV.layer setValue:@(0.8) forKeyPath:@"transform.scale"];
                             } completion:^(BOOL finished) {
                                 [UIView animateWithDuration:.1 animations:^{
-                                    [imageV.layer setValue:@(0.8) forKeyPath:@"transform.scale"];
+                                    [imageV.layer setValue:@(1.0) forKeyPath:@"transform.scale"];
                                 } completion:^(BOOL finished) {
-                                    [UIView animateWithDuration:.1 animations:^{
-                                        [imageV.layer setValue:@(1.0) forKeyPath:@"transform.scale"];
-                                    } completion:^(BOOL finished) {
-                                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                                            view.hidden = NO;
-                                        });
+                                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                                        view.hidden = NO;
+                                    });
 
-                                    }];
                                 }];
                             }];
                         }];
-                        
-                    });
+                    }];
                     
-                }else{
-                    NSLog(@"不执行");
-                }
-           
-            self->_countNum++;
-            NSLog(@"num----%li",(long)self->_countNum);
-        });
-        
-        dispatch_resume(self->timer);
+                });
+                
+            }else{
+                NSLog(@"不执行");
+            }
+       
+        self->_countNum++;
+        NSLog(@"num----%li",(long)self->_countNum);
     });
+    
+    dispatch_resume(self->timer);
 
     
 
@@ -608,6 +588,7 @@
 -(ACWebClickerDetailChooseV *)chooseV{
     if(!_chooseV){
         _chooseV = [[ACWebClickerDetailChooseV alloc] initWithFrame:CGRectMake(0, 0, kScreenW, kScreenH-kTabBarHeight)];
+        _chooseV.hidden = true;
         [_chooseV hiddenView];
 //        kWeakSelf(_chooseV);
 //        _chooseV.closeAction = ^{

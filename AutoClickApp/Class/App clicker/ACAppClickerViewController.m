@@ -71,7 +71,7 @@
 }
 -(void)setNav{
     
-    UILabel *label = [self.navigationController.navigationBar createLabelFrame:CGRectMake(20, 10, 280, 24) textColor:UIColor.whiteColor font:kBoldFont(24)];
+    UILabel *label = [self.navigationController.navigationBar createLabelFrame:CGRectMake(10, 10, 280, 24) textColor:UIColor.whiteColor font:kBoldFont(24)];
     label.text = KLanguage(@"auto clicker") ;
     
     UIButton *setBtn = [UIButton buttonWithType:0];
@@ -80,7 +80,7 @@
     [self.navigationController.navigationBar addSubview:setBtn];
     [setBtn addTarget:self action:@selector(setClicked) forControlEvents:UIControlEventTouchUpInside];
     [setBtn setImageEdgeInsets:UIEdgeInsetsMake(5, 5, 5, 5)];
-    self.lineV = [self.navigationController.navigationBar createLineFrame:CGRectMake(0, 43, kScreenW, 1) lineColor:kRGB(32, 32, 32)];
+    self.lineV = [self.navigationController.navigationBar createLineFrame:CGRectMake(0, 43, kScreenW, 0.5) lineColor:kRGB(32, 32, 32)];
     UIButton *vipBtn = [UIButton buttonWithType:0];
     vipBtn.frame = CGRectMake(kScreenW-45 *2, 7, 34, 34);
     [vipBtn setImage:kIMAGE_Name(@"svp") forState:0];

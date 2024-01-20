@@ -54,7 +54,7 @@
     }
     self.tabbar.backgroundColor = UIColor.mainBlackColor;
     
-    [self.tabbar createLineFrame:CGRectMake(0, 0, kScreenW, 0.5) lineColor:kRGBA(30, 30, 30, 1)];
+    [self.tabbar createLineFrame:CGRectMake(0, 0, kScreenW, 0.5) lineColor:kRGBA(30, 30, 30, 0.5)];
 //    UIView *color_view = [[UIView alloc]initWithFrame:self.tabBar.bounds];
 //    color_view.backgroundColor = [UIColor mainBlackColor];
 //    [self.tabBar insertSubview:color_view atIndex:0];

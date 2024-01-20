@@ -43,21 +43,33 @@
     }
 }
 -(void)hiddenView{
-    self.hidden = YES;
+    
+//    [UIView animateWithDuration:0.5 animations:^{
+//        self.bgView.y = kScreenH;
+//
+//    }];
+    
     [UIView animateWithDuration:0.5 animations:^{
         self.bgView.y = kScreenH;
-
+    } completion:^(BOOL finished) {
+        self.hidden = true;
     }];
 }
 -(void)showView{
-    self.hidden = NO;
+//    [UIView animateWithDuration:0.5 animations:^{
+//        self.y = 0;
+//    }];
+    self.hidden = false;
+
     [UIView animateWithDuration:0.5 animations:^{
-        self.bgView.y = 0;
+        self.bgView.y = kNavBarHeight+140;
+    } completion:^(BOOL finished) {
     }];
 }
 -(void)setUI{
     UIView *bgview = [[UIView alloc] initWithFrame:CGRectMake(0, kNavBarHeight+140, kScreenW, kScreenH-kNavBarHeight-140)];
     bgview.backgroundColor = UIColor.mainBlackColor;
+    self.bgView = bgview;
     [self addSubview:bgview];
     NSMutableArray *valueArr = [NSMutableArray arrayWithCapacity:0];
     for (int i = 1; i<=300; i++) {
