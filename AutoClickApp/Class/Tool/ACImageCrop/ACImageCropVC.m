@@ -62,7 +62,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = UIColor.mainBlackColor;
-    self.index = 1;
+    self.index = -1;
   
     // Do any additional setup after loading the view.
     self.bgView = [[UIView alloc] initWithFrame:CGRectMake(0, kNavBarHeight, kScreenW, kScreenH-kNavBarHeight-kTabBarHeight-100)];
@@ -80,7 +80,7 @@
     [self.view addSubview:self.bottomV];
     UIButton *btn1 = [UIButton buttonWithType:0];
     btn1.frame = CGRectMake(kScreenW/2-8-99, kScreenH-kTabBarHeight-33-42, 66, 42);
-    [btn1 setBackgroundColor:[UIColor colorWithHexString:@"#8A38F5"]];
+    [btn1 setBackgroundColor:[UIColor colorWithHexString:@"#272226"]];
     [btn1 setTitle:@"16 : 9" forState:0];
     btn1.titleLabel.font = kFont(14);
     kViewRadius(btn1, 5);
@@ -118,7 +118,7 @@
         self.bgView.height-=10;
 
     }
-    [btn1  sendActionsForControlEvents:UIControlEventTouchUpInside];
+//    [btn1  sendActionsForControlEvents:UIControlEventTouchUpInside];
 
 }
 -(void)changeAction:(UIButton *)btn{
@@ -154,6 +154,9 @@
             num = 3/4.00;
         }
         height = self.clipBox.frame.size.width*num;
+    }
+    if (self.index == -1) {
+        height = self.clipBox.frame.size.height;
     }
     
     
@@ -384,7 +387,7 @@
         NSLog(@"%@---%@+++++%@",NSStringFromCGRect(clipBoxFrame),NSStringFromCGRect(self.clipBox.frame),NSStringFromCGRect(pan.view.frame) );
     }else if (pan.state == UIGestureRecognizerStateEnded) {
         _moveBox = false;
-        CGRect clipBoxFrame = [self resetClipBox];
+//        CGRect clipBoxFrame = [self resetClipBox];
         //        CGFloat chang = MAX(clipBoxFrame.size.width, clipBoxFrame.size.height);
         CGFloat num = 1;
         if (self.index==1) {
@@ -401,8 +404,14 @@
             }
             height = self.clipBox.frame.size.width*num;
         }
+        CGRect clipBoxFrame = [self resetClipBox];
+        if (self.index == -1) {
+            height = self.clipBox.frame.size.height;
+            clipBoxFrame = CGRectMake(self.clipBox.frame.origin.x, self.clipBox.frame.origin.y, self.clipBox.frame.size.width,height );
+        }else{
+            clipBoxFrame = CGRectMake(clipBoxFrame.origin.x, clipBoxFrame.origin.y, clipBoxFrame.size.width, MIN(height, self.imageView.height));
+        }
         
-        clipBoxFrame = CGRectMake(clipBoxFrame.origin.x, clipBoxFrame.origin.y, clipBoxFrame.size.width, MIN(height, self.imageView.height));
 
         
         [UIView animateWithDuration:0.3 animations:^{
