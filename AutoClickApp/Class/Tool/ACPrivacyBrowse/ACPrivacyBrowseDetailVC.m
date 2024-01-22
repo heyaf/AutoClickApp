@@ -125,14 +125,7 @@
     if (searchStr.length==0) {
         return;
     }
-    if([searchStr hasPrefix:@"https://"]||[searchStr hasPrefix:@"http://"]){
-        
-    }else if ([searchStr hasPrefix:@"www."]){
-        searchStr = kStringFormat(@"https://%@",searchStr);
-    }else{
-        searchStr = kStringFormat(@"https://www.cn.bing.com/search?q=%@",searchStr);
-    }
-    self.urlStr = searchStr;
+    self.urlStr = [self urlDesign:searchStr];;
     NSString *encodedString = [self.urlStr stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
 
     NSURL *url = [NSURL URLWithString:encodedString];
@@ -541,5 +534,55 @@
     self.collectBtn.hidden = NO;
 
 }
-
+-(BOOL)isnet:(NSString *) content{
+    if ([content hasSuffix:@".com"]||
+        [content hasSuffix:@".org"]||
+        [content hasSuffix:@".net"]||
+        [content hasSuffix:@".gov"]||
+        [content hasSuffix:@".edu"]||
+        [content hasSuffix:@".io"]||
+        [content hasSuffix:@".co"]||
+        [content hasSuffix:@".info"]||
+        [content hasSuffix:@".biz"]||
+        [content hasSuffix:@".me"]||
+        [content hasSuffix:@".online"]||
+        [content hasSuffix:@".store"]||
+        [content hasSuffix:@".us"]||
+        [content hasSuffix:@".uk"]||
+        [content hasSuffix:@".ca"]||
+        [content hasSuffix:@".au"]||
+        [content hasSuffix:@".de"]||
+        [content hasSuffix:@".fr"]||
+        [content hasSuffix:@".in"]||
+        [content hasSuffix:@".ch"]||
+        [content hasSuffix:@".br"]||
+        [content hasSuffix:@".mx"]||
+        [content hasSuffix:@".hk"]||
+        [content hasSuffix:@".blog"]||
+        [content hasSuffix:@".app"]||
+        [content hasSuffix:@".design"]||
+        [content hasSuffix:@".guru"]||
+        [content hasSuffix:@".agency"]||
+        [content hasSuffix:@".world"]||
+        [content hasSuffix:@".events"]||
+        [content hasSuffix:@".page"]||
+        [content hasSuffix:@".space"]||
+        [content hasSuffix:@".music"]) {
+        return YES;
+    }
+    return NO;
+}
+-(NSString *)urlDesign: (NSString *)url{
+    if ([self isnet:url]) {
+        if([url hasPrefix:@"https://"]||[url hasPrefix:@"http://"]){
+            return url;
+        }else if ([url hasPrefix:@"www."]){
+            return kStringFormat(@"https://%@",url);
+        }else{
+            return kStringFormat(@"https://www.%@",url);
+        }
+    }else{
+        return kStringFormat(@"https://www.cn.bing.com/search?q=%@",url);
+    }
+}
 @end

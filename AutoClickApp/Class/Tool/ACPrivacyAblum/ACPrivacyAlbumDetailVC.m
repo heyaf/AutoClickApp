@@ -335,8 +335,32 @@
         [self vipBtnAction];
         return;
     }
+    PHAuthorizationStatus status = [PHPhotoLibrary authorizationStatus];
+        switch (status) {
+            case PHAuthorizationStatusAuthorized:
+                // 已经授权
+                
+                break;
+            case PHAuthorizationStatusDenied:
+            case PHAuthorizationStatusRestricted:
+                // 权限被拒绝或受限
+                [self photoQuanxian];
+                return;;
+            case PHAuthorizationStatusNotDetermined:
+                // 权限未确定，请求权限
+                [self photoQuanxian];
+                return;;
+            default:
+                // 其他情况
+               
+                break;
+        }
+    
+    
+    
+    
     [UIButton setanimationwithBtn:btn];
-    TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc] initWithMaxImagesCount:1 columnNumber:3 delegate:self pushPhotoPickerVc:YES];
+    TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc] initWithMaxImagesCount:9 columnNumber:3 delegate:self pushPhotoPickerVc:YES];
     [imagePickerVc setDidFinishPickingVideoHandle:^(UIImage *coverImage, PHAsset *asset) {
         NSString *video = asset.localIdentifier;
         NSData *data = UIImageJPEGRepresentation(coverImage, 1.0f);
@@ -376,43 +400,41 @@
             
     }];
     [imagePickerVc setDidFinishPickingPhotosHandle:^(NSArray<UIImage *> *photos, NSArray *assets, BOOL isSelectOriginalPhoto) {
-        NSData *data = UIImageJPEGRepresentation(photos.firstObject, 1.0f);
-//        NSString *docPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)firstObject];
-//        
-//        NSString *folderpath = [NSString stringWithFormat:@"%@/t2",docPath];
-//        NSString *nowPath = [NSString stringWithFormat:@"%@/%@",folderpath,[NSString nowTimeInterval]];
-//        BOOL bools1 = [ZWFileManager createDirectoryAtPath:folderpath];
-//        BOOL bools = [ZWFileManager writeFileAtPath:nowPath content:data];
-
-        NSString *filePath = [NSString stringWithFormat:@"%@/Documents/%@.png", NSHomeDirectory(),[NSString nowTimeInterval]];
-        [data writeToFile:filePath atomically:YES];
-        [self.dataArr addObject:filePath];
-        [self.collectionV reloadData];
-        self.collectionV.hidden = NO;
         
-        NSArray *arr = [kUserDefaults objectForKey:@"privacyAlbum"];
-        
-        NSMutableArray *arr1 = [NSMutableArray arrayWithCapacity:0];
-        [arr1 addObjectsFromArray:arr];
-        for (int i =0;i<arr.count;i++) {
-            NSDictionary *dic = arr[i];
-            NSDictionary *dic1;
-            if ( [dic intSafeForKey:@"Id"]==self.ID) {
-                NSMutableDictionary *mutDic = [NSMutableDictionary dictionaryWithCapacity:0];
-                [mutDic setObject:[NSArray arrayWithArray:self.dataArr] forKey:@"content"];
-                [mutDic setObject:@(self.ID) forKey:@"Id"];
-                [mutDic setObject:self.titleStr forKey:@"name"];
-                [mutDic setObject:@(self.type) forKey:@"type"];
+        for (int i =0; i<photos.count; i++) {
+            NSData *data = UIImageJPEGRepresentation(photos[i], 1.0f);
 
-                dic1 = [NSDictionary dictionaryWithDictionary:mutDic];
-                [arr1 replaceObjectAtIndex:i withObject:dic1];
-                break;
+            NSString *filePath = [NSString stringWithFormat:@"%@/Documents/%@%i.png", NSHomeDirectory(),[NSString nowTimeInterval],i];
+            [data writeToFile:filePath atomically:YES];
+            [self.dataArr addObject:filePath];
+            [self.collectionV reloadData];
+            self.collectionV.hidden = NO;
+            
+            NSArray *arr = [kUserDefaults objectForKey:@"privacyAlbum"];
+            
+            NSMutableArray *arr1 = [NSMutableArray arrayWithCapacity:0];
+            [arr1 addObjectsFromArray:arr];
+            for (int i =0;i<arr.count;i++) {
+                NSDictionary *dic = arr[i];
+                NSDictionary *dic1;
+                if ( [dic intSafeForKey:@"Id"]==self.ID) {
+                    NSMutableDictionary *mutDic = [NSMutableDictionary dictionaryWithCapacity:0];
+                    [mutDic setObject:[NSArray arrayWithArray:self.dataArr] forKey:@"content"];
+                    [mutDic setObject:@(self.ID) forKey:@"Id"];
+                    [mutDic setObject:self.titleStr forKey:@"name"];
+                    [mutDic setObject:@(self.type) forKey:@"type"];
+
+                    dic1 = [NSDictionary dictionaryWithDictionary:mutDic];
+                    [arr1 replaceObjectAtIndex:i withObject:dic1];
+                    break;
+                }
             }
+            NSArray *arr2 = [NSArray arrayWithArray:arr1];
+            if(arr2.count==0){
+            }
+            [kUserDefaults setObject:arr2 forKey:@"privacyAlbum"];
         }
-        NSArray *arr2 = [NSArray arrayWithArray:arr1];
-        if(arr2.count==0){
-        }
-        [kUserDefaults setObject:arr2 forKey:@"privacyAlbum"];
+       
 
     }];
     imagePickerVc.videoMaximumDuration = 10;
@@ -454,5 +476,43 @@
     NSData *fileData = [handle readDataToEndOfFile];
     [handle closeFile];
     return fileData;
+}
+-(void)photoQuanxian{
+    // 1.创建UIAlertController
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"缺少相册权限"
+                                                                             message:@"Are you sure you want to delete"
+                                                                      preferredStyle:UIAlertControllerStyleAlert];
+    UIView *view = alertController.view.subviews.firstObject;
+    UIView *view1 = view.subviews.firstObject;
+    UIView *view2 = view1.subviews.firstObject;
+    
+    
+    
+    view2.backgroundColor = [UIColor colorWithHexString:@"#1E1E1E" alpha:0.75];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:KLanguage(@"OK") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
+        }];
+    }];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:KLanguage(@"Cancel") style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        NSLog(@"Cancel Action");
+    }];
+    
+    [alertController addAction:cancelAction];       // B
+    [alertController addAction:okAction];           // A
+    
+    // 使用富文本来改变alert的title字体大小和颜色
+    NSString * str1 = @"缺少相册权限";
+    NSMutableAttributedString *titleText = [[NSMutableAttributedString alloc] initWithString:str1];
+    [titleText addAttributes:@{NSFontAttributeName:kBoldFont(17),NSForegroundColorAttributeName:kWhiteColor} range:NSMakeRange(0, str1.length)];
+    [alertController setValue:titleText forKey:@"attributedTitle"];
+    
+    // 使用富文本来改变alert的message字体大小和颜色
+    // NSMakeRange(0, 2) 代表:从0位置开始 两个字符
+    NSString * str = @"是否允许获取相册权限，以便于更好的为您服务？";
+    NSMutableAttributedString *messageText = [[NSMutableAttributedString alloc] initWithString:str];
+    [messageText addAttributes:@{NSFontAttributeName:kFont(13),NSForegroundColorAttributeName:kWhiteColor} range:NSMakeRange(0, str.length)];
+    [alertController setValue:messageText forKey:@"attributedMessage"];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 @end
