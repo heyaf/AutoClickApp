@@ -229,3 +229,19 @@
 "Split and save the image" = "分割并保存图像";
 "Save successful" = "保存成功";
 "Your picture has been saved to the album" = "您的图片已保存至相册";
+
+/* 相册权限  */
+
+"Default Album" = "默认相册";
+"Photos" = "照片";
+"Allow access to photos" = "允许访问照片";
+"Face Snap needs your permission to access your photos and continue" = "Face Snap需要您的权限才能访问您的照片并继续";
+"Go to Settings" = "去开启";
+"Cancel" = "取消";
+
+/* 订阅  */
+
+"Cancel purchase" = "取消购买";
+"Failed purchase" = "购买失败";
+"Recovery successful" = "恢复成功";
+"Recovery failed" = "恢复失败";

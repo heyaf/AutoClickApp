@@ -243,3 +243,18 @@
 "Save successful" = "Erfolgreich gespeichert";
 "Your picture has been saved to the album" = "Ihr Bild wurde im Album gespeichert";
 
+/* Album-Berechtigungen  */
+
+"Default Album" = "Standardalbum";
+"Photos" = "Fotos";
+"Allow access to photos" = "Zugriff auf Fotos erlauben";
+"Face Snap needs your permission to access your photos and continue" = "Face Snap benötigt Ihre Erlaubnis, um auf Ihre Fotos zuzugreifen und fortzufahren";
+"Go to Settings" = "Zu den Einstellungen gehen";
+"Cancel" = "Abbrechen";
+
+/* Abonnieren  */
+
+"Cancel purchase" = "Kauf abbrechen";
+"Failed purchase" = "Kauf fehlgeschlagen";
+"Recovery successful" = "Wiederherstellung erfolgreich";
+"Recovery failed" = "Wiederherstellung fehlgeschlagen";

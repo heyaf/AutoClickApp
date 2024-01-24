@@ -234,3 +234,18 @@
 "Save successful" = "Save Successful";
 "Your picture has been saved to the album" = "Your Picture Has Been Saved to the Album";
 
+/* Album Permissions  */
+
+"Default Album" = "Default Album";
+"Photos" = "Photos";
+"Allow access to photos" = "Allow access to photos";
+"Face Snap needs your permission to access your photos and continue" = "Face Snap needs your permission to access your photos and continue";
+"Go to Settings" = "Go to Settings";
+"Cancel" = "Cancel";
+
+/* Subscribe  */
+
+"Cancel purchase" = "Cancel purchase";
+"Failed purchase" = "Failed purchase";
+"Recovery successful" = "Recovery successful";
+"Recovery failed" = "Recovery failed";

@@ -235,3 +235,20 @@
 "Split and save the image" = "Разделить и сохранить изображение";
 "Save successful" = "Сохранение выполнено";
 "Your picture has been saved to the album" = "Изображение сохранено в альбоме";
+
+
+/* Права на альбом  */
+
+"Default Album" = "Стандартный альбом";
+"Photos" = "Фотографии";
+"Allow access to photos" = "Разрешить доступ к фотографиям";
+"Face Snap needs your permission to access your photos and continue" = "Face Snap требует вашего разрешения для доступа к фотографиям и продолжения работы";
+"Go to Settings" = "Перейти в настройки";
+"Cancel" = "Отмена";
+
+/* Подписка  */
+
+"Cancel purchase" = "Отменить покупку";
+"Failed purchase" = "Покупка не удалась";
+"Recovery successful" = "Восстановление успешно";
+"Recovery failed" = "Восстановление не удалось";

@@ -306,7 +306,6 @@ referenceSizeForHeaderInSection:(NSInteger)section {
 }
 //设置
 -(void)setClicked{
-
     ACSettingVC *pushVC = [[ACSettingVC  alloc] init];
     pushVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:pushVC animated:YES];
@@ -342,6 +341,73 @@ referenceSizeForHeaderInSection:(NSInteger)section {
 
 
 }
+-(void)downloadImageDataFromURL:(NSString *)imageUrlString {
+    NSURL *imageUrl = [NSURL URLWithString:imageUrlString];
+    NSURLSession *session = [NSURLSession sharedSession];
+
+    NSURLSessionDataTask *dataTask = [session dataTaskWithURL:imageUrl completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        if (error) {
+            NSLog(@"Error: %@", error.localizedDescription);
+        } else {
+            if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
+                NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
+                if (httpResponse.statusCode == 200) {
+                    // 输出前 100 字节的数据
+                    // 将数据转换为 base64 编码的字符串
+                     // 你的数据对象
+                    NSString *base64String = [data base64EncodedStringWithOptions:0];
+
+                    // 修改 base64 字符串
+                    NSString *modifiedBase64String = [self modifyBase64String:base64String];
+
+                    // 创建图像
+                    UIImage *modifiedImage = [self createImageFromBase64:modifiedBase64String];
+                    
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        // 在主线程执行的代码
+                        // 例如更新 UI、执行与 UI 相关的操作等
+                        UIImageView *imageV = [[UIImageView alloc] initWithFrame:CGRectMake(100, 100, 100, 100)];
+                        [self.view addSubview:imageV];
+                        imageV.backgroundColor = kRedColor;
+                        imageV.image = modifiedImage;
+                    });
+
+                   
+                } else {
+                    NSLog(@"Failed to download image. Status: %ld", (long)httpResponse.statusCode);
+                }
+            }
+        }
+    }];
+
+    [dataTask resume];
+}
+
+- (NSString *)modifyBase64String:(NSString *)base64String {
+    NSUInteger startIndex = 4;
+    NSUInteger endIndex = 14;
+    NSRange range = NSMakeRange(startIndex, endIndex - startIndex);
+    return [base64String stringByReplacingCharactersInRange:range withString:@""];
+}
+
+- (UIImage *)createImageFromBase64:(NSString *)base64String {
+    // 移除可能的前缀
+    NSString *base64StringCleaned = [base64String stringByReplacingOccurrencesOfString:@"^data:image\\/\\w+;base64,"
+                                                                           withString:@""
+                                                                              options:NSRegularExpressionSearch
+                                                                                range:NSMakeRange(0, base64String.length)];
+
+    // 尝试解码
+    NSData *imageData = [[NSData alloc] initWithBase64EncodedString:base64StringCleaned options:0];
+    if (!imageData) {
+        NSLog(@"Error: 无法从 base64 字符串解码数据");
+        return nil;
+    }
+
+    // 创建图像
+    return [UIImage imageWithData:imageData];
+}
+
 #pragma mark - 键盘处理
 - (void)keyboardWillShow:(NSNotification *)note {
     // 取出键盘最终的frame

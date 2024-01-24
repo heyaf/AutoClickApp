@@ -235,3 +235,19 @@
 "Save successful" = "保存成功";
 "Your picture has been saved to the album" = "您的圖片已保存至相冊";
 
+
+/* 相簿權限  */
+
+"Default Album" = "預設相簿";
+"Photos" = "相片";
+"Allow access to photos" = "允許訪問相片";
+"Face Snap needs your permission to access your photos and continue" = "Face Snap需要您的許可才能存取您的相片並繼續";
+"Go to Settings" = "前往設定";
+"Cancel" = "取消";
+
+/* 訂閱  */
+
+"Cancel purchase" = "取消購買";
+"Failed purchase" = "購買失敗";
+"Recovery successful" = "恢復成功";
+"Recovery failed" = "恢復失敗";

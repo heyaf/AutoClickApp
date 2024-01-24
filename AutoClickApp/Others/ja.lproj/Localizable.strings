@@ -230,3 +230,18 @@
 "Split and save the image" = "画像を分割して保存";
 "Save successful" = "保存成功";
 "Your picture has been saved to the album" = "あなたの写真がアルバムに保存されました";
+/* アルバムの権限  */
+
+"Default Album" = "デフォルトアルバム";
+"Photos" = "写真";
+"Allow access to photos" = "写真へのアクセスを許可する";
+"Face Snap needs your permission to access your photos and continue" = "Face Snapはあなたの写真へのアクセスと続行のためにあなたの許可が必要です";
+"Go to Settings" = "設定へ行く";
+"Cancel" = "キャンセル";
+
+/* サブスクライブ  */
+
+"Cancel purchase" = "購入をキャンセルする";
+"Failed purchase" = "購入に失敗した";
+"Recovery successful" = "回復に成功";
+"Recovery failed" = "回復に失敗";
