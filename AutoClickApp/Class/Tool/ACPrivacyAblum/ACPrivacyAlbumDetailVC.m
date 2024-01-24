@@ -348,8 +348,8 @@
                 return;;
             case PHAuthorizationStatusNotDetermined:
                 // 权限未确定，请求权限
-                [self photoQuanxian];
-                return;;
+                
+                break;
             default:
                 // 其他情况
                

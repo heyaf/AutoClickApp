@@ -150,9 +150,7 @@
         [self.animation1 stop];
     }
     if(self.index == 2 ){
-        [SKStoreReviewController requestReview];
-        AppDelegate *appde = kAppDelegate;
-        appde.hasShowStar = true;
+
     }
     if (self.index == 3) {
         weakSelf.lineV.hidden = true;
@@ -187,6 +185,12 @@
         weakSelf.lineV.x = weakSelf.index*40;
         weakSelf.pageBtn.width = ((kScreenW-32) - 56)/3*weakSelf.index+56;
         weakSelf.pageBtn.centerX = kScreenW/2;
+    } completion:^(BOOL finished) {
+        if (self.index == 2) {
+            [SKStoreReviewController requestReview];
+            AppDelegate *appde = kAppDelegate;
+            appde.hasShowStar = true;
+        }
     }];
 }
 -(UIView *)pageView{
