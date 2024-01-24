@@ -41,6 +41,7 @@
 		0417C3AB2AF1418A002EE17C /* ACXSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 0417C3AA2AF1418A002EE17C /* ACXSlider.m */; };
 		0417C3AF2AF234EB002EE17C /* WMDragView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0417C3AD2AF234EB002EE17C /* WMDragView.m */; };
 		0417C3B92AF38D1F002EE17C /* ACPrivacyAblumVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0417C3B82AF38D1F002EE17C /* ACPrivacyAblumVC.m */; };
+		0441A22B2B612208000B25EC /* ACAlbumPowerSetVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0441A22A2B612208000B25EC /* ACAlbumPowerSetVC.swift */; };
 		0471393B2AF4F00A00E0EBE9 /* ACDocumentScanVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0471393A2AF4F00A00E0EBE9 /* ACDocumentScanVC.m */; };
 		0471393F2AF4F9D900E0EBE9 /* ACPrivacyAblumItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0471393D2AF4F9D900E0EBE9 /* ACPrivacyAblumItem.m */; };
 		047139402AF4F9D900E0EBE9 /* ACPrivacyAblumItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0471393E2AF4F9D900E0EBE9 /* ACPrivacyAblumItem.xib */; };
@@ -208,6 +209,7 @@
 		0417C3AE2AF234EB002EE17C /* WMDragView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMDragView.h; sourceTree = "<group>"; };
 		0417C3B72AF38D1F002EE17C /* ACPrivacyAblumVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ACPrivacyAblumVC.h; sourceTree = "<group>"; };
 		0417C3B82AF38D1F002EE17C /* ACPrivacyAblumVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ACPrivacyAblumVC.m; sourceTree = "<group>"; };
+		0441A22A2B612208000B25EC /* ACAlbumPowerSetVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACAlbumPowerSetVC.swift; sourceTree = "<group>"; };
 		047139392AF4F00A00E0EBE9 /* ACDocumentScanVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ACDocumentScanVC.h; sourceTree = "<group>"; };
 		0471393A2AF4F00A00E0EBE9 /* ACDocumentScanVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ACDocumentScanVC.m; sourceTree = "<group>"; };
 		0471393C2AF4F9D900E0EBE9 /* ACPrivacyAblumItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ACPrivacyAblumItem.h; sourceTree = "<group>"; };
@@ -626,6 +628,7 @@
 				0417C3B82AF38D1F002EE17C /* ACPrivacyAblumVC.m */,
 				047139412AF6390500E0EBE9 /* ACPrivacyAlbumDetailVC.h */,
 				047139422AF6390500E0EBE9 /* ACPrivacyAlbumDetailVC.m */,
+				0441A22A2B612208000B25EC /* ACAlbumPowerSetVC.swift */,
 				047139522AF73CF600E0EBE9 /* ACPrivacyPhotoDetailVC.h */,
 				047139532AF73CF600E0EBE9 /* ACPrivacyPhotoDetailVC.m */,
 				0471393C2AF4F9D900E0EBE9 /* ACPrivacyAblumItem.h */,
@@ -1192,6 +1195,7 @@
 				04FFF9EC2B516A7800F3245D /* ACPayOneViewController.swift in Sources */,
 				04F70F0D2B56B26000D18FE2 /* vipTool.m in Sources */,
 				04EC47012B592DB200FBD807 /* DynamicRadialGradientView.m in Sources */,
+				0441A22B2B612208000B25EC /* ACAlbumPowerSetVC.swift in Sources */,
 				047139632AF7D74400E0EBE9 /* PopTableListView.m in Sources */,
 				0417C3352AEBE53F002EE17C /* ACToolsVC.m in Sources */,
 				0417C36D2AEE4DEC002EE17C /* ACVideoListItem.m in Sources */,

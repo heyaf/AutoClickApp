@@ -478,41 +478,8 @@
     return fileData;
 }
 -(void)photoQuanxian{
-    // 1.创建UIAlertController
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"缺少相册权限"
-                                                                             message:@"Are you sure you want to delete"
-                                                                      preferredStyle:UIAlertControllerStyleAlert];
-    UIView *view = alertController.view.subviews.firstObject;
-    UIView *view1 = view.subviews.firstObject;
-    UIView *view2 = view1.subviews.firstObject;
-    
-    
-    
-    view2.backgroundColor = [UIColor colorWithHexString:@"#1E1E1E" alpha:0.75];
-    UIAlertAction *okAction = [UIAlertAction actionWithTitle:KLanguage(@"OK") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
-        }];
-    }];
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:KLanguage(@"Cancel") style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-        NSLog(@"Cancel Action");
-    }];
-    
-    [alertController addAction:cancelAction];       // B
-    [alertController addAction:okAction];           // A
-    
-    // 使用富文本来改变alert的title字体大小和颜色
-    NSString * str1 = @"缺少相册权限";
-    NSMutableAttributedString *titleText = [[NSMutableAttributedString alloc] initWithString:str1];
-    [titleText addAttributes:@{NSFontAttributeName:kBoldFont(17),NSForegroundColorAttributeName:kWhiteColor} range:NSMakeRange(0, str1.length)];
-    [alertController setValue:titleText forKey:@"attributedTitle"];
-    
-    // 使用富文本来改变alert的message字体大小和颜色
-    // NSMakeRange(0, 2) 代表:从0位置开始 两个字符
-    NSString * str = @"是否允许获取相册权限，以便于更好的为您服务？";
-    NSMutableAttributedString *messageText = [[NSMutableAttributedString alloc] initWithString:str];
-    [messageText addAttributes:@{NSFontAttributeName:kFont(13),NSForegroundColorAttributeName:kWhiteColor} range:NSMakeRange(0, str.length)];
-    [alertController setValue:messageText forKey:@"attributedMessage"];
-    
-    [self presentViewController:alertController animated:YES completion:nil];
+    ACAlbumPowerSetVC *vc = [ACAlbumPowerSetVC new];
+    vc.modalPresentationStyle = UIModalPresentationOverFullScreen;
+    [self presentViewController:vc animated:true completion:nil];
 }
 @end
