@@ -41,6 +41,7 @@
 		0417C3AB2AF1418A002EE17C /* ACXSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 0417C3AA2AF1418A002EE17C /* ACXSlider.m */; };
 		0417C3AF2AF234EB002EE17C /* WMDragView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0417C3AD2AF234EB002EE17C /* WMDragView.m */; };
 		0417C3B92AF38D1F002EE17C /* ACPrivacyAblumVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0417C3B82AF38D1F002EE17C /* ACPrivacyAblumVC.m */; };
+		043EA71F2B63BC0300C7F71F /* system-regular.gif in Resources */ = {isa = PBXBuildFile; fileRef = 043EA71E2B63BC0300C7F71F /* system-regular.gif */; };
 		0441A22B2B612208000B25EC /* ACAlbumPowerSetVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0441A22A2B612208000B25EC /* ACAlbumPowerSetVC.swift */; };
 		0471393B2AF4F00A00E0EBE9 /* ACDocumentScanVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0471393A2AF4F00A00E0EBE9 /* ACDocumentScanVC.m */; };
 		0471393F2AF4F9D900E0EBE9 /* ACPrivacyAblumItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0471393D2AF4F9D900E0EBE9 /* ACPrivacyAblumItem.m */; };
@@ -209,6 +210,7 @@
 		0417C3AE2AF234EB002EE17C /* WMDragView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMDragView.h; sourceTree = "<group>"; };
 		0417C3B72AF38D1F002EE17C /* ACPrivacyAblumVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ACPrivacyAblumVC.h; sourceTree = "<group>"; };
 		0417C3B82AF38D1F002EE17C /* ACPrivacyAblumVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ACPrivacyAblumVC.m; sourceTree = "<group>"; };
+		043EA71E2B63BC0300C7F71F /* system-regular.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "system-regular.gif"; sourceTree = "<group>"; };
 		0441A22A2B612208000B25EC /* ACAlbumPowerSetVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACAlbumPowerSetVC.swift; sourceTree = "<group>"; };
 		047139392AF4F00A00E0EBE9 /* ACDocumentScanVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ACDocumentScanVC.h; sourceTree = "<group>"; };
 		0471393A2AF4F00A00E0EBE9 /* ACDocumentScanVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ACDocumentScanVC.m; sourceTree = "<group>"; };
@@ -803,6 +805,7 @@
 		04DB09D72AE961CD00562044 /* Others */ = {
 			isa = PBXGroup;
 			children = (
+				043EA71E2B63BC0300C7F71F /* system-regular.gif */,
 				04C338852B020AF6004CBD4A /* chinese_video.mp4 */,
 				04C338832B020AF6004CBD4A /* de_video.mp4 */,
 				04C338842B020AF6004CBD4A /* english_video.mp4 */,
@@ -996,6 +999,7 @@
 				04C3388A2B020AF6004CBD4A /* pu_video.mp4 in Resources */,
 				0417C37E2AEE9628002EE17C /* ACToolListTBCell.xib in Resources */,
 				04C338722AFE0E9C004CBD4A /* globe.json in Resources */,
+				043EA71F2B63BC0300C7F71F /* system-regular.gif in Resources */,
 				0417C3A32AF106C4002EE17C /* btn_num_add@2x.png in Resources */,
 				04DB09A82AE9614C00562044 /* LaunchScreen.storyboard in Resources */,
 				04C338732AFE0E9C004CBD4A /* target.json in Resources */,
@@ -1426,9 +1430,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = FS7VL38G9A;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 3;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = ZXK7A2YS9X;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/AutoClickApp/Third/ZZMediaClipper",
@@ -1456,9 +1462,10 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.zzh.autoclicker111;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zzh.autoclicker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = autoclicker_appstore;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -1478,9 +1485,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = FS7VL38G9A;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 3;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = ZXK7A2YS9X;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/AutoClickApp/Third/ZZMediaClipper",
@@ -1508,9 +1517,10 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.zzh.autoclicker111;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zzh.autoclicker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = autoclicker_appstore;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;

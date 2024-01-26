@@ -295,10 +295,10 @@ referenceSizeForHeaderInSection:(NSInteger)section {
     return headView;
 }
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-//    if(![vipTool isVip]) {
-//        [self vipBtnAction];
-//        return;
-//    }
+    if(![vipTool isVip]) {
+        [self vipBtnAction];
+        return;
+    }
     ACWebClickerDetailVC *pushVC = [[ACWebClickerDetailVC  alloc] init];
     pushVC.urlStr = self.urlArr[indexPath.section][indexPath.row];
     pushVC.hidesBottomBarWhenPushed = YES;

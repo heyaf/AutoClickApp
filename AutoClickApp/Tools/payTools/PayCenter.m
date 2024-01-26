@@ -112,10 +112,10 @@ return _sharedObject; \
 - (void)failedTransaction:(SKPaymentTransaction *)transaction {
     if(transaction.error.code != SKErrorPaymentCancelled) {
         ///购买失败
-        [MBProgressHUD showErrorMessage:@"支付失败"];
+        [MBProgressHUD showErrorMessage:KLanguage(@"Failed purchase")];
     } else {
         //用户取消了交易
-        [MBProgressHUD showErrorMessage:@"Cancle"];
+        [MBProgressHUD showErrorMessage:KLanguage(@"Cancel purchase")];
 
     }
     //将交易结束
@@ -133,7 +133,7 @@ return _sharedObject; \
 
 #pragma Mark 购买操作后的回调
 - (void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(nonnull NSArray<SKPaymentTransaction *> *)transactions {
-    
+//    [MBProgressHUD hid];
     for (SKPaymentTransaction *transaction in transactions) {
         switch (transaction.transactionState) {
             case SKPaymentTransactionStatePurchasing://正在交易

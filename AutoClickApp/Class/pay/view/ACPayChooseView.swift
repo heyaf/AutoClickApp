@@ -112,7 +112,8 @@ class ACPayChooseView: UIView {
                     let monthlyPriceStr = String(format: "%.2f", monthlyPrice)
                     //
                     let str2 = KLanguage(key: "that's $1.42 a month")
-                    var str3 = str.replacingOccurrences(of: "**", with: "$" + monthlyPriceStr)
+                    var str3 = str2.replacingOccurrences(of: "**", with: "$" + monthlyPriceStr)
+                    LeftBlabel.text = str3
                 } else {
                     
                 }

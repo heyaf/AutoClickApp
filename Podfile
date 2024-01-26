@@ -16,6 +16,7 @@ target 'AutoClickApp' do
   pod 'SnapKit'
   pod 'MBProgressHUD', '~>0.9.2'
   pod 'MBProgressHUD+JDragon'
+  pod 'FLAnimatedImage'
   #pod 'TesseractOCRiOS', '4.0.0'
   target 'AutoClickAppTests' do
     inherit! :search_paths

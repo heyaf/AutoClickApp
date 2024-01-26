@@ -22,6 +22,8 @@
 
 @property (nonatomic, strong) ACPayOneView *oneV;
 
+@property (nonatomic, strong) UILabel *skipL;
+
 
 @end
 
@@ -104,7 +106,7 @@
     skipL.userInteractionEnabled = YES;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(skipAction)];
     [skipL addGestureRecognizer:tap];
-    
+    self.skipL = skipL;
     ACPayOneView *oneV = [[ACPayOneView alloc] initWithFrame:CGRectMake(kScreenW * 3, 0, kScreenW, kScreenH)];
     oneV.disMissBack = ^{
         [self skipAction];
@@ -165,6 +167,7 @@
             weakSelf.pageBtn.hidden = true;
             
             [weakSelf.oneV showView];
+            self.skipL.hidden = true;
         }];
         return;
         

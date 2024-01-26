@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import MBProgressHUD
+import FLAnimatedImage
 
 class ACPayTwoViewController: UIViewController {
     
@@ -25,11 +27,12 @@ class ACPayTwoViewController: UIViewController {
         view.addSubview(bgImageV)
         bgImageV.contentMode = .scaleAspectFill
         bgImageV.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.left.right.top.equalToSuperview()
+            make.height.equalTo(KScreenWidth * 812 / 375)
         }
         
         let disbtn = UIButton(type: .custom)
-        disbtn.frame = CGRect(x: 14, y: bmStatusBarHeight(), width: 44, height: 44)
+        disbtn.frame = CGRect(x: 14, y: bmStatusBarHeight() + 10 , width: 44, height: 44)
         view.addSubview(disbtn)
         disbtn.addTarget(self, action: #selector(dismissAction), for: .touchUpInside)
         
@@ -37,7 +40,7 @@ class ACPayTwoViewController: UIViewController {
         btnImage.frame = CGRect(x: 10, y: 10, width: 24, height: 24)
         disbtn.addSubview(btnImage)
         disbtn.alpha = 0
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0){
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0){
             UIView.animate(withDuration: 1) {
                 disbtn.alpha = 1
             }
@@ -175,10 +178,19 @@ class ACPayTwoViewController: UIViewController {
         }
         continuebtn.setTitle(KLanguage(key: "continue"), for: .normal)
         continuebtn.titleLabel?.font = .pingFangSCMedium(14)
-        continuebtn.addTarget(self, action: #selector(continueAction), for: .touchUpInside)
-        let imageV1 = UIImageView("guider_click")
-        imageV1.frame = CGRect(x: KScreenWidth - 40 - 48, y: 16, width: 24, height: 24)
-        continuebtn.addSubview(imageV1)
+        continuebtn.addTarget(self, action: #selector(continueAction(_ :)), for: .touchUpInside)
+        let animatedImageView = FLAnimatedImageView()
+        animatedImageView.frame = CGRect(x: (KScreenWidth - 40) / 2 + 40 , y: 16, width: 24, height: 24)
+        continuebtn.addSubview(animatedImageView)
+        
+        // 设置 GIF 文件名
+        let gifFileName = "system-regular"
+        if let gifFilePath = Bundle.main.path(forResource: gifFileName, ofType: "gif"),
+           let gifData = try? Data(contentsOf: URL(fileURLWithPath: gifFilePath)),
+           let animatedImage = FLAnimatedImage(animatedGIFData: gifData) {
+            // 设置 FLAnimatedImage 到 FLAnimatedImageView
+            animatedImageView.animatedImage = animatedImage
+        }
         continuebtn.setTitleColor(.black, for: .normal)
         
         let labelPro1 = UILabel(frame: CGRect(x: 20, y: topHeight, width: 47, height: 25))
@@ -209,7 +221,7 @@ class ACPayTwoViewController: UIViewController {
         }
         payChooseView.selectBack = { index in
             self.selectIndex = index
-            self.continueAction()
+            self.continueAction1()
         }
     }
     
@@ -226,6 +238,8 @@ class ACPayTwoViewController: UIViewController {
 
         }
     @objc func brlabelTapped() {
+        let hub = self.showHUD("Loading...")
+        hub.hide(false, afterDelay: 6.0)
         PayCenter.sharedInstance().restorePay()
         PayCenter.sharedInstance().paySuccessBlock = {
             let date = Date.getNewDateDistanceNow(year: 0, month: 1, days: 0)
@@ -233,27 +247,49 @@ class ACPayTwoViewController: UIViewController {
             UserDefaults.standard.setValue(dateStr, forKey: "payInfo");
             self.dismissAction()
             self.reloadVip?()
+            MBProgressHUD.showSuccessMessage("Recovery successful")
+
         }
     }
-    @objc func continueAction() {
+    @objc func continueAction(_ btn : UIButton) {
+        UIView.animate(withDuration: 0.2, animations: {
+            btn.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
+        }) { (finished) in
+            UIView.animate(withDuration: 0.2, animations: {
+                btn.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
+            }) { (finished) in
+                UIView.animate(withDuration: 0.1, animations: {
+                    btn.transform = CGAffineTransform.identity
+                }) { (finished) in
+                    self.continueAction1()
+                }
+            }
+        }
+    }
+
+    @objc func continueAction1() {
+        let hub = self.showHUD("Loading...")
+        hub.hide(false, afterDelay: 6.0)
         var payID = IAP1_ProductID
         if selectIndex == 1 {
             payID = IAP2_ProductID
         }
-        let date = Date.getNewDateDistanceNow(year: 1, month: 0, days: 0)
-        let dateStr = Date.dateToString(date, dateFormat: "yyyy-MM-dd HH:mm:ss")
-        UserDefaults.standard.setValue(dateStr, forKey: "payInfo");
-        self.dismissAction()
-        self.reloadVip?()
+//        let date = Date.getNewDateDistanceNow(year: 1, month: 0, days: 0)
+//        let dateStr = Date.dateToString(date, dateFormat: "yyyy-MM-dd HH:mm:ss")
+//        UserDefaults.standard.setValue(dateStr, forKey: "payInfo");
+//        self.dismissAction()
+//        self.reloadVip?()
 //        return
-//        PayCenter.sharedInstance().payItem(payID)
-//        PayCenter.sharedInstance().paySuccessBlock = {
-//            let date = Date.getNewDateDistanceNow(year: 1, month: 0, days: 0)
-//            let dateStr = [Date.dateToString(date, dateFormat: "yyyy-MM-dd HH:mm:ss")]
-//            UserDefaults.standard.setValue(dateStr, forKey: "payInfo");
-//            self.dismissAction()
-//            self.reloadVip?()
-//        }
+        PayCenter.sharedInstance().payItem(payID)
+        PayCenter.sharedInstance().paySuccessBlock = {
+            let date = Date.getNewDateDistanceNow(year: 1, month: 0, days: 0)
+            let dateStr = [Date.dateToString(date, dateFormat: "yyyy-MM-dd HH:mm:ss")]
+            UserDefaults.standard.setValue(dateStr, forKey: "payInfo");
+            self.dismissAction()
+            self.reloadVip?()
+            MBProgressHUD.showSuccessMessage("successful")
+
+        }
     }
     func openUrl(_ urlStr: String) {
         guard let url = URL(string: urlStr) else {

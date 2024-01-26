@@ -48,6 +48,7 @@
         _tableview.dataSource = self;
         _tableview.rowHeight = 76;
         _tableview.backgroundColor = UIColor.mainBlackColor;
+        _tableview.separatorStyle = UITableViewCellSeparatorStyleNone;
         [_tableview registerNib:[UINib nibWithNibName:@"ACLanguageTBCell" bundle:nil] forCellReuseIdentifier:@"ACLanguageTBCell"];
         
     }

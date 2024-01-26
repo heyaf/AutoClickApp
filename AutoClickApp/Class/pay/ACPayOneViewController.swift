@@ -7,6 +7,8 @@
 
 import UIKit
 import MBProgressHUD
+import FLAnimatedImage
+
 class ACPayOneViewController: UIViewController {
 
     override func viewDidLoad() {
@@ -24,11 +26,12 @@ class ACPayOneViewController: UIViewController {
         view.addSubview(bgImageV)
         bgImageV.contentMode = .scaleAspectFill
         bgImageV.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.left.right.top.equalToSuperview()
+            make.height.equalTo(KScreenWidth * 812 / 375)
         }
         
         let disbtn = UIButton(type: .custom)
-        disbtn.frame = CGRect(x: 14, y: bmStatusBarHeight(), width: 44, height: 44)
+        disbtn.frame = CGRect(x: 14, y: bmStatusBarHeight() + 10, width: 44, height: 44)
         view.addSubview(disbtn)
         disbtn.addTarget(self, action: #selector(dismissAction), for: .touchUpInside)
         
@@ -36,7 +39,7 @@ class ACPayOneViewController: UIViewController {
         btnImage.frame = CGRect(x: 10, y: 10, width: 24, height: 24)
         disbtn.addSubview(btnImage)
         disbtn.alpha = 0
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0){
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0){
             UIView.animate(withDuration: 1) {
                 disbtn.alpha = 1
             }
@@ -173,7 +176,6 @@ class ACPayOneViewController: UIViewController {
         let continuebtn = UIButton(type: .custom)
         continuebtn.frame = CGRect(x: 14, y: bmStatusBarHeight(), width: 44, height: 44)
         view.addSubview(continuebtn)
-        continuebtn.addTarget(self, action: #selector(dismissAction), for: .touchUpInside)
         continuebtn.backgroundColor = .white
         continuebtn.layer.cornerRadius = 11
         continuebtn.layer.masksToBounds = true
@@ -184,10 +186,21 @@ class ACPayOneViewController: UIViewController {
         }
         continuebtn.setTitle(KLanguage(key: "continue"), for: .normal)
         continuebtn.titleLabel?.font = .pingFangSCMedium(14)
-        continuebtn.addTarget(self, action: #selector(continueAction), for: .touchUpInside)
-        let imageV1 = UIImageView("guider_click")
-        imageV1.frame = CGRect(x: KScreenWidth - 40 - 48, y: 16, width: 24, height: 24)
-        continuebtn.addSubview(imageV1)
+        continuebtn.addTarget(self, action: #selector(continueAction(_:)), for: .touchUpInside)
+        
+        let animatedImageView = FLAnimatedImageView()
+        animatedImageView.frame = CGRect(x: (KScreenWidth - 40) / 2 + 40 , y: 16, width: 24, height: 24)
+        continuebtn.addSubview(animatedImageView)
+        
+        // 设置 GIF 文件名
+        let gifFileName = "system-regular"
+        if let gifFilePath = Bundle.main.path(forResource: gifFileName, ofType: "gif"),
+           let gifData = try? Data(contentsOf: URL(fileURLWithPath: gifFilePath)),
+           let animatedImage = FLAnimatedImage(animatedGIFData: gifData) {
+            // 设置 FLAnimatedImage 到 FLAnimatedImageView
+            animatedImageView.animatedImage = animatedImage
+        }
+        
         continuebtn.setTitleColor(.black, for: .normal)
         let labelPro1 = UILabel(frame: CGRect(x: 20, y: topHeight, width: 47, height: 25))
         labelPro1.textAlignment = .center
@@ -222,19 +235,45 @@ class ACPayOneViewController: UIViewController {
         openUrl("https://fair-chalk-fc5.notion.site/Term-of-use-b7afe95e11e54b93be6b1fe349ad0214?pvs=4")
         }
     @objc func brlabelTapped() {
-            print("Label 被点击了")
-            // 处理点击事件
-        }
-    @objc func continueAction() {
-    
-        PayCenter.sharedInstance().payItem(IAP1_ProductID)
+        let hub = self.showHUD("Loading...")
+        hub.hide(false, afterDelay: 6.0)
+        PayCenter.sharedInstance().restorePay()
         PayCenter.sharedInstance().paySuccessBlock = {
             let date = Date.getNewDateDistanceNow(year: 0, month: 1, days: 0)
             let dateStr = [Date.dateToString(date, dateFormat: "yyyy-MM-dd HH:mm:ss")]
             UserDefaults.standard.setValue(dateStr, forKey: "payInfo");
-            NotificationCenter.default.post(name:NSNotification.Name("ACPaySuccessed"), object: nil)
             self.dismissAction()
+            MBProgressHUD.showSuccessMessage("Recovery successful")
+            
         }
+        }
+    @objc func continueAction(_ btn : UIButton) {
+        UIView.animate(withDuration: 0.2, animations: {
+            btn.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
+        }) { (finished) in
+            UIView.animate(withDuration: 0.2, animations: {
+                btn.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
+            }) { (finished) in
+                UIView.animate(withDuration: 0.1, animations: {
+                    btn.transform = CGAffineTransform.identity
+                }) { (finished) in
+//                    MBProgressHUD.showInfoMessage("Loading...")
+                    let hub = self.showHUD("Loading...")
+                    hub.hide(false, afterDelay: 6.0)
+                    PayCenter.sharedInstance().payItem(IAP1_ProductID)
+                    PayCenter.sharedInstance().paySuccessBlock = {
+                        let date = Date.getNewDateDistanceNow(year: 0, month: 1, days: 0)
+                        let dateStr = [Date.dateToString(date, dateFormat: "yyyy-MM-dd HH:mm:ss")]
+                        UserDefaults.standard.setValue(dateStr, forKey: "payInfo");
+                        self.dismissAction()
+                        MBProgressHUD.showSuccessMessage("successful")
+
+                    }
+                }
+            }
+        }
+
+        
         
     }
     func openUrl(_ urlStr: String) {
@@ -261,6 +300,7 @@ extension UIViewController {
         let HUD = MBProgressHUD.showAdded(to: view, animated: true)
         HUD?.labelText = text
         HUD?.removeFromSuperViewOnHide = true
+        
         return HUD ?? MBProgressHUD()
     }
     
