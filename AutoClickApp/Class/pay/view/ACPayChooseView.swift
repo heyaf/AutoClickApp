@@ -82,7 +82,7 @@ class ACPayChooseView: UIView {
         rightBtn.addSubview(rightbgView)
         rightbgView.layer.cornerRadius = 9
         rightbgView.clipsToBounds = true
-        RightbgView = rightbgView
+//        RightbgView = rightbgView
         let label1 = UILabel(frame: CGRect(x: 10, y: 10, width: 72, height: 24))
         label1.textAlignment = .center
         label1.text = KLanguage(key: "85%OFF")

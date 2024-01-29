@@ -147,11 +147,11 @@
 -(UICollectionView *)collectionV{
     if(!_collectionV){
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-        CGFloat itemW = (kScreenW-16*4)/3;
+        CGFloat itemW = (kScreenW-10*4)/3;
         layout.itemSize = CGSizeMake(itemW, itemW);
         
-        layout.minimumLineSpacing = 16;
-        layout.minimumInteritemSpacing = 16;
+        layout.minimumLineSpacing = 10;
+        layout.minimumInteritemSpacing = 10;
         _collectionV = [[UICollectionView alloc] initWithFrame:CGRectMake(0, kNavBarHeight+96, kScreenW, kScreenH-kTabBarHeight-kNavBarHeight-106) collectionViewLayout:layout];
         _collectionV.delegate = self;
         _collectionV.contentInset = UIEdgeInsetsMake(0, 10, 0, 10);
