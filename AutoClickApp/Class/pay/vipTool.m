@@ -10,10 +10,14 @@
 
 @implementation vipTool
 + (BOOL) isVip{
-    NSString *str = [kUserDefaults valueForKey:@"payInfo"];
-    if (k_isValidString(str)&&[NSDate compareDate:[NSDate stringToDate:str withDateFormat:@"yyyy-MM-dd HH:mm:ss"] withDate:[NSDate now]]==-1) {
-        return true;
+    NSArray *dataArr = [kUserDefaults valueForKey:@"payInfo"];
+    if (dataArr.count>0) {
+        NSString *str = dataArr[0];
+        if (k_isValidString(str)&&[NSDate compareDate:[NSDate stringToDate:str withDateFormat:@"yyyy-MM-dd HH:mm:ss"] withDate:[NSDate now]]==-1) {
+            return true;
+        }
     }
+
     return false;
 }
 @end

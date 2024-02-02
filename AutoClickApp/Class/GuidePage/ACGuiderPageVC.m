@@ -98,15 +98,15 @@
     [self.scrollview addSubview:self.pageView];
     self.index =0;
     
-    UILabel *skipL  = [self.view createLabelFrame:CGRectMake(kScreenW - 50, kStatusBarHeight + 32, 30, 20) textColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:0.6] font:kFont(10)];
-    NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:@"Skip" attributes:@{NSUnderlineStyleAttributeName : @(NSUnderlineStyleSingle)}];
-    skipL.attributedText = attrStr;
-    [skipL sizeToFit];
-    skipL.height = 20;
-    skipL.userInteractionEnabled = YES;
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(skipAction)];
-    [skipL addGestureRecognizer:tap];
-    self.skipL = skipL;
+//    UILabel *skipL  = [self.view createLabelFrame:CGRectMake(kScreenW - 50, kStatusBarHeight + 32, 30, 20) textColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:0.6] font:kFont(10)];
+//    NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:@"Skip" attributes:@{NSUnderlineStyleAttributeName : @(NSUnderlineStyleSingle)}];
+//    skipL.attributedText = attrStr;
+//    [skipL sizeToFit];
+//    skipL.height = 20;
+//    skipL.userInteractionEnabled = YES;
+//    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(skipAction)];
+//    [skipL addGestureRecognizer:tap];
+//    self.skipL = skipL;
     ACPayOneView *oneV = [[ACPayOneView alloc] initWithFrame:CGRectMake(kScreenW * 3, 0, kScreenW, kScreenH)];
     oneV.disMissBack = ^{
         [self skipAction];

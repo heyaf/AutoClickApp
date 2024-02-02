@@ -7,6 +7,7 @@
 
 import UIKit
 import MBProgressHUD
+import FLAnimatedImage
 
 class ACPayOneView: UIView {
 
@@ -32,7 +33,8 @@ class ACPayOneView: UIView {
         addSubview(bgImageV)
         bgImageV.contentMode = .scaleAspectFill
         bgImageV.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.left.right.top.equalToSuperview()
+            make.height.equalTo(KScreenWidth * 812 / 375)
         }
         
         let disbtn = UIButton(type: .custom)
@@ -189,9 +191,18 @@ class ACPayOneView: UIView {
         continuebtn.setTitle(KLanguage(key: "continue"), for: .normal)
         continuebtn.titleLabel?.font = .pingFangSCMedium(14)
         continuebtn.addTarget(self, action: #selector(continueAction), for: .touchUpInside)
-        let imageV1 = UIImageView("guider_click")
-        imageV1.frame = CGRect(x: KScreenWidth - 40 - 48, y: 16, width: 24, height: 24)
-        continuebtn.addSubview(imageV1)
+        let animatedImageView = FLAnimatedImageView()
+        animatedImageView.frame = CGRect(x: (KScreenWidth - 40) / 2 + 40 , y: 16, width: 24, height: 24)
+        continuebtn.addSubview(animatedImageView)
+        
+        // 设置 GIF 文件名
+        let gifFileName = "system-regular"
+        if let gifFilePath = Bundle.main.path(forResource: gifFileName, ofType: "gif"),
+           let gifData = try? Data(contentsOf: URL(fileURLWithPath: gifFilePath)),
+           let animatedImage = FLAnimatedImage(animatedGIFData: gifData) {
+            // 设置 FLAnimatedImage 到 FLAnimatedImageView
+            animatedImageView.animatedImage = animatedImage
+        }
         continuebtn.setTitleColor(.black, for: .normal)
         let labelPro1 = UILabel(frame: CGRect(x: 20, y: topHeight, width: 47, height: 25))
         labelPro1.textAlignment = .center
@@ -227,18 +238,7 @@ class ACPayOneView: UIView {
         openUrl("https://fair-chalk-fc5.notion.site/Privacy-Policy-63a04c8f370449c09b61fadb28d5dbea?pvs=4")
 
         }
-    @objc func brlabelTapped() {
-        clickedPay = false
 
-        PayCenter.sharedInstance().restorePay()
-        PayCenter.sharedInstance().paySuccessBlock = {
-            let date = Date.getNewDateDistanceNow(year: 0, month: 1, days: 0)
-            let dateStr = Date.dateToString(date, dateFormat: "yyyy-MM-dd HH:mm:ss")
-            UserDefaults.standard.setValue(dateStr, forKey: "payInfo");
-            self.clickedPay = false
-            self.disMissBack?()
-        }
-        }
     @objc func diMissTapped() {
         if clickedPay {
             NotificationCenter.default.post(name:NSNotification.Name("ACShowPay"), object: nil)
@@ -256,17 +256,56 @@ class ACPayOneView: UIView {
         }
         continueBtn.alpha = 1
     }
-    @objc func continueAction() {
-    
-        clickedPay = true
+    @objc func brlabelTapped() {
+        clickedPay = false
+        let hub = self.showHUD("Loading...")
         PayCenter.sharedInstance().payItem(IAP1_ProductID)
         PayCenter.sharedInstance().paySuccessBlock = {
             let date = Date.getNewDateDistanceNow(year: 0, month: 1, days: 0)
-            let dateStr = Date.dateToString(date, dateFormat: "yyyy-MM-dd HH:mm:ss")
+            let dateStr = [Date.dateToString(date, dateFormat: "yyyy-MM-dd HH:mm:ss")]
             UserDefaults.standard.setValue(dateStr, forKey: "payInfo");
             self.clickedPay = false
             self.disMissBack?()
+            MBProgressHUD.showSuccessMessage("Recovery successful")
+            hub.hide(false)
+
         }
+        PayCenter.sharedInstance().payfailBlock = {
+            hub.hide(false)
+
+        }
+        }
+    @objc func continueAction(_ btn : UIButton) {
+        UIView.animate(withDuration: 0.2, animations: {
+            btn.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
+        }) { (finished) in
+            UIView.animate(withDuration: 0.2, animations: {
+                btn.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
+            }) { (finished) in
+                UIView.animate(withDuration: 0.1, animations: {
+                    btn.transform = CGAffineTransform.identity
+                }) { (finished) in
+//                    MBProgressHUD.showInfoMessage("Loading...")
+                    let hub = self.showHUD("Loading...")
+                    PayCenter.sharedInstance().payItem(IAP1_ProductID)
+                    PayCenter.sharedInstance().paySuccessBlock = {
+                        let date = Date.getNewDateDistanceNow(year: 0, month: 1, days: 0)
+                        let dateStr = [Date.dateToString(date, dateFormat: "yyyy-MM-dd HH:mm:ss")]
+                        UserDefaults.standard.setValue(dateStr, forKey: "payInfo");
+                        self.disMissBack?()
+                        MBProgressHUD.showSuccessMessage("successful")
+                        hub.hide(false)
+
+                    }
+                    PayCenter.sharedInstance().payfailBlock = {
+                        hub.hide(false)
+
+                    }
+                }
+            }
+        }
+
+        
         
     }
     func openUrl(_ urlStr: String) {
@@ -286,4 +325,15 @@ class ACPayOneView: UIView {
         })
     }
 
+}
+extension UIView {
+
+    func showHUD(_ text: String) -> MBProgressHUD {
+        let HUD = MBProgressHUD.showAdded(to: self, animated: true)
+        HUD?.labelText = text
+        HUD?.removeFromSuperViewOnHide = true
+        
+        return HUD ?? MBProgressHUD()
+    }
+    
 }

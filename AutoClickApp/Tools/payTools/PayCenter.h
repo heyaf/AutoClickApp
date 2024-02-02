@@ -26,6 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 @property (nonatomic, copy) void (^paySuccessBlock) (void);
+@property (nonatomic, copy) void (^payfailBlock) (void);
 
 - (void)payItem:(NSString *)IAP_ID;
 - (void)restorePay;

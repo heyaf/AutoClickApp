@@ -102,7 +102,7 @@ class ACPayChooseView: UIView {
         let productInfoDefaults = UserDefaults.standard
         if let arrdata = productInfoDefaults.object(forKey: "productInfoDefaultsKey") as? [[String : String]] , arrdata.count == 2{
             // 使用 arr，它是一个 [Any] 类型的数组
-            let dic : [String : String] = arrdata[0]
+            let dic : [String : String] = arrdata[1]
             str1 = str.replacingOccurrences(of: "**", with: (dic["finalPrice"] ?? "8.99"))
             if let priceStr = dic["finalPrice"], priceStr.count >= 2 {
                 let startIndex = priceStr.index(priceStr.startIndex, offsetBy: 1)
@@ -112,7 +112,9 @@ class ACPayChooseView: UIView {
                     let monthlyPriceStr = String(format: "%.2f", monthlyPrice)
                     //
                     let str2 = KLanguage(key: "that's $1.42 a month")
-                    var str3 = str2.replacingOccurrences(of: "**", with: "$" + monthlyPriceStr)
+                    let pricestr = dic["finalPrice"]
+                    let replacementStr = String(pricestr?.first ?? "$") + monthlyPriceStr
+                    let str3 = str2.replacingOccurrences(of: "**", with: replacementStr)
                     LeftBlabel.text = str3
                 } else {
                     
@@ -121,7 +123,7 @@ class ACPayChooseView: UIView {
             }
             Leftlabel.text = str1
             
-            let dic1 = arrdata[1]
+            let dic1 = arrdata[0]
             str3 = str2.replacingOccurrences(of: "**", with: (dic1["finalPrice"] ?? "8.99"))
             RightL.text = str3
             

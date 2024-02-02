@@ -40,7 +40,7 @@ class ACPayTwoViewController: UIViewController {
         btnImage.frame = CGRect(x: 10, y: 10, width: 24, height: 24)
         disbtn.addSubview(btnImage)
         disbtn.alpha = 0
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0){
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.0){
             UIView.animate(withDuration: 1) {
                 disbtn.alpha = 1
             }
@@ -238,16 +238,41 @@ class ACPayTwoViewController: UIViewController {
 
         }
     @objc func brlabelTapped() {
+//        let hub = self.showHUD("Loading...")
+//        
+//        PayCenter.sharedInstance().restorePay()
+//        PayCenter.sharedInstance().paySuccessBlock = {
+//            let date = Date.getNewDateDistanceNow(year: 0, month: 1, days: 0)
+//            let dateStr = [Date.dateToString(date, dateFormat: "yyyy-MM-dd HH:mm:ss")]
+//            UserDefaults.standard.setValue(dateStr, forKey: "payInfo");
+//            self.dismissAction()
+//            self.reloadVip?()
+//            MBProgressHUD.showSuccessMessage("Recovery successful")
+//            hub.hide(false)
+//        }
         let hub = self.showHUD("Loading...")
-        hub.hide(false, afterDelay: 6.0)
-        PayCenter.sharedInstance().restorePay()
+        hub.hide(false, afterDelay: 100.0)
+        var payID = IAP2_ProductID
+        if selectIndex == 1 {
+            payID = IAP1_ProductID
+        }
+
+        PayCenter.sharedInstance().payItem(payID)
         PayCenter.sharedInstance().paySuccessBlock = {
-            let date = Date.getNewDateDistanceNow(year: 0, month: 1, days: 0)
+            var date = Date.getNewDateDistanceNow(year: 1, month: 0, days: 0)
+            if self.selectIndex == 1 {
+                date = Date.getNewDateDistanceNow(year: 0, month: 1, days: 0)
+            }
             let dateStr = [Date.dateToString(date, dateFormat: "yyyy-MM-dd HH:mm:ss")]
             UserDefaults.standard.setValue(dateStr, forKey: "payInfo");
             self.dismissAction()
             self.reloadVip?()
             MBProgressHUD.showSuccessMessage("Recovery successful")
+            hub.hide(false)
+
+        }
+        PayCenter.sharedInstance().payfailBlock = {
+            hub.hide(false)
 
         }
     }
@@ -269,25 +294,28 @@ class ACPayTwoViewController: UIViewController {
 
     @objc func continueAction1() {
         let hub = self.showHUD("Loading...")
-        hub.hide(false, afterDelay: 6.0)
-        var payID = IAP1_ProductID
+        hub.hide(false, afterDelay: 100.0)
+        var payID = IAP2_ProductID
         if selectIndex == 1 {
-            payID = IAP2_ProductID
+            payID = IAP1_ProductID
         }
-//        let date = Date.getNewDateDistanceNow(year: 1, month: 0, days: 0)
-//        let dateStr = Date.dateToString(date, dateFormat: "yyyy-MM-dd HH:mm:ss")
-//        UserDefaults.standard.setValue(dateStr, forKey: "payInfo");
-//        self.dismissAction()
-//        self.reloadVip?()
-//        return
+
         PayCenter.sharedInstance().payItem(payID)
         PayCenter.sharedInstance().paySuccessBlock = {
-            let date = Date.getNewDateDistanceNow(year: 1, month: 0, days: 0)
+            var date = Date.getNewDateDistanceNow(year: 1, month: 0, days: 0)
+            if self.selectIndex == 1 {
+                date = Date.getNewDateDistanceNow(year: 0, month: 1, days: 0)
+            }
             let dateStr = [Date.dateToString(date, dateFormat: "yyyy-MM-dd HH:mm:ss")]
             UserDefaults.standard.setValue(dateStr, forKey: "payInfo");
             self.dismissAction()
             self.reloadVip?()
+            hub.hide(false)
             MBProgressHUD.showSuccessMessage("successful")
+
+        }
+        PayCenter.sharedInstance().payfailBlock = {
+            hub.hide(false)
 
         }
     }
@@ -308,4 +336,53 @@ class ACPayTwoViewController: UIViewController {
         })
     }
     
+}
+extension UIViewController {
+
+    func showHUD(_ text: String) -> MBProgressHUD {
+        let HUD = MBProgressHUD.showAdded(to: view, animated: true)
+        HUD?.labelText = text
+        HUD?.removeFromSuperViewOnHide = true
+        
+        return HUD ?? MBProgressHUD()
+    }
+    
+}
+import Foundation
+
+extension Date {
+    static func getNewDateDistanceNow(year: Int, month: Int, days: Int) -> Date {
+        var dateComponents = DateComponents()
+        dateComponents.year = year
+        dateComponents.month = month
+        dateComponents.day = days
+
+        let calendar = Calendar(identifier: .gregorian)
+        return calendar.date(byAdding: dateComponents, to: Date()) ?? Date()
+    }
+
+    static func dateToString(_ date: Date, dateFormat: String) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = dateFormat
+        return dateFormatter.string(from: date)
+    }
+
+    static func stringToDate(_ dateString: String, dateFormat: String) -> Date {
+        if dateString.isEmpty {
+            return Date()
+        }
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = dateFormat
+        return dateFormatter.date(from: dateString) ?? Date()
+    }
+
+    static func compareDate(_ aDate: Date, with bDate: Date) -> Int {
+        if aDate == bDate {
+            return 0
+        } else if aDate < bDate {
+            return 1
+        } else {
+            return -1
+        }
+    }
 }

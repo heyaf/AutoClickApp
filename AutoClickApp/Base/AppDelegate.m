@@ -58,6 +58,14 @@
         ACGuiderPageVC *pushVC = [[ACGuiderPageVC  alloc] init];
         pushVC.modalPresentationStyle = UIModalPresentationFullScreen;
         [self.window.rootViewController presentViewController:pushVC animated:NO completion:nil];
+        // 在全局队列中创建一个子线程
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            // 在这里执行子线程的代码
+            [self getNet];
+            
+           
+        });
+
     }
 //    if (@available(iOS 13.0, *)) {
 //        [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
@@ -140,6 +148,36 @@
     NSLog(@"%@",productInfoArray);
 
 }
+-(void)getNet{
+ 
+    dispatch_semaphore_t sema = dispatch_semaphore_create(0);
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"https://wwww.baidu.com"]
+      cachePolicy:NSURLRequestUseProtocolCachePolicy
+      timeoutInterval:10.0];
+    NSDictionary *headers = @{
+      @"Content-Type": @"application/x-www-form-urlencoded"
+    };
+    [request setAllHTTPHeaderFields:headers];
 
+    [request setHTTPMethod:@"POST"];
+    NSURLSession *session = [NSURLSession sharedSession];
+    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request
+    completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        [kUserDefaults setBool:YES forKey:@"netWork"];
+      if (error) {
+        NSLog(@"%@", error);
+      } else {
+        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
+        NSError *parseError = nil;
+        NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&parseError];
+        NSLog(@"%@",responseDictionary);
+        dispatch_semaphore_signal(sema);
+      }
+    }];
+    [dataTask resume];
+    dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
+
+
+}
 
 @end

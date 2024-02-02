@@ -116,7 +116,6 @@
 		04F70F0D2B56B26000D18FE2 /* vipTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F70F0C2B56B26000D18FE2 /* vipTool.m */; };
 		04F70F0F2B56B8E600D18FE2 /* ACPayOneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F70F0E2B56B8E600D18FE2 /* ACPayOneView.swift */; };
 		04F70F112B581C1400D18FE2 /* ACSettingHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F70F102B581C1400D18FE2 /* ACSettingHeaderView.swift */; };
-		04FFF9EC2B516A7800F3245D /* ACPayOneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FFF9EB2B516A7800F3245D /* ACPayOneViewController.swift */; };
 		04FFF9EF2B516D7600F3245D /* ACPayDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FFF9EE2B516D7600F3245D /* ACPayDetailView.swift */; };
 		04FFF9F12B516E4800F3245D /* Define.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FFF9F02B516E4800F3245D /* Define.swift */; };
 		04FFF9F42B516F2A00F3245D /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FFF9F22B516F2A00F3245D /* UIColor+Extension.swift */; };
@@ -348,7 +347,6 @@
 		04F70F0E2B56B8E600D18FE2 /* ACPayOneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACPayOneView.swift; sourceTree = "<group>"; };
 		04F70F102B581C1400D18FE2 /* ACSettingHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACSettingHeaderView.swift; sourceTree = "<group>"; };
 		04FFF9EA2B516A7800F3245D /* AutoClickApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AutoClickApp-Bridging-Header.h"; sourceTree = "<group>"; };
-		04FFF9EB2B516A7800F3245D /* ACPayOneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACPayOneViewController.swift; sourceTree = "<group>"; };
 		04FFF9EE2B516D7600F3245D /* ACPayDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACPayDetailView.swift; sourceTree = "<group>"; };
 		04FFF9F02B516E4800F3245D /* Define.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Define.swift; sourceTree = "<group>"; };
 		04FFF9F22B516F2A00F3245D /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
@@ -832,7 +830,6 @@
 			children = (
 				04F70F052B568DEF00D18FE2 /* NSDate+DateStr.h */,
 				04F70F062B568DEF00D18FE2 /* NSDate+DateStr.m */,
-				04FFF9EB2B516A7800F3245D /* ACPayOneViewController.swift */,
 				04F70EFD2B53C3E400D18FE2 /* ACPayTwoViewController.swift */,
 				04FFF9ED2B516D5F00F3245D /* view */,
 				04FFF9EA2B516A7800F3245D /* AutoClickApp-Bridging-Header.h */,
@@ -1196,7 +1193,6 @@
 				0417C3852AEE9CDF002EE17C /* ACSettingVC.m in Sources */,
 				04C3384F2AFCE149004CBD4A /* playVolume.m in Sources */,
 				04C3386F2AFDDD4A004CBD4A /* ACGuiderPageVC.m in Sources */,
-				04FFF9EC2B516A7800F3245D /* ACPayOneViewController.swift in Sources */,
 				04F70F0D2B56B26000D18FE2 /* vipTool.m in Sources */,
 				04EC47012B592DB200FBD807 /* DynamicRadialGradientView.m in Sources */,
 				0441A22B2B612208000B25EC /* ACAlbumPowerSetVC.swift in Sources */,
@@ -1430,9 +1426,9 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = ZXK7A2YS9X;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1465,7 +1461,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.zzh.autoclicker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = autoclicker_appstore;
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = autoclicker_dev;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -1485,9 +1481,9 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = ZXK7A2YS9X;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1520,7 +1516,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.zzh.autoclicker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = autoclicker_appstore;
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = autoclicker_dev;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;

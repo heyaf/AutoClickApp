@@ -95,7 +95,14 @@ return _sharedObject; \
     NSArray *product = response.products;
     if (product.count == 0) {
         //无法获取商品信息
-        [MBProgressHUD showErrorMessage:@"支付失败，无法获取商品信息"];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            // 在主线程上执行的代码
+            // 这里可以放置需要在主线程上执行的任务
+            [MBProgressHUD showErrorMessage:@"支付失败，无法获取商品信息"];
+            if (self.payfailBlock) {
+                self.payfailBlock();
+            }
+        });
 
     } else {
         //发起购买请求
@@ -111,11 +118,22 @@ return _sharedObject; \
 
 - (void)failedTransaction:(SKPaymentTransaction *)transaction {
     if(transaction.error.code != SKErrorPaymentCancelled) {
-        ///购买失败
-        [MBProgressHUD showErrorMessage:KLanguage(@"Failed purchase")];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            // 在主线程上执行的代码
+            ///购买失败
+            [MBProgressHUD showErrorMessage:KLanguage(@"Failed purchase")];
+
+        });
+
+
     } else {
-        //用户取消了交易
-        [MBProgressHUD showErrorMessage:KLanguage(@"Cancel purchase")];
+        dispatch_async(dispatch_get_main_queue(), ^{
+           
+            //用户取消了交易
+            [MBProgressHUD showErrorMessage:KLanguage(@"Cancel purchase")];
+
+        });
+
 
     }
     //将交易结束
@@ -131,6 +149,11 @@ return _sharedObject; \
     [[SKPaymentQueue defaultQueue] finishTransaction: transaction];
 }
 
+// StoreKit 代理方法 接收队列交易信息
+- (void)paymentQueueRestoreCompletedTransactionsFinished:(SKPaymentQueue *)queue
+{
+    
+}
 #pragma Mark 购买操作后的回调
 - (void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(nonnull NSArray<SKPaymentTransaction *> *)transactions {
 //    [MBProgressHUD hid];
@@ -144,44 +167,22 @@ return _sharedObject; \
                 if (self.paySuccessBlock) {
                     self.paySuccessBlock();
                 }
-//                //获取receiptStr
-//                NSURL *receiptUrl = [[NSBundle mainBundle] appStoreReceiptURL];
-//                NSData *receiptData = [NSData dataWithContentsOfURL:receiptUrl];//NSData 类型
-//                NSString *receiptStr = [receiptData base64EncodedStringWithOptions:0];//转成NSString类型
-//
-//                //模拟沙箱环境二次验证，正式开发中需要将数据提交给服务器端验证
-//                /* ------------------------------------Start------------------------------------ */
-//                NSDictionary *requestContents = @{@"receipt-data": receiptStr};
-//
-//                NSError *error;
-//                NSData *data = [NSJSONSerialization dataWithJSONObject:requestContents options:0 error:&error];
-//
-//                //沙箱验证地址：https://sandbox.itunes.apple.com/verifyReceipt
-//                //正式打包验证地址：https://buy.itunes.apple.com/verifyReceipt
-//                NSURL *receipt_url = [NSURL URLWithString:@"https://sandbox.itunes.apple.com/verifyReceipt"];
-//                
-//                NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:receipt_url];
-//                [request setHTTPMethod:@"POST"];
-//                [request setHTTPBody:data];
-//
-//                [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-//
-//                    if(!error){
-//
-//                        NSLog(@"%@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-//                        [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
-//                    }
-//                }];
-                /* ------------------------------------End------------------------------------ */
+
             }
                 break;
                 
             case SKPaymentTransactionStateFailed://交易失败
                 [self failedTransaction:transaction];
+                if (self.payfailBlock) {
+                    self.payfailBlock();
+                }
                 break;
                 
             case SKPaymentTransactionStateRestored://已经购买过该商品
                 [self restoreTransaction:transaction];
+                if (self.payfailBlock) {
+                    self.payfailBlock();
+                }
                 break;
             default:
                 break;

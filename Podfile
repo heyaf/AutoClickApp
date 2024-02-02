@@ -18,6 +18,7 @@ target 'AutoClickApp' do
   pod 'MBProgressHUD+JDragon'
   pod 'FLAnimatedImage'
   #pod 'TesseractOCRiOS', '4.0.0'
+  pod 'XYIAPKit'
   target 'AutoClickAppTests' do
     inherit! :search_paths
     # Pods for testing

@@ -147,7 +147,7 @@
 -(UICollectionView *)collectionV{
     if(!_collectionV){
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-        CGFloat itemW = (kScreenW-10*4)/3;
+        CGFloat itemW = (kScreenW-10*4)/3-1;
         layout.itemSize = CGSizeMake(itemW, itemW);
         
         layout.minimumLineSpacing = 10;
