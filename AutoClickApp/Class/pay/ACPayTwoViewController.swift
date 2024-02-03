@@ -8,7 +8,7 @@
 import UIKit
 import MBProgressHUD
 import FLAnimatedImage
-
+import XYIAPKit
 class ACPayTwoViewController: UIViewController {
     
     var selectIndex = 0
@@ -230,35 +230,34 @@ class ACPayTwoViewController: UIViewController {
     }
     @objc func bclabelTapped() {
         openUrl("https://fair-chalk-fc5.notion.site/Term-of-use-b7afe95e11e54b93be6b1fe349ad0214?pvs=4")
-
-
-        }
+        
+        
+    }
     @objc func bllabelTapped() {
         openUrl("https://fair-chalk-fc5.notion.site/Privacy-Policy-63a04c8f370449c09b61fadb28d5dbea?pvs=4")
-
-        }
+        
+    }
     @objc func brlabelTapped() {
-//        let hub = self.showHUD("Loading...")
-//        
-//        PayCenter.sharedInstance().restorePay()
-//        PayCenter.sharedInstance().paySuccessBlock = {
-//            let date = Date.getNewDateDistanceNow(year: 0, month: 1, days: 0)
-//            let dateStr = [Date.dateToString(date, dateFormat: "yyyy-MM-dd HH:mm:ss")]
-//            UserDefaults.standard.setValue(dateStr, forKey: "payInfo");
-//            self.dismissAction()
-//            self.reloadVip?()
-//            MBProgressHUD.showSuccessMessage("Recovery successful")
-//            hub.hide(false)
-//        }
+        //        let hub = self.showHUD("Loading...")
+        //
+        //        PayCenter.sharedInstance().restorePay()
+        //        PayCenter.sharedInstance().paySuccessBlock = {
+        //            let date = Date.getNewDateDistanceNow(year: 0, month: 1, days: 0)
+        //            let dateStr = [Date.dateToString(date, dateFormat: "yyyy-MM-dd HH:mm:ss")]
+        //            UserDefaults.standard.setValue(dateStr, forKey: "payInfo");
+        //            self.dismissAction()
+        //            self.reloadVip?()
+        //            MBProgressHUD.showSuccessMessage("Recovery successful")
+        //            hub.hide(false)
+        //        }
         let hub = self.showHUD("Loading...")
         hub.hide(false, afterDelay: 100.0)
         var payID = IAP2_ProductID
         if selectIndex == 1 {
             payID = IAP1_ProductID
         }
-
-        PayCenter.sharedInstance().payItem(payID)
-        PayCenter.sharedInstance().paySuccessBlock = {
+        
+        XYStore.default().addPayment(payID) { _ in
             var date = Date.getNewDateDistanceNow(year: 1, month: 0, days: 0)
             if self.selectIndex == 1 {
                 date = Date.getNewDateDistanceNow(year: 0, month: 1, days: 0)
@@ -269,12 +268,16 @@ class ACPayTwoViewController: UIViewController {
             self.reloadVip?()
             MBProgressHUD.showSuccessMessage("Recovery successful")
             hub.hide(false)
-
-        }
-        PayCenter.sharedInstance().payfailBlock = {
+        } failure: { transaction,_  in
             hub.hide(false)
-
+            if let error = transaction?.error as NSError?, error.code == SKError.paymentCancelled.rawValue {
+                // 处理支付被取消的情况
+                MBProgressHUD.showErrorMessage(KLanguage(key:"Cancel purchase"))
+            }else{
+                MBProgressHUD.showErrorMessage(KLanguage(key:"Recovery failed"))
+            }
         }
+        
     }
     @objc func continueAction(_ btn : UIButton) {
         UIView.animate(withDuration: 0.2, animations: {
@@ -291,7 +294,7 @@ class ACPayTwoViewController: UIViewController {
             }
         }
     }
-
+    
     @objc func continueAction1() {
         let hub = self.showHUD("Loading...")
         hub.hide(false, afterDelay: 100.0)
@@ -299,9 +302,7 @@ class ACPayTwoViewController: UIViewController {
         if selectIndex == 1 {
             payID = IAP1_ProductID
         }
-
-        PayCenter.sharedInstance().payItem(payID)
-        PayCenter.sharedInstance().paySuccessBlock = {
+        XYStore.default().addPayment(payID) { _ in
             var date = Date.getNewDateDistanceNow(year: 1, month: 0, days: 0)
             if self.selectIndex == 1 {
                 date = Date.getNewDateDistanceNow(year: 0, month: 1, days: 0)
@@ -312,12 +313,25 @@ class ACPayTwoViewController: UIViewController {
             self.reloadVip?()
             hub.hide(false)
             MBProgressHUD.showSuccessMessage("successful")
-
-        }
-        PayCenter.sharedInstance().payfailBlock = {
+        } failure: { transaction,_  in
             hub.hide(false)
-
+            if let error = transaction?.error as NSError?, error.code == SKError.paymentCancelled.rawValue {
+                // 处理支付被取消的情况
+                MBProgressHUD.showErrorMessage(KLanguage(key:"Cancel purchase"))
+            }else{
+                MBProgressHUD.showErrorMessage(KLanguage(key:"Failed purchase"))
+            }
         }
+        
+        //        PayCenter.sharedInstance().payItem(payID)
+        //        PayCenter.sharedInstance().paySuccessBlock = {
+        
+        //
+        //        }
+        //        PayCenter.sharedInstance().payfailBlock = {
+        //
+        //
+        //        }
     }
     func openUrl(_ urlStr: String) {
         guard let url = URL(string: urlStr) else {
@@ -338,7 +352,7 @@ class ACPayTwoViewController: UIViewController {
     
 }
 extension UIViewController {
-
+    
     func showHUD(_ text: String) -> MBProgressHUD {
         let HUD = MBProgressHUD.showAdded(to: view, animated: true)
         HUD?.labelText = text
@@ -356,17 +370,17 @@ extension Date {
         dateComponents.year = year
         dateComponents.month = month
         dateComponents.day = days
-
+        
         let calendar = Calendar(identifier: .gregorian)
         return calendar.date(byAdding: dateComponents, to: Date()) ?? Date()
     }
-
+    
     static func dateToString(_ date: Date, dateFormat: String) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = dateFormat
         return dateFormatter.string(from: date)
     }
-
+    
     static func stringToDate(_ dateString: String, dateFormat: String) -> Date {
         if dateString.isEmpty {
             return Date()
@@ -375,7 +389,7 @@ extension Date {
         dateFormatter.dateFormat = dateFormat
         return dateFormatter.date(from: dateString) ?? Date()
     }
-
+    
     static func compareDate(_ aDate: Date, with bDate: Date) -> Int {
         if aDate == bDate {
             return 0

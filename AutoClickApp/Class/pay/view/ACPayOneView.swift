@@ -8,27 +8,38 @@
 import UIKit
 import MBProgressHUD
 import FLAnimatedImage
+import XYIAPKit
 
 class ACPayOneView: UIView {
-
+    
     @objc var disMissBack : (()->())?
     var dismissBtn = UIButton()
     var continueBtn = UIButton()
-
+    var labelPro2 = UILabel()
     var clickedPay = false
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = UIColor.black
         setUI()
         
-    
+        
     }
-    
+    @objc func reloadPrice(){
+        let str = KLanguage(key: "Go Premium for $8.99/mo")
+        var str1 = str.replacingOccurrences(of: "**", with: "￥58.00")
+        let productInfoDefaults = UserDefaults.standard
+        if let arrdata = productInfoDefaults.object(forKey: "productInfoDefaultsKey") as? [[String : String]] , arrdata.count == 2{
+            // 使用 arr，它是一个 [Any] 类型的数组
+            let dic = arrdata[0]
+            str1 = str.replacingOccurrences(of: "**", with: (dic["finalPrice"] ?? "8.99"))
+        }
+        labelPro2.text = str1
+    }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     func setUI(){
-    
+        
         let bgImageV = UIImageView("pay_bg")
         addSubview(bgImageV)
         bgImageV.contentMode = .scaleAspectFill
@@ -46,15 +57,15 @@ class ACPayOneView: UIView {
         btnImage.frame = CGRect(x: 10, y: 10, width: 24, height: 24)
         disbtn.addSubview(btnImage)
         disbtn.alpha = 0
-       dismissBtn = disbtn
+        dismissBtn = disbtn
         
         var topHeight = bmStatusBarHeight() + 220
         var bottomHeight = 140
-
+        
         if isX == false {
             topHeight = bmStatusBarHeight() + 200
             bottomHeight = 72
-
+            
         }
         let labelPro = UILabel(frame: CGRect(x: 20, y: topHeight, width: 47, height: 25))
         labelPro.textAlignment = .center
@@ -81,7 +92,7 @@ class ACPayOneView: UIView {
             range: NSRange(location: 0, length: text.count)
         )
         bClabel.attributedText = underlineAttriString
-
+        
         // 添加点击手势
         bClabel.isUserInteractionEnabled = true
         let labelTapGesture = UITapGestureRecognizer(target: self, action: #selector(bclabelTapped))
@@ -102,7 +113,7 @@ class ACPayOneView: UIView {
             range: NSRange(location: 0, length: text1.count)
         )
         bClabel1.attributedText = underlineAttriString1
-
+        
         // 添加点击手势
         bClabel1.isUserInteractionEnabled = true
         let labelTapGesture1 = UITapGestureRecognizer(target: self, action: #selector(bllabelTapped))
@@ -124,7 +135,7 @@ class ACPayOneView: UIView {
             range: NSRange(location: 0, length: text2.count)
         )
         bClabel2.attributedText = underlineAttriString2
-
+        
         // 添加点击手势
         bClabel2.isUserInteractionEnabled = true
         let labelTapGesture2 = UITapGestureRecognizer(target: self, action: #selector(brlabelTapped))
@@ -159,7 +170,7 @@ class ACPayOneView: UIView {
             make.right.equalTo(bClabel.snp.left)
             make.height.equalTo(14)
             make.width.equalTo(10)
-
+            
         }
         
         let r = UILabel()
@@ -173,7 +184,7 @@ class ACPayOneView: UIView {
             make.left.equalTo(bClabel.snp.right)
             make.height.equalTo(14)
             make.width.equalTo(10)
-
+            
         }
         
         let continuebtn = UIButton(type: .custom)
@@ -209,13 +220,14 @@ class ACPayOneView: UIView {
         labelPro1.font = .pingFangRegular(12)
         labelPro1.textColor = RGBA(r: 255, g: 255, b: 255, a: 0.9)
         let str = KLanguage(key: "Go Premium for $8.99/mo")
-        var str1 = str.replacingOccurrences(of: "**", with: "$8.99")
+        var str1 = str.replacingOccurrences(of: "**", with: "￥58.00")
         let productInfoDefaults = UserDefaults.standard
         if let arrdata = productInfoDefaults.object(forKey: "productInfoDefaultsKey") as? [[String : String]] , arrdata.count == 2{
             // 使用 arr，它是一个 [Any] 类型的数组
             let dic = arrdata[0]
             str1 = str.replacingOccurrences(of: "**", with: (dic["finalPrice"] ?? "8.99"))
         }
+        labelPro2 = labelPro1
         continueBtn = continuebtn
         continuebtn.alpha = 0
         labelPro1.text = str1
@@ -230,19 +242,19 @@ class ACPayOneView: UIView {
     @objc func bclabelTapped() {
         clickedPay = false
         openUrl("https://fair-chalk-fc5.notion.site/Term-of-use-b7afe95e11e54b93be6b1fe349ad0214?pvs=4")
-
-
-        }
+        
+        
+    }
     @objc func bllabelTapped() {
         clickedPay = false
         openUrl("https://fair-chalk-fc5.notion.site/Privacy-Policy-63a04c8f370449c09b61fadb28d5dbea?pvs=4")
-
-        }
-
+        
+    }
+    
     @objc func diMissTapped() {
         if clickedPay {
             NotificationCenter.default.post(name:NSNotification.Name("ACShowPay"), object: nil)
-
+            
             clickedPay = false
         }
         disMissBack?()
@@ -259,22 +271,26 @@ class ACPayOneView: UIView {
     @objc func brlabelTapped() {
         clickedPay = false
         let hub = self.showHUD("Loading...")
-        PayCenter.sharedInstance().payItem(IAP1_ProductID)
-        PayCenter.sharedInstance().paySuccessBlock = {
+        
+        XYStore.default().addPayment(IAP1_ProductID) { _ in
             let date = Date.getNewDateDistanceNow(year: 0, month: 1, days: 0)
             let dateStr = [Date.dateToString(date, dateFormat: "yyyy-MM-dd HH:mm:ss")]
             UserDefaults.standard.setValue(dateStr, forKey: "payInfo");
             self.clickedPay = false
             self.disMissBack?()
-            MBProgressHUD.showSuccessMessage("Recovery successful")
+            MBProgressHUD.showSuccessMessage(KLanguage(key: "Recovery successful"))
             hub.hide(false)
-
-        }
-        PayCenter.sharedInstance().payfailBlock = {
+        } failure: { transaction,_  in
             hub.hide(false)
-
+            if let error = transaction?.error as NSError?, error.code == SKError.paymentCancelled.rawValue {
+                // 处理支付被取消的情况
+                MBProgressHUD.showErrorMessage(KLanguage(key:"Cancel purchase"))
+            }else{
+                MBProgressHUD.showErrorMessage(KLanguage(key:"Recovery failed"))
+            }
+  
         }
-        }
+    }
     @objc func continueAction(_ btn : UIButton) {
         UIView.animate(withDuration: 0.2, animations: {
             btn.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
@@ -285,26 +301,43 @@ class ACPayOneView: UIView {
                 UIView.animate(withDuration: 0.1, animations: {
                     btn.transform = CGAffineTransform.identity
                 }) { (finished) in
-//                    MBProgressHUD.showInfoMessage("Loading...")
+                    //                    MBProgressHUD.showInfoMessage("Loading...")
                     let hub = self.showHUD("Loading...")
-                    PayCenter.sharedInstance().payItem(IAP1_ProductID)
-                    PayCenter.sharedInstance().paySuccessBlock = {
+                    
+                    XYStore.default().addPayment(IAP1_ProductID) { _ in
                         let date = Date.getNewDateDistanceNow(year: 0, month: 1, days: 0)
                         let dateStr = [Date.dateToString(date, dateFormat: "yyyy-MM-dd HH:mm:ss")]
                         UserDefaults.standard.setValue(dateStr, forKey: "payInfo");
                         self.disMissBack?()
                         MBProgressHUD.showSuccessMessage("successful")
                         hub.hide(false)
-
-                    }
-                    PayCenter.sharedInstance().payfailBlock = {
+                    } failure: {transaction,_  in
                         hub.hide(false)
-
+                        if let error = transaction?.error as NSError?, error.code == SKError.paymentCancelled.rawValue {
+                            // 处理支付被取消的情况
+                            MBProgressHUD.showErrorMessage(KLanguage(key:"Cancel purchase"))
+                        }else{
+                            MBProgressHUD.showErrorMessage(KLanguage(key:"Failed purchase"))
+                        }
                     }
+                    //                    PayCenter.sharedInstance().payItem(IAP1_ProductID)
+                    //                    PayCenter.sharedInstance().paySuccessBlock = {
+                    //                        let date = Date.getNewDateDistanceNow(year: 0, month: 1, days: 0)
+                    //                        let dateStr = [Date.dateToString(date, dateFormat: "yyyy-MM-dd HH:mm:ss")]
+                    //                        UserDefaults.standard.setValue(dateStr, forKey: "payInfo");
+                    //                        self.disMissBack?()
+                    //                        MBProgressHUD.showSuccessMessage("successful")
+                    //                        hub.hide(false)
+                    //
+                    //                    }
+                    //                    PayCenter.sharedInstance().payfailBlock = {
+                    //                        hub.hide(false)
+                    //
+                    //                    }
                 }
             }
         }
-
+        
         
         
     }
@@ -313,21 +346,21 @@ class ACPayOneView: UIView {
             print("无法创建URL")
             return
         }
-
+        
         let application = UIApplication.shared
         if !application.canOpenURL(url) {
             print("无法打开\"\(url)\", 请确保此应用已经正确安装.")
             return
         }
-
+        
         application.open(url, options: [:], completionHandler: { success in
             // 这里可以处理URL打开之后的回调
         })
     }
-
+    
 }
 extension UIView {
-
+    
     func showHUD(_ text: String) -> MBProgressHUD {
         let HUD = MBProgressHUD.showAdded(to: self, animated: true)
         HUD?.labelText = text

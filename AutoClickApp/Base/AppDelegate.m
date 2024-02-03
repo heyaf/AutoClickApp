@@ -65,6 +65,10 @@
             
            
         });
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self payDetail];
+
+        });
 
     }
 //    if (@available(iOS 13.0, *)) {
@@ -79,6 +83,7 @@
         [SKStoreReviewController requestReview];
         self.hasShowStar = true;
     }
+    
     [self payDetail];
 
     return YES;
@@ -86,7 +91,7 @@
 -(void)payDetail{
     NSArray * productArray = [[NSArray alloc] initWithObjects:IAP1_ProductID,IAP2_ProductID, nil];
 
-        [self validateProductIdentifiers:productArray];//根据商品id获取商品详情信息,数组参数
+    [self validateProductIdentifiers:productArray];//根据商品id获取商品详情信息,数组参数
     
 }
 // 自定义方法
@@ -138,10 +143,16 @@
         [productInfoArray addObject:dicInfo];
 
     }
+    // 创建一个排序描述符，按照 "productIdentifier" 进行排序
+    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"productIdentifier" ascending:YES];
 
+    // 使用排序描述符对数组进行排序
+    NSArray *sortedArray = [productInfoArray sortedArrayUsingDescriptors:@[sortDescriptor]];
+
+    
     NSUserDefaults * productInfoDefaults = [NSUserDefaults standardUserDefaults];
 
-    [productInfoDefaults setObject:productInfoArray forKey:@"productInfoDefaultsKey"];
+    [productInfoDefaults setObject:sortedArray forKey:@"productInfoDefaultsKey"];
 
     [productInfoDefaults synchronize];
 

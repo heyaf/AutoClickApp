@@ -84,6 +84,7 @@
     }else if (indexPath.row==5){
         [[NSUserDefaults standardUserDefaults] setObject:@"zh-HK" forKey:@"appLanguage"];
     }
+    [kUserDefaults setBool:true forKey:@"changL"];
     ACTabViewController *tabBarVC = [[ACTabViewController alloc] init];
     self.view.window.rootViewController = tabBarVC;
     

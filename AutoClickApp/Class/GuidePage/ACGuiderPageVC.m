@@ -7,6 +7,7 @@
 
 #import "ACGuiderPageVC.h"
 #import <Lottie/Lottie.h>
+#import "AppDelegate.h"
 @interface ACGuiderPageVC ()<UIScrollViewDelegate>
 @property (nonatomic, strong) UIScrollView *scrollview;
 @property (nonatomic, strong) UIButton *pageBtn;
@@ -116,6 +117,7 @@
     
 }
 -(void)skipAction{
+    [kAppDelegate payDetail];
     //[playVolume playMusic];
     [kUserDefaults setBool:false forKey:@"showVip"];
 
@@ -144,6 +146,7 @@
 
     __weak typeof(self) weakSelf = self;
     self.index ++ ;
+    [self.oneV reloadPrice];
     if(self.index>0){
         [self.animation stop];
         [self.animation1 play];

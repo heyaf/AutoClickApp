@@ -276,7 +276,7 @@
         _imageView = [[UIImageView alloc] initWithFrame:CGRectMake((self.clipMaskView.frame.size.width - tempSize.width) / 2, (self.clipMaskView.frame.size.height - tempSize.height) / 2, tempSize.width, tempSize.height)];
         CGRect recta = _imageView.frame;
         CGFloat height = self.bgView.height;
-        _imageView.contentMode = UIViewContentModeScaleAspectFill;
+        _imageView.contentMode = UIViewContentModeScaleAspectFit;
         _imageView.image = self.originalImage;
     }
     return _imageView;

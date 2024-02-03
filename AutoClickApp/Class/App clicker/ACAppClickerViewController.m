@@ -11,6 +11,7 @@
 #import "ACSettingVC.h"
 #import "ACAppClickUserView.h"
 #import "PayCenter.h"
+#import <XYIAPKit.h>
 
 @interface ACAppClickerViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (nonatomic, strong) UICollectionView *collectionV;
@@ -35,13 +36,20 @@
     self.userView = [[ACAppClickUserView alloc] initWithFrame:CGRectMake(0, 0, kScreenW, kScreenH - kNavBarHeight - kTabBarHeight)];
     __weak typeof(self) weakSelf = self;
     self.userView.clickedBlock = ^{
-        [[PayCenter sharedInstance] payItem:@"autoclicker_onapp"];
-        [PayCenter sharedInstance].paySuccessBlock = ^{
+        [MBProgressHUD showTipMessageInView:@"loading..." timer:100];
+        [[XYStore defaultStore] addPayment:@"autoclicker_onapp"
+                                   success:^(SKPaymentTransaction *transaction)
+        {
             [kUserDefaults setBool:true forKey:@"PayVideo"];
             weakSelf.userView.hidden = true;
+            [MBProgressHUD hideHUD];
             //用户取消了交易
             [MBProgressHUD showSuccessMessage:@"Success"];
-        };
+            
+        } failure:^(SKPaymentTransaction *transaction, NSError *error) {
+            [MBProgressHUD hideHUD];
+        }];
+       
     };
     [self.view addSubview:self.userView];
 }

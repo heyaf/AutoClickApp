@@ -90,6 +90,12 @@
     BOOL firstLoad = [kUserDefaults boolForKey:@"showVip"];
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        BOOL changL = [kUserDefaults boolForKey:@"changL"];
+        if (changL) {
+            return;
+            [kUserDefaults setBool:false forKey:@"changL"];
+
+        }
         //不是VIP用户，不是第一次启动
         if (!self.showPay && firstLoad && ![vipTool isVip]) {
             [self vipBtnAction];

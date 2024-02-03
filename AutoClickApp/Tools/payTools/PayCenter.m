@@ -156,14 +156,28 @@ return _sharedObject; \
 }
 #pragma Mark 购买操作后的回调
 - (void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(nonnull NSArray<SKPaymentTransaction *> *)transactions {
-//    [MBProgressHUD hid];
+    NSLog(@"--------%@",transactions);
+    bool ispayed = true;
+    for (SKPaymentTransaction *transaction in transactions) {
+        if (transaction.transactionState != SKPaymentTransactionStatePurchased) {
+            ispayed = false;
+        }
+    }
+
+    if (ispayed && transactions.count > 1) {
+        return;
+    }
     for (SKPaymentTransaction *transaction in transactions) {
         switch (transaction.transactionState) {
             case SKPaymentTransactionStatePurchasing://正在交易
+                NSLog(@"正在交易");
                 break;
                 
             case SKPaymentTransactionStatePurchased://交易完成
             {
+                NSLog(@"交易完成");
+                [[SKPaymentQueue defaultQueue] finishTransaction: transaction];
+
                 if (self.paySuccessBlock) {
                     self.paySuccessBlock();
                 }
@@ -173,6 +187,8 @@ return _sharedObject; \
                 
             case SKPaymentTransactionStateFailed://交易失败
                 [self failedTransaction:transaction];
+                NSLog(@"交易失败");
+
                 if (self.payfailBlock) {
                     self.payfailBlock();
                 }
@@ -180,6 +196,8 @@ return _sharedObject; \
                 
             case SKPaymentTransactionStateRestored://已经购买过该商品
                 [self restoreTransaction:transaction];
+                NSLog(@"已经购买过");
+
                 if (self.payfailBlock) {
                     self.payfailBlock();
                 }
