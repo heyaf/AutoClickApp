@@ -10,8 +10,9 @@
 #import <IQKeyboardManager/IQKeyboardManager.h>
 #import "ACGuiderPageVC.h"
 #import <StoreKit/StoreKit.h>
+#import <XYStoreiTunesReceiptVerifier.h>
 
-@interface AppDelegate ()<SKProductsRequestDelegate>
+@interface AppDelegate ()<SKProductsRequestDelegate,SKPaymentTransactionObserver>
 
 @end
 
@@ -24,7 +25,9 @@
     manager.shouldResignOnTouchOutside = YES;
     manager.shouldToolbarUsesTextFieldTintColor = YES;
     manager.enableAutoToolbar = NO;
-    
+    [self checkUserPayment];
+    [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
+
     //设置默认语言
     if (![[NSUserDefaults standardUserDefaults]objectForKey:@"appLanguage"]) {
             //获得当前语言
@@ -93,6 +96,28 @@
 
     [self validateProductIdentifiers:productArray];//根据商品id获取商品详情信息,数组参数
     
+}
+//检查用户是否是VIP
+-(void)checkUserPayment{
+   BOOL isVaildPayment1 = [[XYStoreiTunesReceiptVerifier shareInstance] isSubscribedWithAutoRenewProduct:IAP1_ProductID];
+    BOOL isVaildPayment2 = [[XYStoreiTunesReceiptVerifier shareInstance] isSubscribedWithAutoRenewProduct:IAP2_ProductID];
+    vipToolS *vipsettool = [[vipToolS alloc] init];
+    BOOL isvip = [vipTool isVip];
+    if(!isVaildPayment1&&!isVaildPayment2){
+        if (isvip) {
+            [vipsettool clearVip];
+        }
+    }else{
+        if (!isvip) {
+            if (isVaildPayment2) {
+                [vipsettool setVipWithType:2];
+            }else{
+                [vipsettool setVipWithType:1];
+
+            }
+        }
+    }
+
 }
 // 自定义方法
 
@@ -190,5 +215,60 @@
 
 
 }
+
+// 实现交易观察者方法
+- (void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray<SKPaymentTransaction *> *)transactions {
+    for (SKPaymentTransaction *transaction in transactions) {
+        switch (transaction.transactionState) {
+            case SKPaymentTransactionStatePurchased:
+                // 处理购买成功的情况
+                break;
+
+            case SKPaymentTransactionStateRestored:
+                // 处理已经购买过的情况
+                break;
+            case SKPaymentTransactionStateDeferred:
+                // 处理交易暂时无法确认的情况（通常在家庭共享设置中）
+                break;
+            case SKPaymentTransactionStatePurchasing:
+                // 交易进行中
+                break;
+            case SKPaymentTransactionStateFailed:
+                            // 处理订阅被取消的情况
+                        [self handlePurchaseFailure:transaction];
+                        break;
+            default:
+                break;
+        }
+    }
+}
+// 处理购买失败的情况
+- (void)handlePurchaseFailure:(SKPaymentTransaction *)transaction {
+//    if (transaction.error.code == SKErrorPaymentCancelled) {
+//        // 用户在支付过程中取消了付款
+//        [self handleCancelledPayment:transaction];
+//    } else {
+//        // 其他购买失败的情况
+//        [self handleOtherPurchaseFailure:transaction];
+//    }
+}
+
+// 处理用户在支付过程中取消了付款
+- (void)handleCancelledPayment:(SKPaymentTransaction *)transaction {
+    NSLog(@"用户取消了付款");
+    // 在这里执行用户取消支付时的处理逻辑
+    // 完成交易
+    [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
+}
+
+// 处理其他购买失败的情况
+- (void)handleOtherPurchaseFailure:(SKPaymentTransaction *)transaction {
+    NSLog(@"其他购买失败情况");
+    // 在这里执行其他购买失败时的处理逻辑
+    // 完成交易
+    [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
+}
+
+
 
 @end

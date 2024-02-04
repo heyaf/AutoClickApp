@@ -66,6 +66,7 @@
 		049104CF2B037F9F009EB8AD /* UIView+hite.m in Sources */ = {isa = PBXBuildFile; fileRef = 049104CE2B037F9F009EB8AD /* UIView+hite.m */; };
 		049104D22B0391D7009EB8AD /* MLHitTestHackView.m in Sources */ = {isa = PBXBuildFile; fileRef = 049104D12B0391D7009EB8AD /* MLHitTestHackView.m */; };
 		04A5C84F2B09C1000085D5A8 /* UIImage+colorImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A5C84E2B09C1000085D5A8 /* UIImage+colorImage.m */; };
+		04B772252B6FC4AF00F841B5 /* vipToolS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B772242B6FC4AF00F841B5 /* vipToolS.swift */; };
 		04C338252AFB64ED004CBD4A /* ACDocumentScanItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C338232AFB64ED004CBD4A /* ACDocumentScanItem.m */; };
 		04C338262AFB64ED004CBD4A /* ACDocumentScanItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04C338242AFB64ED004CBD4A /* ACDocumentScanItem.xib */; };
 		04C338292AFB6AEA004CBD4A /* ACDocumentScanDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C338282AFB6AEA004CBD4A /* ACDocumentScanDetailVC.m */; };
@@ -257,6 +258,7 @@
 		049104D12B0391D7009EB8AD /* MLHitTestHackView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MLHitTestHackView.m; sourceTree = "<group>"; };
 		04A5C84D2B09C1000085D5A8 /* UIImage+colorImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+colorImage.h"; sourceTree = "<group>"; };
 		04A5C84E2B09C1000085D5A8 /* UIImage+colorImage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+colorImage.m"; sourceTree = "<group>"; };
+		04B772242B6FC4AF00F841B5 /* vipToolS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = vipToolS.swift; sourceTree = "<group>"; };
 		04C338222AFB64ED004CBD4A /* ACDocumentScanItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ACDocumentScanItem.h; sourceTree = "<group>"; };
 		04C338232AFB64ED004CBD4A /* ACDocumentScanItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ACDocumentScanItem.m; sourceTree = "<group>"; };
 		04C338242AFB64ED004CBD4A /* ACDocumentScanItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ACDocumentScanItem.xib; sourceTree = "<group>"; };
@@ -839,6 +841,7 @@
 				04FFF9F32B516F2A00F3245D /* UIView+Extension.swift */,
 				04F70F0B2B56B26000D18FE2 /* vipTool.h */,
 				04F70F0C2B56B26000D18FE2 /* vipTool.m */,
+				04B772242B6FC4AF00F841B5 /* vipToolS.swift */,
 			);
 			path = pay;
 			sourceTree = "<group>";
@@ -1193,6 +1196,7 @@
 				0417C3852AEE9CDF002EE17C /* ACSettingVC.m in Sources */,
 				04C3384F2AFCE149004CBD4A /* playVolume.m in Sources */,
 				04C3386F2AFDDD4A004CBD4A /* ACGuiderPageVC.m in Sources */,
+				04B772252B6FC4AF00F841B5 /* vipToolS.swift in Sources */,
 				04F70F0D2B56B26000D18FE2 /* vipTool.m in Sources */,
 				04EC47012B592DB200FBD807 /* DynamicRadialGradientView.m in Sources */,
 				0441A22B2B612208000B25EC /* ACAlbumPowerSetVC.swift in Sources */,
@@ -1428,7 +1432,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = ZXK7A2YS9X;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1483,7 +1487,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = ZXK7A2YS9X;
 				FRAMEWORK_SEARCH_PATHS = (

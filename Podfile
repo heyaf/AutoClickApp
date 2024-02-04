@@ -19,6 +19,7 @@ target 'AutoClickApp' do
   pod 'FLAnimatedImage'
   #pod 'TesseractOCRiOS', '4.0.0'
   pod 'XYIAPKit'
+  pod 'XYIAPKit/iTunesReceiptVerify'
   target 'AutoClickAppTests' do
     inherit! :search_paths
     # Pods for testing
