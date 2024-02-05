@@ -250,7 +250,7 @@ class ACPayTwoViewController: UIViewController {
         //            MBProgressHUD.showSuccessMessage("Recovery successful")
         //            hub.hide(false)
         //        }
-        let hub = self.showHUD("Loading...")
+        let hub = self.showHUD(KLanguage(key: "Loading..."))
         hub.hide(false, afterDelay: 100.0)
         var payID = IAP2_ProductID
         if selectIndex == 1 {
@@ -296,7 +296,7 @@ class ACPayTwoViewController: UIViewController {
     }
     
     @objc func continueAction1() {
-        let hub = self.showHUD("Loading...")
+        let hub = self.showHUD(KLanguage(key: "Loading..."))
         hub.hide(false, afterDelay: 100.0)
         var payID = IAP2_ProductID
         if selectIndex == 1 {
@@ -312,7 +312,7 @@ class ACPayTwoViewController: UIViewController {
             self.dismissAction()
             self.reloadVip?()
             hub.hide(false)
-            MBProgressHUD.showSuccessMessage("successful")
+            MBProgressHUD.showSuccessMessage(KLanguage(key: "Purchase successful"))
         } failure: { transaction,_  in
             hub.hide(false)
             if let error = transaction?.error as NSError?, error.code == SKError.paymentCancelled.rawValue {

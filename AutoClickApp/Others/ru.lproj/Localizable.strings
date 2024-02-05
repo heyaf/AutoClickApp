@@ -252,3 +252,5 @@
 "Failed purchase" = "Покупка не удалась";
 "Recovery successful" = "Восстановление успешно";
 "Recovery failed" = "Восстановление не удалось";
+"Purchase successful" = "Покупка успешно завершена";
+"Loading..." = "Загрузка...";

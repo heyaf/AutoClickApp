@@ -36,7 +36,7 @@
     self.userView = [[ACAppClickUserView alloc] initWithFrame:CGRectMake(0, 0, kScreenW, kScreenH - kNavBarHeight - kTabBarHeight)];
     __weak typeof(self) weakSelf = self;
     self.userView.clickedBlock = ^{
-        [MBProgressHUD showTipMessageInView:@"loading..." timer:100];
+        [MBProgressHUD showTipMessageInView:KLanguage(@"Loading...") timer:100];
         [[XYStore defaultStore] addPayment:@"autoclicker_onapp"
                                    success:^(SKPaymentTransaction *transaction)
         {

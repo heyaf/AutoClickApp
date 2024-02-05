@@ -245,3 +245,5 @@
 "Failed purchase" = "購入に失敗した";
 "Recovery successful" = "回復に成功";
 "Recovery failed" = "回復に失敗";
+"Purchase successful" = "購入が成功しました";
+"Loading..." = "読み込み中...";

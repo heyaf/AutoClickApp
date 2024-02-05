@@ -245,3 +245,5 @@
 "Failed purchase" = "购买失败";
 "Recovery successful" = "恢复成功";
 "Recovery failed" = "恢复失败";
+"Purchase successful" = "购买成功";
+"Loading..." = "加载中...";

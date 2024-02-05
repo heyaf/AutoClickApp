@@ -25,6 +25,8 @@
 
 @property (nonatomic, strong) UILabel *skipL;
 
+@property (nonatomic, assign) BOOL isButtonEnabled;
+
 
 @end
 
@@ -34,7 +36,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
+    self.isButtonEnabled = YES;
     self.view.backgroundColor = UIColor.mainBlackColor;
     [self.view addSubview:self.scrollview];
     
@@ -90,7 +92,7 @@
     kViewRadius(btn, 28);
     [self.view addSubview:btn];
     self.pageBtn = btn;
-    [btn addTarget:self action:@selector(guiderClicker) forControlEvents:UIControlEventTouchUpInside];
+    [btn addTarget:self action:@selector(buttonTapped:) forControlEvents:UIControlEventTouchUpInside];
     
     UIImageView *imageV1 = [[UIImageView alloc] initWithFrame:CGRectMake(kScreenW/2-12, btn.y +16, 24, 24)];
     imageV1.image = kIMAGE_Name(@"guider_click");
@@ -141,6 +143,25 @@
     }
     return _scrollview;
 }
+- (void)buttonTapped:(id)sender {
+    if (self.isButtonEnabled) {
+        // 禁用按钮，防止多次点击
+        self.isButtonEnabled = NO;
+
+        // 执行按钮点击后的操作
+        [self guiderClicker];
+
+        // 延迟一定时间后重新启用按钮
+        [self performSelector:@selector(enableButton) withObject:nil afterDelay:1.0];
+    }
+}
+
+
+- (void)enableButton {
+    // 重新启用按钮
+    self.isButtonEnabled = YES;
+}
+
 -(void)guiderClicker{
     //[playVolume playMusic];
 

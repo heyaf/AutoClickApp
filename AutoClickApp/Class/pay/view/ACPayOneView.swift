@@ -270,7 +270,7 @@ class ACPayOneView: UIView {
     }
     @objc func brlabelTapped() {
         clickedPay = false
-        let hub = self.showHUD("Loading...")
+        let hub = self.showHUD(KLanguage(key: "Loading..."))
         
         XYStore.default().addPayment(IAP1_ProductID) { _ in
             let date = Date.getNewDateDistanceNow(year: 0, month: 1, days: 0)
@@ -302,14 +302,14 @@ class ACPayOneView: UIView {
                     btn.transform = CGAffineTransform.identity
                 }) { (finished) in
                     //                    MBProgressHUD.showInfoMessage("Loading...")
-                    let hub = self.showHUD("Loading...")
+                    let hub = self.showHUD(KLanguage(key: "Loading..."))
                     
                     XYStore.default().addPayment(IAP1_ProductID) { _ in
                         let date = Date.getNewDateDistanceNow(year: 0, month: 1, days: 0)
                         let dateStr = [Date.dateToString(date, dateFormat: "yyyy-MM-dd HH:mm:ss")]
                         UserDefaults.standard.setValue(dateStr, forKey: "payInfo");
                         self.disMissBack?()
-                        MBProgressHUD.showSuccessMessage("successful")
+                        MBProgressHUD.showSuccessMessage(KLanguage(key: "Purchase successful"))
                         hub.hide(false)
                     } failure: {transaction,_  in
                         hub.hide(false)
