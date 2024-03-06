@@ -12,6 +12,7 @@
 #import "ACAppClickUserView.h"
 #import "PayCenter.h"
 #import <XYIAPKit.h>
+#import "WMDragView.h"
 
 @interface ACAppClickerViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (nonatomic, strong) UICollectionView *collectionV;
@@ -33,25 +34,16 @@
     self.titleArr = @[@"English subtitles",@"Chinese subtitles",@"German subtitles",@"Portuguese subtitles"];
     [self creatVipUI];
     
-    self.userView = [[ACAppClickUserView alloc] initWithFrame:CGRectMake(0, 0, kScreenW, kScreenH - kNavBarHeight - kTabBarHeight)];
+    self.userView = [[ACAppClickUserView alloc] initWithFrame:CGRectMake(0, kNavBarHeight, kScreenW, kScreenH - kNavBarHeight - kTabBarHeight)];
     __weak typeof(self) weakSelf = self;
     self.userView.clickedBlock = ^{
-        [MBProgressHUD showTipMessageInView:KLanguage(@"Loading...") timer:100];
-        [[XYStore defaultStore] addPayment:@"autoclicker_onapp"
-                                   success:^(SKPaymentTransaction *transaction)
-        {
-            [kUserDefaults setBool:true forKey:@"PayVideo"];
-            weakSelf.userView.hidden = true;
-            [MBProgressHUD hideHUD];
-            //用户取消了交易
-            [MBProgressHUD showSuccessMessage:@"Success"];
-            
-        } failure:^(SKPaymentTransaction *transaction, NSError *error) {
-            [MBProgressHUD hideHUD];
-        }];
+       
+        [weakSelf clickedAction];
        
     };
     [self.view addSubview:self.userView];
+    [self setDragView];
+    
 }
 //已付费用户UI
 -(void)creatVipUI{
@@ -76,6 +68,122 @@
     self.lineV.hidden = YES;
 
 
+}
+-(void)setDragView{
+//    UIView *bgview = [[UIView alloc] initWithFrame:CGRectMake(0, kNavBarHeight, kScreenW , self.userView.height - 20 - kNavBarHeight)];
+//    bgview.backgroundColor = kClearColor;
+//    [self.userView addSubview:bgview];
+    
+    WMDragView *view = [[WMDragView alloc] init];
+    view.frame = CGRectMake(24,72 ,44,196);
+    view.layer.borderWidth = 1;
+    view.layer.borderColor = [UIColor colorWithRed:71.00000336766243/255.0 green:73.00000324845314/255.0 blue:80.00000283122063/255.0 alpha:1.0].CGColor;
+
+    view.layer.backgroundColor = [UIColor colorWithRed:24/255.0 green:26/255.0 blue:32/255.0 alpha:1.0].CGColor;
+    view.layer.cornerRadius = 8;
+    [self.userView addSubview:view];
+
+    
+    UIImageView *imageV = [[UIImageView alloc] initWithFrame:CGRectMake(12, 16, 20, 20)];
+    imageV.image = kIMAGE_Name(@"容器099");
+    [view addSubview:imageV];
+    
+    UIImageView *imageV1 = [[UIImageView alloc] initWithFrame:CGRectMake(12, 52, 20, 20)];
+    imageV1.image = kIMAGE_Name(@"容器1011");
+    [view addSubview:imageV1];
+    
+    UIImageView *imageV2 = [[UIImageView alloc] initWithFrame:CGRectMake(12, 88, 20, 20)];
+    imageV2.image = kIMAGE_Name(@"容器1012");
+    [view addSubview:imageV2];
+    
+    UIImageView *imageV3 = [[UIImageView alloc] initWithFrame:CGRectMake(12, 124, 20, 20)];
+    imageV3.image = kIMAGE_Name(@"容器1013");
+    [view addSubview:imageV3];
+    
+    UIImageView *imageV4 = [[UIImageView alloc] initWithFrame:CGRectMake(12, 160, 20, 20)];
+    imageV4.image = kIMAGE_Name(@"容器1014");
+    [view addSubview:imageV4];
+}
+-(void)clickedAction{
+    //[playVolume playMusic];
+
+    // 1.创建UIAlertController
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:KLanguage(@"Unlock this feature")
+                                                                             message:KLanguage(@"Unlock the use of automatic clicks in other apps!")
+                                                                      preferredStyle:UIAlertControllerStyleAlert];
+    UIView *view = alertController.view.subviews.firstObject;
+    UIView *view1 = view.subviews.firstObject;
+    UIView *view2 = view1.subviews.firstObject;
+
+
+
+    view2.backgroundColor = [UIColor colorWithHexString:@"#1E1E1E" alpha:0.75];
+    NSString *priceL = @"$1.99";
+    NSArray *arr = [kUserDefaults objectForKey:@"productInfoDefaultsKey"];
+    if (k_isValidArray(arr) && arr.count == 3) {
+        NSDictionary *dic = arr[0];
+        priceL = dic[@"finalPrice"];
+    }
+    __weak typeof(self) weakSelf = self;
+
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:priceL style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [MBProgressHUD showTipMessageInView:KLanguage(@"Loading...") timer:100];
+        [[XYStore defaultStore] addPayment:@"autoclicker_onapp"
+                                   success:^(SKPaymentTransaction *transaction)
+        {
+            [kUserDefaults setBool:true forKey:@"PayVideo"];
+            weakSelf.userView.hidden = true;
+            [MBProgressHUD hideHUD];
+            //用户取消了交易
+            [MBProgressHUD showSuccessMessage:KLanguage(@"Purchase successful")];
+            
+        } failure:^(SKPaymentTransaction *transaction, NSError *error) {
+            [MBProgressHUD hideHUD];
+            if(transaction.error.code != SKErrorPaymentCancelled) {
+                NSLog(@"111-%li",transaction.error.code);
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    // 在主线程上执行的代码
+                    ///购买失败
+                    [MBProgressHUD showErrorMessage:KLanguage(@"Failed purchase")];
+
+                });
+
+
+            } else {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                   
+                    //用户取消了交易
+                    [MBProgressHUD showErrorMessage:KLanguage(@"Cancel purchase")];
+
+                });
+
+
+            }
+        }];
+      
+       }];
+       UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:KLanguage(@"Cancel") style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+       }];
+ 
+    [alertController addAction:cancelAction];       // B
+
+    [alertController addAction:okAction];           // A
+
+    // 使用富文本来改变alert的title字体大小和颜色
+    NSString * str1 = KLanguage(@"Unlock this feature");
+      NSMutableAttributedString *titleText = [[NSMutableAttributedString alloc] initWithString:str1];
+    [titleText addAttributes:@{NSFontAttributeName:kBoldFont(17),NSForegroundColorAttributeName:[UIColor systemBlueColor]} range:NSMakeRange(0, str1.length)];
+      [alertController setValue:titleText forKey:@"attributedTitle"];
+      
+      // 使用富文本来改变alert的message字体大小和颜色
+      // NSMakeRange(0, 2) 代表:从0位置开始 两个字符
+    NSString * str = KLanguage(@"Unlock the use of automatic clicks in other apps!");
+      NSMutableAttributedString *messageText = [[NSMutableAttributedString alloc] initWithString:str];
+    [messageText addAttributes:@{NSFontAttributeName:kFont(13),NSForegroundColorAttributeName:[UIColor systemBlueColor]} range:NSMakeRange(0, str.length)];
+      [alertController setValue:messageText forKey:@"attributedMessage"];
+
+
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 -(void)setNav{
     

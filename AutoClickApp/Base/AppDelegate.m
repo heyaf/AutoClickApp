@@ -11,6 +11,7 @@
 #import "ACGuiderPageVC.h"
 #import <StoreKit/StoreKit.h>
 #import <XYStoreiTunesReceiptVerifier.h>
+#import "STRIAPManager.h"
 
 @interface AppDelegate ()<SKProductsRequestDelegate,SKPaymentTransactionObserver>
 
@@ -25,9 +26,10 @@
     manager.shouldResignOnTouchOutside = YES;
     manager.shouldToolbarUsesTextFieldTintColor = YES;
     manager.enableAutoToolbar = NO;
-    [self checkUserPayment];
+//    [self checkUserPayment];
     [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
-
+    // 在此设置内购的票据校验，防止掉单问题的发生
+//    [[XYStore defaultStore] registerReceiptVerifier:[XYStoreiTunesReceiptVerifier shareInstance]];
     //设置默认语言
     if (![[NSUserDefaults standardUserDefaults]objectForKey:@"appLanguage"]) {
             //获得当前语言
@@ -88,11 +90,16 @@
     }
     
     [self payDetail];
-
+//    NSURL *receiptURL = [[NSBundle mainBundle] appStoreReceiptURL];
+//    NSString *receiptPath = receiptURL.path;
+//
+//    // 如果需要，您可以将文件路径读取成 NSData
+//    NSData *receiptData = [NSData dataWithContentsOfFile:receiptPath];
+//    [self verifyReceipt:receiptData];
     return YES;
 }
 -(void)payDetail{
-    NSArray * productArray = [[NSArray alloc] initWithObjects:IAP1_ProductID,IAP2_ProductID, nil];
+    NSArray * productArray = [[NSArray alloc] initWithObjects: @"autoclicker_onapp",IAP1_ProductID,IAP2_ProductID, nil];
 
     [self validateProductIdentifiers:productArray];//根据商品id获取商品详情信息,数组参数
     
@@ -168,10 +175,22 @@
         [productInfoArray addObject:dicInfo];
 
     }
-    // 创建一个排序描述符，按照 "productIdentifier" 进行排序
-    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"productIdentifier" ascending:YES];
+    // 使用 NSSortDescriptor 进行排序，按照价格从低到高
+    // 自定义排序比较器
+    NSArray *customOrder = @[@"autoclicker_onapp", @"AutoClicker_Month_Nofree", @"AutoClicker_Year_Nofree"];
+    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"productIdentifier" ascending:YES comparator:^NSComparisonResult(id obj1, id obj2) {
+        NSUInteger index1 = [customOrder indexOfObject:obj1];
+        NSUInteger index2 = [customOrder indexOfObject:obj2];
+        
+        if (index1 < index2) {
+            return NSOrderedAscending;
+        } else if (index1 > index2) {
+            return NSOrderedDescending;
+        } else {
+            return NSOrderedSame;
+        }
+    }];
 
-    // 使用排序描述符对数组进行排序
     NSArray *sortedArray = [productInfoArray sortedArrayUsingDescriptors:@[sortDescriptor]];
 
     
@@ -181,7 +200,7 @@
 
     [productInfoDefaults synchronize];
 
-    NSLog(@"%@",productInfoArray);
+    NSLog(@"123%@",sortedArray);
 
 }
 -(void)getNet{
@@ -244,13 +263,18 @@
 }
 // 处理购买失败的情况
 - (void)handlePurchaseFailure:(SKPaymentTransaction *)transaction {
-//    if (transaction.error.code == SKErrorPaymentCancelled) {
-//        // 用户在支付过程中取消了付款
-//        [self handleCancelledPayment:transaction];
-//    } else {
-//        // 其他购买失败的情况
-//        [self handleOtherPurchaseFailure:transaction];
-//    }
+    if (transaction.error.code == SKErrorPaymentCancelled) { //处理收到用户取消订阅的消息
+        vipToolS *vipsettool = [[vipToolS alloc] init];
+        BOOL isvip = [vipTool isVip];
+        if (isvip) {
+            [vipsettool clearVip];
+        }
+        // 用户在支付过程中取消了付款
+        [self handleCancelledPayment:transaction];
+    } else {
+        // 其他购买失败的情况
+        [self handleOtherPurchaseFailure:transaction];
+    }
 }
 
 // 处理用户在支付过程中取消了付款
@@ -269,6 +293,94 @@
     [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
 }
 
+/// 请求苹果接口进行票据校验
+- (void)localReceiptVerifyingWithUrl:(NSString *)requestUrl AndReceipt:(NSString *)receiptStr AndTransaction:(SKPaymentTransaction *)transaction
+{
+    NSDictionary *requestContents = @{@"receipt-data": receiptStr,};
+    NSError *error;
+    // 转换为 JSON 格式
+    NSData *requestData = [NSJSONSerialization dataWithJSONObject:requestContents
+                                                          options:0
+                                                            error:&error];
+    NSString *verifyUrlString = requestUrl;
+    NSMutableURLRequest *storeRequest = [NSMutableURLRequest requestWithURL:[[NSURL alloc] initWithString:verifyUrlString] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10.0f];
+    [storeRequest setHTTPMethod:@"POST"];
+    [storeRequest setHTTPBody:requestData];
+    
+    // 在后台对列中提交验证请求，并获得官方的验证JSON结果
+    NSURLSession *session = [NSURLSession sharedSession];
+    NSURLSessionDataTask *task = [session dataTaskWithRequest:storeRequest completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        if (error) {
+            NSLog(@"链接失败");
+            
+        } else {
+            NSError *error;
+            NSDictionary *jsonResponse = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+            if (!jsonResponse) {
+                NSLog(@"验证失败");
+                
+            }
+            NSLog(@"验证成功");
+            //TODO:取这个json的数据去判断，道具是否下发
+        }
+    }];
+    [task resume];
+}
+- (void)verifyReceipt:(NSData *)receiptData {
+    // 获取票据
+    NSString *base64EncodedReceipt = [receiptData base64EncodedStringWithOptions:0];
 
+    // 构建请求数据
+    NSDictionary *requestBody = @{@"receipt-data": base64EncodedReceipt};
+    NSError *error;
+    NSData *requestData = [NSJSONSerialization dataWithJSONObject:requestBody options:0 error:&error];
+
+    if (!error) {
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"https://sandbox.itunes.apple.com/verifyReceipt"]];
+        request.HTTPMethod = @"POST";
+        request.HTTPBody = requestData;
+
+        // 发送请求
+        NSURLSession *session = [NSURLSession sharedSession];
+        NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+            if (data) {
+                // 处理验证结果
+                NSDictionary *jsonResponse = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+                [self handleVerificationResult:jsonResponse];
+            }
+        }];
+
+        [task resume];
+    }
+}
+
+- (void)handleVerificationResult:(NSDictionary *)result {
+    
+    NSDictionary *receipt = [result objectForKey:@"receipt"];
+    if (receipt){
+        NSArray *array =  [receipt objectForKey:@"in_app"];
+        if (array && array.count > 0){
+            NSDictionary *fistDic = array.firstObject;
+            if (fistDic){
+                //取到最后 一单的 transaction_id ，如果a看到这个一单没有 提交过，那么异常单中 的相同的
+                //product_id 对应的单应该是同一单，那么提交给 服务器
+                NSString *product_id = [fistDic objectForKey:@"product_id"];
+                NSString *transaction_id = [fistDic objectForKey:@"transaction_id"];
+                NSArray* transactions = [SKPaymentQueue defaultQueue].transactions;
+                NSLog(@"123");
+            }
+        }
+    }
+    // 解析验证结果，判断购买是否有效
+    BOOL purchaseValid = [result[@"status"] integerValue] == 0;
+
+    if (purchaseValid) {
+        // 购买有效，处理相应逻辑
+        NSLog(@"购买有效");
+    } else {
+        // 购买无效，处理相应逻辑
+        NSLog(@"购买无效");
+    }
+}
 
 @end

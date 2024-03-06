@@ -59,6 +59,22 @@
     label.textAlignment = NSTextAlignmentCenter;
     label.text = KLanguage(@"unlock");
     
+    NSString *priceL = @"$1.99";
+    NSArray *arr = [kUserDefaults objectForKey:@"productInfoDefaultsKey"];
+    if (k_isValidArray(arr) && arr.count == 3) {
+        NSDictionary *dic = arr[0];
+        priceL = dic[@"finalPrice"];
+    }
+    UILabel *labe2 = [self.animation1 createLabelFrame:CGRectMake(111 - 50 - 13, centerImageV.maxY + 10, 34, 15) textColor:kWhiteColor font:kBoldFont(10)];
+    labe2.textAlignment = NSTextAlignmentCenter;
+    labe2.text = priceL;
+    labe2.backgroundColor = [UIColor colorWithHexString:@"#8A38F5"];
+    labe2.layer.cornerRadius = 5;
+    labe2.layer.masksToBounds = true;
+    CGFloat angleInRadians = - 30.0 * M_PI / 180.0; // 将角度转换为弧度
+    CGAffineTransform transform = CGAffineTransformMakeRotation(angleInRadians);
+    labe2.transform = transform;
+    
     UILabel *label1 = [self createLabelFrame:CGRectMake(kScreenW/2-90, view.maxY + 5, 180, 40) textColor:kRGBA(255, 255, 255, 0.6) font:kFont(13)];
     label1.textAlignment = NSTextAlignmentCenter;
     label1.numberOfLines = 2;

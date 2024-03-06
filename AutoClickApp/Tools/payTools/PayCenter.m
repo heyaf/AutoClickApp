@@ -8,7 +8,7 @@
 
 #import "PayCenter.h"
 #import <StoreKit/StoreKit.h>
-
+#import <XYIAPKit.h>
 /**
  *  单例宏方法
  *
@@ -86,8 +86,34 @@ return _sharedObject; \
 }
 //恢复失败
 -(void) paymentQueue:(SKPaymentQueue *) paymentQueue restoreCompletedTransactionsFailedWithError:(NSError *)error{
-    NSLog(@"-------paymentQueue----");
-    [MBProgressHUD showErrorMessage:@"Error"];
+    if (_restorfailBlock) {
+        _restorfailBlock();
+    }
+}
+// 恢复成功后的回调
+- (void)paymentQueueRestoreCompletedTransactionsFinished:(SKPaymentQueue *)queue{
+
+   if (queue.transactions.count) {
+       for (SKPaymentTransaction *tran in queue.transactions) {
+           if (tran.originalTransaction.transactionIdentifier) {
+               
+               break;
+           }
+       }
+       // 没有可恢复的购买项
+       NSLog(@"恢复成功");
+       if (_restorSuccessBlock) {
+           _restorSuccessBlock();
+       }
+//       NSDictionary *userInfo = @{ XYStoreNotificationTransactions : restoredTransactions };
+//       [[NSNotificationCenter defaultCenter] postNotificationName:XYSKRestoreTransactionsFinished object:self userInfo:userInfo];
+   } else {
+       // 没有可恢复的购买项
+       NSLog(@"恢复失败");
+       if (_restorfailBlock) {
+           _restorfailBlock();
+       }
+   }
 }
 
 #pragma mark SKProductsRequestDelegate 查询成功后的回调
@@ -149,11 +175,7 @@ return _sharedObject; \
     [[SKPaymentQueue defaultQueue] finishTransaction: transaction];
 }
 
-// StoreKit 代理方法 接收队列交易信息
-- (void)paymentQueueRestoreCompletedTransactionsFinished:(SKPaymentQueue *)queue
-{
-    
-}
+
 #pragma Mark 购买操作后的回调
 - (void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(nonnull NSArray<SKPaymentTransaction *> *)transactions {
     NSLog(@"--------%@",transactions);

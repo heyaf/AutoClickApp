@@ -63,6 +63,8 @@
 		0471396E2AF91DC300E0EBE9 /* ACPrivacyBrowseDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0471396D2AF91DC300E0EBE9 /* ACPrivacyBrowseDetailVC.m */; };
 		047139742AFA2A7F00E0EBE9 /* CPJClippingPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 047139722AFA2A7F00E0EBE9 /* CPJClippingPanel.m */; };
 		047139752AFA2A7F00E0EBE9 /* CPJImageClipping.m in Sources */ = {isa = PBXBuildFile; fileRef = 047139732AFA2A7F00E0EBE9 /* CPJImageClipping.m */; };
+		048F9AF82B72198300E2BF34 /* UIView+drag.m in Sources */ = {isa = PBXBuildFile; fileRef = 048F9AF72B72198300E2BF34 /* UIView+drag.m */; };
+		048F9AFE2B73268500E2BF34 /* STRIAPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 048F9AFC2B73268500E2BF34 /* STRIAPManager.m */; };
 		049104CF2B037F9F009EB8AD /* UIView+hite.m in Sources */ = {isa = PBXBuildFile; fileRef = 049104CE2B037F9F009EB8AD /* UIView+hite.m */; };
 		049104D22B0391D7009EB8AD /* MLHitTestHackView.m in Sources */ = {isa = PBXBuildFile; fileRef = 049104D12B0391D7009EB8AD /* MLHitTestHackView.m */; };
 		04A5C84F2B09C1000085D5A8 /* UIImage+colorImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A5C84E2B09C1000085D5A8 /* UIImage+colorImage.m */; };
@@ -252,6 +254,10 @@
 		0472E4B62B0343A40059EED3 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
 		0472E4B72B0343A40059EED3 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		0472E4B82B0343A40059EED3 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		048F9AF62B72198300E2BF34 /* UIView+drag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+drag.h"; sourceTree = "<group>"; };
+		048F9AF72B72198300E2BF34 /* UIView+drag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+drag.m"; sourceTree = "<group>"; };
+		048F9AFC2B73268500E2BF34 /* STRIAPManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STRIAPManager.m; sourceTree = "<group>"; };
+		048F9AFD2B73268500E2BF34 /* STRIAPManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STRIAPManager.h; sourceTree = "<group>"; };
 		049104CD2B037F9F009EB8AD /* UIView+hite.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+hite.h"; sourceTree = "<group>"; };
 		049104CE2B037F9F009EB8AD /* UIView+hite.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+hite.m"; sourceTree = "<group>"; };
 		049104D02B0391D7009EB8AD /* MLHitTestHackView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MLHitTestHackView.h; sourceTree = "<group>"; };
@@ -667,6 +673,15 @@
 			path = CPJClippingPanel;
 			sourceTree = "<group>";
 		};
+		048F9AF52B72198300E2BF34 /* FLDragView */ = {
+			isa = PBXGroup;
+			children = (
+				048F9AF62B72198300E2BF34 /* UIView+drag.h */,
+				048F9AF72B72198300E2BF34 /* UIView+drag.m */,
+			);
+			path = FLDragView;
+			sourceTree = "<group>";
+		};
 		04C3382A2AFB756F004CBD4A /* GKCycleScrollView */ = {
 			isa = PBXGroup;
 			children = (
@@ -758,6 +773,7 @@
 		04DB09CD2AE961CD00562044 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				048F9AF52B72198300E2BF34 /* FLDragView */,
 				04F70F012B56805200D18FE2 /* payTools */,
 				04C338502AFCE38A004CBD4A /* Resouce */,
 				0417C3222AEBC003002EE17C /* PrefixHeader.pch */,
@@ -821,6 +837,8 @@
 		04F70F012B56805200D18FE2 /* payTools */ = {
 			isa = PBXGroup;
 			children = (
+				048F9AFD2B73268500E2BF34 /* STRIAPManager.h */,
+				048F9AFC2B73268500E2BF34 /* STRIAPManager.m */,
 				04F70F022B56805200D18FE2 /* PayCenter.m */,
 				04F70F032B56805200D18FE2 /* PayCenter.h */,
 			);
@@ -1185,9 +1203,11 @@
 				049104CF2B037F9F009EB8AD /* UIView+hite.m in Sources */,
 				0471394E2AF6868C00E0EBE9 /* NSDictionary+SafeData.m in Sources */,
 				047139512AF698CC00E0EBE9 /* ZWFileManager.m in Sources */,
+				048F9AFE2B73268500E2BF34 /* STRIAPManager.m in Sources */,
 				0417C3292AEBC18B002EE17C /* UIFont+ACFont.m in Sources */,
 				0417C3A72AF13F30002EE17C /* ACWebClikerDChooseTBCell.m in Sources */,
 				0417C3962AF0F51D002EE17C /* LiuXSlider.m in Sources */,
+				048F9AF82B72198300E2BF34 /* UIView+drag.m in Sources */,
 				047139432AF6390500E0EBE9 /* ACPrivacyAlbumDetailVC.m in Sources */,
 				04FFF9F42B516F2A00F3245D /* UIColor+Extension.swift in Sources */,
 				04F70F072B568DEF00D18FE2 /* NSDate+DateStr.m in Sources */,
@@ -1432,7 +1452,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = ZXK7A2YS9X;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1487,7 +1507,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = ZXK7A2YS9X;
 				FRAMEWORK_SEARCH_PATHS = (

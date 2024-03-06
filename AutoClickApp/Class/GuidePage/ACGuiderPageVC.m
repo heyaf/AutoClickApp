@@ -152,7 +152,7 @@
         [self guiderClicker];
 
         // 延迟一定时间后重新启用按钮
-        [self performSelector:@selector(enableButton) withObject:nil afterDelay:1.0];
+        [self performSelector:@selector(enableButton) withObject:nil afterDelay:0.5];
     }
 }
 

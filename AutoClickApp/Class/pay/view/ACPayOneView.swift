@@ -28,9 +28,9 @@ class ACPayOneView: UIView {
         let str = KLanguage(key: "Go Premium for $8.99/mo")
         var str1 = str.replacingOccurrences(of: "**", with: "￥58.00")
         let productInfoDefaults = UserDefaults.standard
-        if let arrdata = productInfoDefaults.object(forKey: "productInfoDefaultsKey") as? [[String : String]] , arrdata.count == 2{
+        if let arrdata = productInfoDefaults.object(forKey: "productInfoDefaultsKey") as? [[String : String]] , arrdata.count == 3{
             // 使用 arr，它是一个 [Any] 类型的数组
-            let dic = arrdata[0]
+            let dic = arrdata[1]
             str1 = str.replacingOccurrences(of: "**", with: (dic["finalPrice"] ?? "8.99"))
         }
         labelPro2.text = str1
@@ -222,9 +222,9 @@ class ACPayOneView: UIView {
         let str = KLanguage(key: "Go Premium for $8.99/mo")
         var str1 = str.replacingOccurrences(of: "**", with: "￥58.00")
         let productInfoDefaults = UserDefaults.standard
-        if let arrdata = productInfoDefaults.object(forKey: "productInfoDefaultsKey") as? [[String : String]] , arrdata.count == 2{
+        if let arrdata = productInfoDefaults.object(forKey: "productInfoDefaultsKey") as? [[String : String]] , arrdata.count == 3{
             // 使用 arr，它是一个 [Any] 类型的数组
-            let dic = arrdata[0]
+            let dic = arrdata[1]
             str1 = str.replacingOccurrences(of: "**", with: (dic["finalPrice"] ?? "8.99"))
         }
         labelPro2 = labelPro1
@@ -271,31 +271,44 @@ class ACPayOneView: UIView {
     @objc func brlabelTapped() {
         clickedPay = false
         let hub = self.showHUD(KLanguage(key: "Loading..."))
-        
+        hub.hide(false, afterDelay: 100.0)
         XYStore.default().addPayment(IAP1_ProductID) { _ in
             let date = Date.getNewDateDistanceNow(year: 0, month: 1, days: 0)
             let dateStr = [Date.dateToString(date, dateFormat: "yyyy-MM-dd HH:mm:ss")]
             UserDefaults.standard.setValue(dateStr, forKey: "payInfo");
-            self.clickedPay = false
             self.disMissBack?()
             MBProgressHUD.showSuccessMessage(KLanguage(key: "Recovery successful"))
             hub.hide(false)
+
         } failure: { transaction,_  in
             hub.hide(false)
-            if let error = transaction?.error as NSError?, error.code == SKError.paymentCancelled.rawValue {
-                // 处理支付被取消的情况
-                MBProgressHUD.showErrorMessage(KLanguage(key:"Cancel purchase"))
-            }else{
-                MBProgressHUD.showErrorMessage(KLanguage(key:"Recovery failed"))
-            }
-  
-        }
+            MBProgressHUD.showErrorMessage(KLanguage(key:"Recovery failed"))
+//            if let error = transaction?.error as NSError?, error.code == SKError.paymentCancelled.rawValue {
+//                // 处理支付被取消的情况
+//                MBProgressHUD.showErrorMessage(KLanguage(key:"Cancel purchase"))
+//            }else{
+//                MBProgressHUD.showErrorMessage(KLanguage(key:"Recovery failed"))
+//            }
+        }      
+//        XYStore.default().restoreTransactions { _ in
+//            let date = Date.getNewDateDistanceNow(year: 0, month: 1, days: 0)
+//            let dateStr = [Date.dateToString(date, dateFormat: "yyyy-MM-dd HH:mm:ss")]
+//            UserDefaults.standard.setValue(dateStr, forKey: "payInfo");
+//            self.clickedPay = false
+//            self.disMissBack?()
+//            MBProgressHUD.showSuccessMessage(KLanguage(key: "Recovery successful"))
+//            hub.hide(false)
+//        } failure: { error in
+//            hub.hide(false)
+//            MBProgressHUD.showErrorMessage(KLanguage(key:"Recovery failed"))
+//        }
+       
     }
     @objc func continueAction(_ btn : UIButton) {
-        UIView.animate(withDuration: 0.2, animations: {
-            btn.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
+        UIView.animate(withDuration: 0.1, animations: {
+            btn.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
         }) { (finished) in
-            UIView.animate(withDuration: 0.2, animations: {
+            UIView.animate(withDuration: 0.1, animations: {
                 btn.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
             }) { (finished) in
                 UIView.animate(withDuration: 0.1, animations: {

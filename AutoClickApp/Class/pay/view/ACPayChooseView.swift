@@ -100,9 +100,9 @@ class ACPayChooseView: UIView {
         let str2 = KLanguage(key: "$8.99 / month")
         var str3 = str.replacingOccurrences(of: "**", with: "$8.99")
         let productInfoDefaults = UserDefaults.standard
-        if let arrdata = productInfoDefaults.object(forKey: "productInfoDefaultsKey") as? [[String : String]] , arrdata.count == 2{
+        if let arrdata = productInfoDefaults.object(forKey: "productInfoDefaultsKey") as? [[String : String]] , arrdata.count == 3{
             // 使用 arr，它是一个 [Any] 类型的数组
-            let dic : [String : String] = arrdata[1]
+            let dic : [String : String] = arrdata[2]
             str1 = str.replacingOccurrences(of: "**", with: (dic["finalPrice"] ?? "8.99"))
             if let priceStr = dic["finalPrice"], priceStr.count >= 2 {
                 let startIndex = priceStr.index(priceStr.startIndex, offsetBy: 1)
@@ -123,7 +123,7 @@ class ACPayChooseView: UIView {
             }
             Leftlabel.text = str1
             
-            let dic1 = arrdata[0]
+            let dic1 = arrdata[1]
             str3 = str2.replacingOccurrences(of: "**", with: (dic1["finalPrice"] ?? "8.99"))
             RightL.text = str3
             

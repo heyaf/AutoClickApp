@@ -9,10 +9,10 @@
 
 @implementation UIButton (animation)
 +(void)setanimationwithBtn:(UIButton *)btn{
-    [UIView animateWithDuration:0.2 animations:^{
-        btn.transform = CGAffineTransformMakeScale(0.8, 0.8);
+    [UIView animateWithDuration:0.1 animations:^{
+        btn.transform = CGAffineTransformMakeScale(0.9, 0.9);
     } completion:^(BOOL finished) {
-        [UIView animateWithDuration:0.2 animations:^{
+        [UIView animateWithDuration:0.1 animations:^{
             btn.transform = CGAffineTransformMakeScale(1.1, 1.1);
         } completion:^(BOOL finished) {
             [UIView animateWithDuration:0.1 animations:^{
