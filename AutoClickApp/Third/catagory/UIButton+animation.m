@@ -13,7 +13,7 @@
         btn.transform = CGAffineTransformMakeScale(0.9, 0.9);
     } completion:^(BOOL finished) {
         [UIView animateWithDuration:0.1 animations:^{
-            btn.transform = CGAffineTransformMakeScale(1.1, 1.1);
+            btn.transform = CGAffineTransformMakeScale(1.0, 1.0);
         } completion:^(BOOL finished) {
             [UIView animateWithDuration:0.1 animations:^{
                 btn.transform = CGAffineTransformMakeScale(1, 1);

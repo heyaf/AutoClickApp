@@ -118,7 +118,9 @@
         if(indexPath.row==0){
             [self openUrl:@"https://fair-chalk-fc5.notion.site/Privacy-Policy-63a04c8f370449c09b61fadb28d5dbea?pvs=4"];
         }else if (indexPath.row==1){
-            [SKStoreReviewController requestReview];
+            // openURL: 方法在 iOS 10 以后已被弃用，替换为 openURL:options:completionHandler:
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"itms-apps://itunes.apple.com/app/id6470910061?action=write-review"]];
+            //id 字符串后续的数字为当前 App 对应的 Apple ID可以在 App Store Connect 后台查到
         }else if (indexPath.row==2){
             [self launchMailApp];
         }else if (indexPath.row==3){
@@ -223,7 +225,7 @@
         UILabel *urlL = [searchBgv createLabelTextColor:kWhiteColor font:kBoldFont(17)];
         urlL.frame = CGRectMake(20, 10, searchBgv.width-40, 17);
         urlL.textAlignment = NSTextAlignmentCenter;
-        urlL.text = @"Settings";
+        urlL.text = KLanguage(@"Settings");
         [_topV createLineFrame:CGRectMake(0, kNavBarHeight-1, kScreenW, 1) lineColor:kRGB(32, 32, 32)];
 
 
@@ -240,7 +242,7 @@
 -(void)launchMailApp
 {
     NSString *mailAddress=@"yzktech666@163.com";
-    NSString *url=[NSString stringWithFormat:@"mailto://%@",mailAddress];
+    NSString *url=[NSString stringWithFormat:@"mailto:%@",mailAddress];
     [self openUrl:url];
     
     

@@ -85,9 +85,13 @@
     UILabel *label2 = [self.scrollview createLabelFrame:CGRectMake(kScreenW*2 + 10, bgLine.maxY + 24, kScreenW-20, 22) textColor:kWhiteColor font:kMediunFont(16)];
     label2.textAlignment = NSTextAlignmentCenter;
     label2.text = KLanguage(@"Interesting practical gadgets");
-    
+     
+    CGFloat bH = 140;
+    if (!kISiPhoneXX) {
+        bH = 72;
+    }
     UIButton *btn = [UIButton buttonWithType:0];
-    btn.frame = CGRectMake(kScreenW/2-28, label.maxY + 77, 56, 56);
+    btn.frame = CGRectMake(kScreenW/2-28, kScreenH - kSafeAreaBottom - bH - 56 - 8, 56, 56);
     btn.backgroundColor = kWhiteColor;
     kViewRadius(btn, 28);
     [self.view addSubview:btn];
@@ -188,9 +192,10 @@
             weakSelf.pageBtn.width = kScreenW - 40;
             weakSelf.pageBtn.centerX = kScreenW/2;
         } completion:^(BOOL finished) {
+            [weakSelf.oneV showView];
+
             weakSelf.pageBtn.hidden = true;
             
-            [weakSelf.oneV showView];
             self.skipL.hidden = true;
         }];
         return;

@@ -30,8 +30,8 @@ class ACPayOneView: UIView {
         let productInfoDefaults = UserDefaults.standard
         if let arrdata = productInfoDefaults.object(forKey: "productInfoDefaultsKey") as? [[String : String]] , arrdata.count == 3{
             // 使用 arr，它是一个 [Any] 类型的数组
-            let dic = arrdata[1]
-            str1 = str.replacingOccurrences(of: "**", with: (dic["finalPrice"] ?? "8.99"))
+            let dic = arrdata[2]
+            str1 = str.replacingOccurrences(of: "**", with: (dic["finalPrice"] ?? "$17.99"))
         }
         labelPro2.text = str1
     }
@@ -93,6 +93,11 @@ class ACPayOneView: UIView {
         )
         bClabel.attributedText = underlineAttriString
         
+//        var y = StatusBarHeight + 170 + 91 + 91 + 91 + 4 + 24 + 22 + 77 + 56 + 8 + 14
+//        
+//        if isX == false {
+//            y -= 60
+//        }
         // 添加点击手势
         bClabel.isUserInteractionEnabled = true
         let labelTapGesture = UITapGestureRecognizer(target: self, action: #selector(bclabelTapped))
@@ -224,8 +229,9 @@ class ACPayOneView: UIView {
         let productInfoDefaults = UserDefaults.standard
         if let arrdata = productInfoDefaults.object(forKey: "productInfoDefaultsKey") as? [[String : String]] , arrdata.count == 3{
             // 使用 arr，它是一个 [Any] 类型的数组
-            let dic = arrdata[1]
-            str1 = str.replacingOccurrences(of: "**", with: (dic["finalPrice"] ?? "8.99"))
+            let dic = arrdata[2]
+            str1 = str.replacingOccurrences(of: "**", with: (dic["finalPrice"] ?? "17.99"))
+            
         }
         labelPro2 = labelPro1
         continueBtn = continuebtn
@@ -266,42 +272,45 @@ class ACPayOneView: UIView {
                 self.dismissBtn.alpha = 1
             }
         }
-        continueBtn.alpha = 1
+//        UIView.animate(withDuration: 0.1) {
+            self.continueBtn.alpha = 1
+
+//        }
     }
     @objc func brlabelTapped() {
         clickedPay = false
         let hub = self.showHUD(KLanguage(key: "Loading..."))
         hub.hide(false, afterDelay: 100.0)
-        XYStore.default().addPayment(IAP1_ProductID) { _ in
-            let date = Date.getNewDateDistanceNow(year: 0, month: 1, days: 0)
+//        XYStore.default().addPayment(IAP2_ProductID) { _ in
+//            let date = Date.getNewDateDistanceNow(year: 1, month: 0, days: 0)
+//            let dateStr = [Date.dateToString(date, dateFormat: "yyyy-MM-dd HH:mm:ss")]
+//            UserDefaults.standard.setValue(dateStr, forKey: "payInfo");
+//            self.disMissBack?()
+//            MBProgressHUD.showSuccessMessage(KLanguage(key: "Recovery successful"))
+//            hub.hide(false)
+//
+//        } failure: { transaction,_  in
+//            hub.hide(false)
+//            MBProgressHUD.showErrorMessage(KLanguage(key:"Recovery failed"))
+////            if let error = transaction?.error as NSError?, error.code == SKError.paymentCancelled.rawValue {
+////                // 处理支付被取消的情况
+////                MBProgressHUD.showErrorMessage(KLanguage(key:"Cancel purchase"))
+////            }else{
+////                MBProgressHUD.showErrorMessage(KLanguage(key:"Recovery failed"))
+////            }
+//        }      
+        XYStore.default().restoreTransactions { _ in
+            let date = Date.getNewDateDistanceNow(year: 1, month: 0, days: 0)
             let dateStr = [Date.dateToString(date, dateFormat: "yyyy-MM-dd HH:mm:ss")]
             UserDefaults.standard.setValue(dateStr, forKey: "payInfo");
             self.disMissBack?()
             MBProgressHUD.showSuccessMessage(KLanguage(key: "Recovery successful"))
+            
             hub.hide(false)
-
-        } failure: { transaction,_  in
+        } failure: { error in
             hub.hide(false)
             MBProgressHUD.showErrorMessage(KLanguage(key:"Recovery failed"))
-//            if let error = transaction?.error as NSError?, error.code == SKError.paymentCancelled.rawValue {
-//                // 处理支付被取消的情况
-//                MBProgressHUD.showErrorMessage(KLanguage(key:"Cancel purchase"))
-//            }else{
-//                MBProgressHUD.showErrorMessage(KLanguage(key:"Recovery failed"))
-//            }
-        }      
-//        XYStore.default().restoreTransactions { _ in
-//            let date = Date.getNewDateDistanceNow(year: 0, month: 1, days: 0)
-//            let dateStr = [Date.dateToString(date, dateFormat: "yyyy-MM-dd HH:mm:ss")]
-//            UserDefaults.standard.setValue(dateStr, forKey: "payInfo");
-//            self.clickedPay = false
-//            self.disMissBack?()
-//            MBProgressHUD.showSuccessMessage(KLanguage(key: "Recovery successful"))
-//            hub.hide(false)
-//        } failure: { error in
-//            hub.hide(false)
-//            MBProgressHUD.showErrorMessage(KLanguage(key:"Recovery failed"))
-//        }
+        }
        
     }
     @objc func continueAction(_ btn : UIButton) {
@@ -309,7 +318,7 @@ class ACPayOneView: UIView {
             btn.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
         }) { (finished) in
             UIView.animate(withDuration: 0.1, animations: {
-                btn.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
+                btn.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
             }) { (finished) in
                 UIView.animate(withDuration: 0.1, animations: {
                     btn.transform = CGAffineTransform.identity
@@ -317,7 +326,7 @@ class ACPayOneView: UIView {
                     //                    MBProgressHUD.showInfoMessage("Loading...")
                     let hub = self.showHUD(KLanguage(key: "Loading..."))
                     
-                    XYStore.default().addPayment(IAP1_ProductID) { _ in
+                    XYStore.default().addPayment(IAP2_ProductID) { _ in
                         let date = Date.getNewDateDistanceNow(year: 0, month: 1, days: 0)
                         let dateStr = [Date.dateToString(date, dateFormat: "yyyy-MM-dd HH:mm:ss")]
                         UserDefaults.standard.setValue(dateStr, forKey: "payInfo");

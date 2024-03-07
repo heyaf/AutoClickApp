@@ -269,15 +269,29 @@ class ACPayTwoViewController: UIViewController {
 //        }
         let hub = self.showHUD(KLanguage(key: "Loading..."))
         hub.hide(false, afterDelay: 100.0)
-        var payID = IAP2_ProductID
-        if selectIndex == 1 {
-            payID = IAP1_ProductID
-        }
-        XYStore.default().addPayment(payID) { _ in
-            var date = Date.getNewDateDistanceNow(year: 1, month: 0, days: 0)
-            if self.selectIndex == 1 {
-                date = Date.getNewDateDistanceNow(year: 0, month: 1, days: 0)
-            }
+//        var payID = IAP2_ProductID
+//        if selectIndex == 1 {
+//            payID = IAP1_ProductID
+//        }
+//        XYStore.default().addPayment(payID) { _ in
+//            var date = Date.getNewDateDistanceNow(year: 1, month: 0, days: 0)
+//            if self.selectIndex == 1 {
+//                date = Date.getNewDateDistanceNow(year: 0, month: 1, days: 0)
+//            }
+//            let dateStr = [Date.dateToString(date, dateFormat: "yyyy-MM-dd HH:mm:ss")]
+//            UserDefaults.standard.setValue(dateStr, forKey: "payInfo");
+//            self.dismissAction()
+//            self.reloadVip?()
+//            hub.hide(false)
+//
+//            MBProgressHUD.showSuccessMessage("Recovery successful")
+//        } failure: { transaction,_  in
+//            hub.hide(false)
+//            MBProgressHUD.showErrorMessage(KLanguage(key:"Recovery failed"))
+//
+//        }
+        XYStore.default().restoreTransactions { _ in
+            let date = Date.getNewDateDistanceNow(year: 1, month: 0, days: 0)
             let dateStr = [Date.dateToString(date, dateFormat: "yyyy-MM-dd HH:mm:ss")]
             UserDefaults.standard.setValue(dateStr, forKey: "payInfo");
             self.dismissAction()
@@ -285,15 +299,9 @@ class ACPayTwoViewController: UIViewController {
             hub.hide(false)
 
             MBProgressHUD.showSuccessMessage("Recovery successful")
-        } failure: { transaction,_  in
+        } failure: { error in
             hub.hide(false)
             MBProgressHUD.showErrorMessage(KLanguage(key:"Recovery failed"))
-//            if let error = transaction?.error as NSError?, error.code == SKError.paymentCancelled.rawValue {
-//                // 处理支付被取消的情况
-//                MBProgressHUD.showErrorMessage(KLanguage(key:"Cancel purchase"))
-//            }else{
-//                MBProgressHUD.showErrorMessage(KLanguage(key:"Recovery failed"))
-//            }
         }
         
     }
@@ -302,7 +310,7 @@ class ACPayTwoViewController: UIViewController {
             btn.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
         }) { (finished) in
             UIView.animate(withDuration: 0.1, animations: {
-                btn.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
+                btn.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
             }) { (finished) in
                 UIView.animate(withDuration: 0.1, animations: {
                     btn.transform = CGAffineTransform.identity
@@ -375,7 +383,7 @@ extension UIViewController {
         let HUD = MBProgressHUD.showAdded(to: view, animated: true)
         HUD?.labelText = text
         HUD?.removeFromSuperViewOnHide = true
-        
+        HUD?.isUserInteractionEnabled = true;
         return HUD ?? MBProgressHUD()
     }
     
