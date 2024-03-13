@@ -56,9 +56,9 @@
     ACTabViewController *tabBarVC = [[ACTabViewController alloc] init];
     self.window.rootViewController = tabBarVC;
     [self.window makeKeyAndVisible];
-//    if ([kUserDefaults boolForKey:@"showPage"]) {
-//        
-//    } else {
+    if ([kUserDefaults boolForKey:@"showPage"]) {
+        
+    } else {
         [kUserDefaults setBool:YES forKey:@"showPage"];
         ACGuiderPageVC *pushVC = [[ACGuiderPageVC  alloc] init];
         pushVC.modalPresentationStyle = UIModalPresentationFullScreen;
@@ -75,7 +75,7 @@
 
         });
 
-//    }
+    }
 //    if (@available(iOS 13.0, *)) {
 //        [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
 //

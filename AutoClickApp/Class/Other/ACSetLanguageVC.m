@@ -114,7 +114,7 @@
         UILabel *urlL = [searchBgv createLabelTextColor:kWhiteColor font:kBoldFont(17)];
         urlL.frame = CGRectMake(20, 8, searchBgv.width-40, 21);
         urlL.textAlignment = NSTextAlignmentCenter;
-        urlL.text = @"Language";
+        urlL.text = KLanguage(@"language");
         
         [_topV createLineFrame:CGRectMake(0, kNavBarHeight-1, kScreenW, 1) lineColor:kRGB(32, 32, 32)];
         

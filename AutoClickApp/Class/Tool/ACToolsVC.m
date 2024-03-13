@@ -130,6 +130,26 @@
         pushVC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:pushVC animated:YES];
     }else if (indexPath.row==4){
+        PHAuthorizationStatus status = [PHPhotoLibrary authorizationStatus];
+            switch (status) {
+                case PHAuthorizationStatusAuthorized:
+                    // 已经授权
+                    
+                    break;
+                case PHAuthorizationStatusDenied:
+                case PHAuthorizationStatusRestricted:
+                    // 权限被拒绝或受限
+                    [self photoQuanxian];
+                    return;;
+                case PHAuthorizationStatusNotDetermined:
+                    // 权限未确定，请求权限
+                    
+                    break;
+                default:
+                    // 其他情况
+                   
+                    break;
+            }
         TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc] initWithMaxImagesCount:1 columnNumber:3 delegate:nil pushPhotoPickerVc:YES];
         [imagePickerVc setDidFinishPickingPhotosHandle:^(NSArray<UIImage *> *photos, NSArray *assets, BOOL isSelectOriginalPhoto) {
             ACImageCropVC *pushVC = [[ACImageCropVC  alloc] init];
@@ -158,6 +178,26 @@
         pushVC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:pushVC animated:YES];
     }else if (indexPath.row==5){
+        PHAuthorizationStatus status = [PHPhotoLibrary authorizationStatus];
+            switch (status) {
+                case PHAuthorizationStatusAuthorized:
+                    // 已经授权
+                    
+                    break;
+                case PHAuthorizationStatusDenied:
+                case PHAuthorizationStatusRestricted:
+                    // 权限被拒绝或受限
+                    [self photoQuanxian];
+                    return;;
+                case PHAuthorizationStatusNotDetermined:
+                    // 权限未确定，请求权限
+                    
+                    break;
+                default:
+                    // 其他情况
+                   
+                    break;
+            }
         TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc] initWithMaxImagesCount:1 columnNumber:3 delegate:nil pushPhotoPickerVc:YES];
         [imagePickerVc setDidFinishPickingPhotosHandle:^(NSArray<UIImage *> *photos, NSArray *assets, BOOL isSelectOriginalPhoto) {
             ACGridLayoutVC *pushVC = [[ACGridLayoutVC  alloc] init];
@@ -184,5 +224,9 @@
     //[playVolume playMusic];
 
 }
-
+-(void)photoQuanxian{
+    ACAlbumPowerSetVC *vc = [ACAlbumPowerSetVC new];
+    vc.modalPresentationStyle = UIModalPresentationOverFullScreen;
+    [self presentViewController:vc animated:true completion:nil];
+}
 @end

@@ -26,7 +26,7 @@ class ACPayOneView: UIView {
     }
     @objc func reloadPrice(){
         let str = KLanguage(key: "Go Premium for $8.99/mo")
-        var str1 = str.replacingOccurrences(of: "**", with: "￥58.00")
+        var str1 = str.replacingOccurrences(of: "**", with: "￥128.00")
         let productInfoDefaults = UserDefaults.standard
         if let arrdata = productInfoDefaults.object(forKey: "productInfoDefaultsKey") as? [[String : String]] , arrdata.count == 3{
             // 使用 arr，它是一个 [Any] 类型的数组

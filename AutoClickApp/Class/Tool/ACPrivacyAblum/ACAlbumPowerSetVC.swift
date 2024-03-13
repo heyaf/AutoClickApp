@@ -44,7 +44,7 @@ class ACAlbumPowerSetVC: UIViewController {
         view.addSubview(Label1)
         
         let setBtn = UIButton(type: .custom)
-        setBtn.frame = CGRect(x: KScreenWidth / 2 - 40 , y: Label1.bottom + 60, width: 80, height: 20)
+        setBtn.frame = CGRect(x: KScreenWidth / 2 - 60 , y: Label1.bottom + 60, width: 120, height: 20)
         setBtn.setTitle(KLanguage(key: "Go to Settings"), for: .normal)
         setBtn.titleLabel?.font = .pingFangRegular(16)
         setBtn.setTitleColor(.blue, for: .normal)
